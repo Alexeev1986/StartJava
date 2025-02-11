@@ -3,14 +3,14 @@ import java.math.RoundingMode;
 
 public class VariablesTheme {
     public static void main(String[] args) {
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n1. Вывод характеристик компьютера.%n%n");
 
         // имеется в наличии
         boolean available = true;
 
         // количество ядер
-        byte coresCount = 4;
+        byte coreCount = 4;
 
         // объем оперативной памяти
         short volumeRam = 8;
@@ -31,65 +31,80 @@ public class VariablesTheme {
         double productPrice = 13549.99;
 
         System.out.println("имеется в наличии: " + available);
-        System.out.println("количество ядер = " + coresCount);
+        System.out.println("количество ядер = " + coreCount);
         System.out.println("объем оперативной памяти = " + volumeRam + memoryUnitSize);
         System.out.println("объем жесткого диска = " + volumeHdd + memoryUnitSize);
         System.out.println("объем твердотельного диска = " + volumeSdd + memoryUnitSize);
         System.out.println("количество операций в секунду = " + operationsInSec);
         System.out.println("цена изделия = " + productPrice);
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n2. Расчет стоимости товара со скидкой.%n%n");
 
         double penPrice = 105.5;
         double bookPrice = 235.83;
         int discount = 11;
-        double sumOffDiscount = penPrice + bookPrice;
-        double sumDiscount = (sumOffDiscount / 100) * discount;
-        double sumOnDiscount = sumOffDiscount - sumDiscount;
-        System.out.println("Стоимость товара без скидки = " + String.format("%.2f", sumOffDiscount));
-        System.out.println("Сумма скидки = " + String.format("%.2f", sumDiscount));
-        System.out.println("Стоимость товара со скидкой = " + String.format("%.2f", sumOnDiscount));
+        double basePrice = penPrice + bookPrice;
+        double discountAmount = (basePrice / 100) * discount;
+        double discountPrice = basePrice - discountAmount;
+        System.out.println("Стоимость товара без скидки = " + String.format("%.2f", basePrice));
+        System.out.println("Сумма скидки = " + String.format("%.2f", discountAmount));
+        System.out.println("Стоимость товара со скидкой = " + String.format("%.2f", discountPrice));
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n3. Вывод слова JAVA.%n%n");
         System.out.println("   J    a  v     v  a   ");
         System.out.println("   J   a a  v   v  a a  ");
         System.out.println("J  J  aaaaa  v v  aaaaa ");
         System.out.println(" JJ  a     a  v  a     a");
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n4. Вывод min и max значений целых числовых типов.%n%n");
 
-        byte byteVar = 127;
-        short shortVar = 32767;
-        int intVar = 2147483647;
-        Long longVar = 9223372036854775807L;
+        byte byteValue = 127;
+        short shortValue = 32767;
+        int intValue = 2147483647;
+        Long longValue= 9223372036854775807L;
+        char charValue = 65535;
 
-        System.out.printf("%n Переменная типа byte: первоначальное значение =" + byteVar);
-        System.out.printf("%n значение после инкремента = " + byteVar++);
-        System.out.printf("%n значение после декремента =" + byteVar-- + "%n");
 
-        System.out.printf("%n Переменная типа short: первоначальное значение =" + shortVar);
-        System.out.printf("%n значение после инкремента = " + shortVar++);
-        System.out.printf("%n значение после декремента =" + shortVar-- + "%n");
+        System.out.printf("%n Переменная типа byte: первоначальное значение = " + byteValue);
+        byteValue++;
+        System.out.printf("%n значение после инкремента = " + byteValue);
+        byteValue--;
+        System.out.printf("%n значение после декремента = " + byteValue + "%n");
 
-        System.out.printf("%n Переменная типа int: первоначальное значение =" + intVar);
-        System.out.printf("%n значение после инкремента = " + intVar++);
-        System.out.printf("%n значение после декремента =" + intVar-- + "%n");
+        System.out.printf("%n Переменная типа short: первоначальное значение = " + shortValue);
+        shortValue++;
+        System.out.printf("%n значение после инкремента = " + shortValue);
+        shortValue--;
+        System.out.printf("%n значение после декремента = " + shortValue + "%n");
 
-        System.out.printf("%n Переменная типа Long: первоначальное значение =" + longVar);
-        System.out.printf("%n значение после инкремента = " + longVar++);
-        System.out.printf("%n значение после декремента =" + longVar-- + "%n");
+        System.out.printf("%n Переменная типа int: первоначальное значение = " + intValue);
+        intValue++;
+        System.out.printf("%n значение после инкремента = " + intValue);
+        intValue--;
+        System.out.printf("%n значение после декремента = " + intValue + "%n");
 
-        // -------------------------------------------------------------------------------------------
+        System.out.printf("%n Переменная типа Long: первоначальное значение = " + longValue);
+        longValue++;
+        System.out.printf("%n значение после инкремента = " + longValue);
+        longValue--;
+        System.out.printf("%n значение после декремента = " + longValue + "%n");
+
+        System.out.printf("%n Переменная типа Char: первоначальное значение = " + charValue);
+        charValue++;
+        System.out.printf("%n значение после инкремента = " + charValue);
+        charValue--;
+        System.out.printf("%n значение после декремента = " + charValue + "%n");
+
+
         System.out.printf("%n5. Перестановка значений переменных.%n%n");
 
         int num1 = 2;
         int num2 = 5;
-        int num3 = 0;
         System.out.println("Исходные значения: X = " + num1 + " ; Y = " + num2);
-        num3 = num1;
+        int num3 = num1;
         num1 = num2;
         num2 = num3;
         System.out.println("Обмен значений с помощью третьей переменной:X = " + num1 + " ; Y = " + num2);
@@ -97,81 +112,81 @@ public class VariablesTheme {
         num2 = num1 - num2; 
         num1 -= num2;
         System.out.println("Обмен значений с помощью арифметических операций:X = " + num1 + " ; Y = " + num2);
-        num1 = num1 ^ num2; 
+        num1 ^= num2; 
         num2 = num2 ^ num1; 
-        num1 = num1 ^ num2;
+        num1 ^= num2;
         System.out.println("Обмен значений с помощью побитовой операции:X = " + num1 + " ; Y = " + num2);
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n6. Вывод символов и их кодов.%n%n");
 
-        char ch1 = '$';
-        char ch2 = '*';
-        char ch3 = '@';
-        char ch4 = '^';
-        char ch5 = '~';
-        System.out.println("Символ - " + ch1 + " ; Код символа -" + (int) ch1);
-        System.out.println("Символ - " + ch2 + " ; Код символа -" + (int) ch2);
-        System.out.println("Символ - " + ch3 + " ; Код символа -" + (int) ch3);
-        System.out.println("Символ - " + ch4 + " ; Код символа -" + (int) ch4);
-        System.out.println("Символ - " + ch5 + " ; Код символа -" + (int) ch5);
+        char ch1 = 36;
+        char ch2 = 42;
+        char ch3 = 64;
+        char ch4 = 94;
+        char ch5 = 126;
+        System.out.printf("%n Код символа - " + (int)ch1 + "\t" + " ; Символ -" + ch1);
+        System.out.printf("%n Код символа - " + (int)ch2 + "\t" + " ; Символ -" + ch2);
+        System.out.printf("%n Код символа - " + (int)ch3 + "\t" + " ; Символ -" + ch3);
+        System.out.printf("%n Код символа - " + (int)ch4 + "\t" + " ; Символ -" + ch4);
+        System.out.printf("%n Код символа - " + (int)ch5 + "\t" + " ; Символ -" + ch5 + "%n");
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n7. Вывод в консоль ASCII-арт Дюка.%n%n");
 
-        char duk1 = '/';
-        char duk2 = '\\';
-        char duk3 = '_';
-        char duk4 = '(';
-        char duk5 = ')';
+        char duk1 = 47;
+        char duk2 = 92;
+        char duk3 = 95;
+        char duk4 = 40;
+        char duk5 = 41;
         System.out.println("    " + duk1 + duk2);
         System.out.println("   " + duk1 + "  " + duk2);
         System.out.println("  " + duk1 + duk3 + duk4 + " " + duk5 + duk2);
         System.out.println(" " + duk1 + "      " + duk2);
         System.out.println(duk1 + "" + duk3 + duk3 + duk3 + duk3 + duk1 + duk2 + duk3 + duk3 + duk2);
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n8. Манипуляции с сотнями, десятками и единицами числа.%n%n");
 
         int number = 123;
-        int tensNumber = (number % 100) / 10;
-        int hundredsNumber = number / 100;
-        int unitsNumber = number % 10;
-        int digitsSum = tensNumber + hundredsNumber + unitsNumber;
-        int digitsProdukt = tensNumber * hundredsNumber * unitsNumber;
+        int hundredNumber = number / 100;
+        int tenNumber = (number % 100) / 10;
+        int onesNumber = number % 10;
+        int digitSum = tenNumber + hundredNumber + onesNumber;
+        int digitProduсt = tenNumber * hundredNumber * onesNumber;
         System.out.println("Число " + number + " содержит:");
-        System.out.println("сотен - " + hundredsNumber);
-        System.out.println("десятков - " + tensNumber);
-        System.out.println("единиц - " + unitsNumber);
-        System.out.println("сумма разрядов = " + digitsSum);
-        System.out.println("произведение разрядов = " + digitsProdukt);
+        System.out.println("сотен - " + hundredNumber);
+        System.out.println("десятков - " + tenNumber);
+        System.out.println("единиц - " + onesNumber);
+        System.out.println("сумма разрядов = " + digitSum);
+        System.out.println("произведение разрядов = " + digitProduсt);
 
-        // -------------------------------------------------------------------------------------------
+
         System.out.printf("%n9. Перевод секунд в часы, минуты и секунды.%n%n");
 
-        int allsec = 86399;
-        int minutes = (allsec % 3600) / 60;
-        int seconds = allsec % 60;
-        int hours = allsec / 3600;
-        System.out.println("оличество секунд = " + allsec);
-        System.out.println(hours + ":" + minutes + ":" + seconds);
+        int allSec = 86399;
+        int hh = allSec / 3600;
+        int mm = (allSec % 3600) / 60;
+        int ss = allSec % 60;
         
-        // -------------------------------------------------------------------------------------------
+        System.out.println("Количество секунд = " + allSec);
+        System.out.println(hh + ":" + mm + ":" + ss);
+        
+
         System.out.printf("%n10. Расчет стоимости товара со скидкой.%n%n");
 
         BigDecimal penPriceBd = new BigDecimal("105.5");
         BigDecimal bookPriceBd = new BigDecimal("235.83");
         BigDecimal discountBd = new BigDecimal("0.11");
-        BigDecimal persentBd = new BigDecimal("100");
 
-        BigDecimal sumOffDiscountBd = penPriceBd.add(bookPriceBd);
+        BigDecimal basePriceBd = penPriceBd.add(bookPriceBd);
         
-        BigDecimal sumDiscountBd = sumOffDiscountBd.multiply(discountBd).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal discountAmountBd = basePriceBd.multiply(discountBd).setScale(2, RoundingMode.HALF_UP);
 
-        BigDecimal sumOnDiscountBd = sumOffDiscountBd.subtract(sumDiscountBd);
+        BigDecimal discountPriceBd = basePriceBd.subtract(discountAmountBd);
 
-        System.out.println("Стоимость товара без скидки = " + sumOffDiscountBd);
-        System.out.println("Сумма скидки = " + sumDiscountBd);
-        System.out.println("Стоимость товара со скидкой = " + sumOnDiscountBd);
+        System.out.println("Стоимость товара без скидки = " + basePriceBd);
+        System.out.println("Сумма скидки = " + discountAmountBd);
+        System.out.println("Стоимость товара со скидкой = " + discountPriceBd);
     }
 }

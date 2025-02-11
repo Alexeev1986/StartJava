@@ -43,8 +43,8 @@ public class VariableNamesTheme {
         System.out.println("код ошибки = " + errorCode);
 
         // тип сообщения
-        String massageType = "text";
-        System.out.println("тип сообщения = " + massageType);
+        String messageType = "text";
+        System.out.println("тип сообщения = " + messageType);
 
         // число нулей
         int zeroCount = 2;
@@ -114,7 +114,6 @@ public class VariableNamesTheme {
         int countNumberInEachLine = 13;
         System.out.println("количество чисел в каждой строке = " + countNumberInEachLine);
 
-        // --------------------------------------------------------------------------------------
         System.out.printf("%n2. Boolean-переменные.%n%n");
 
         // сотни равны?
@@ -153,7 +152,6 @@ public class VariableNamesTheme {
         Boolean hasUniqueLines = true;
         System.out.println("имеются уникальные строки? = " + isCreated);
 
-        // --------------------------------------------------------------------------------------
         System.out.printf("%n3. Аббревиатуры.%n%n");
 
         // старый universally unique identifier
@@ -173,8 +171,8 @@ public class VariableNamesTheme {
         System.out.println("протокол передачи гипертекста = " + myHttp);
 
         // сокращенный uniform resource locator
-        String urlAbbreviated = "https://www.google.com/search?q";
-        System.out.println("сокращенный uniform resource locator = " + urlAbbreviated);
+        String shortUrl = "https://www.google.com/search?q";
+        System.out.println("сокращенный uniform resource locator = " + shortUrl);
 
         // новый идентификатор клиента
         String newClientId = "as7845567fd";
