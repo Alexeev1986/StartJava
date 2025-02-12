@@ -86,7 +86,8 @@ public class IfElseStatementTheme {
 
         if (hundredNumber1 == hundredNumber2 & tenNumber1 == tenNumber2 & onesNumber1 == onesNumber2) { 
             System.out.println("Выбранные вами числа равны");
-        } else if (hundredNumber1 == hundredNumber2 || tenNumber1 == tenNumber2 || onesNumber1 == onesNumber2) {
+        } else if (hundredNumber1 == hundredNumber2 || tenNumber1 == tenNumber2 ||
+                onesNumber1 == onesNumber2) {
             System.out.println("Выбранные числа : " + number1 + " и " + number2);
         }
         if (hundredNumber1 == hundredNumber2) { 
@@ -170,8 +171,10 @@ public class IfElseStatementTheme {
             programmingEvaluation = 5;
         }
 
-        System.out.println("История(" + Math.round(percentHistoryEvaluation) + ") оценка - " + historyEvaluation);
-        System.out.println("Программирование(" + Math.round(percentProgrammingEvaluation) + ") оценка - " + programmingEvaluation);
+        System.out.println("История(" + Math.round(percentHistoryEvaluation) +
+                ") оценка - " + historyEvaluation);
+        System.out.println("Программирование(" + Math.round(percentProgrammingEvaluation) +
+                ") оценка - " + programmingEvaluation);
 
         float avarageScore = (historyEvaluation + programmingEvaluation) / 2;
         System.out.println("Средний балл по предметам = " + (avarageScore));
@@ -238,7 +241,8 @@ public class IfElseStatementTheme {
         BigDecimal soldYearBd = soldMonthlyBd.multiply(monthCountBd).setScale(2, RoundingMode.HALF_UP);
         BigDecimal rentYearBd = rentMonthlyBd.multiply(monthCountBd).setScale(2, RoundingMode.HALF_UP);
 
-        BigDecimal costOfProductionYearBd = costOfProductionBd.multiply(monthCountBd).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal costOfProductionYearBd = 
+                costOfProductionBd.multiply(monthCountBd).setScale(2, RoundingMode.HALF_UP);
 
         BigDecimal profitYearBd = soldYearBd.subtract(rentYearBd.add(costOfProductionYearBd));
         if (profitYearBd.compareTo(BigDecimal.ZERO) > 0) {
