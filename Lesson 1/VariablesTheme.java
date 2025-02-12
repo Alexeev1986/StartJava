@@ -4,7 +4,6 @@ import java.math.RoundingMode;
 public class VariablesTheme {
     public static void main(String[] args) {
         System.out.printf("%n1. Вывод характеристик компьютера.%n%n");
-
         // имеется в наличии
         boolean available = true;
 
@@ -12,13 +11,13 @@ public class VariablesTheme {
         byte coreCount = 4;
 
         // объем оперативной памяти
-        short volumeRam = 8;
+        short ramCapacity = 8;
 
         // объем жесткого диска
-        int volumeHdd = 1024;
+        int hddCapacity = 1024;
 
         // объем твердотельного диска
-        long volumeSdd = 512;
+        long sddCapacity = 512;
 
         // единица измерения памяти
         char memoryUnitSize = 'G';
@@ -31,9 +30,9 @@ public class VariablesTheme {
 
         System.out.println("имеется в наличии: " + available);
         System.out.println("количество ядер = " + coreCount);
-        System.out.println("объем оперативной памяти = " + volumeRam + memoryUnitSize);
-        System.out.println("объем жесткого диска = " + volumeHdd + memoryUnitSize);
-        System.out.println("объем твердотельного диска = " + volumeSdd + memoryUnitSize);
+        System.out.println("объем оперативной памяти = " + ramCapacity + memoryUnitSize);
+        System.out.println("объем жесткого диска = " + hddCapacity + memoryUnitSize);
+        System.out.println("объем твердотельного диска = " + hddCapacity + memoryUnitSize);
         System.out.println("количество операций в секунду = " + operationsInSec);
         System.out.println("цена изделия = " + productPrice);
 
@@ -86,11 +85,11 @@ public class VariablesTheme {
         System.out.printf("%n значение после декремента = " + longValue + "%n");
 
         char charValue = 65535;
-        System.out.printf("%n Переменная типа Char: первоначальное значение = " + charValue);
+        System.out.printf("%n Переменная типа Char: первоначальное значение = " + (int) charValue);
         charValue++;
-        System.out.printf("%n значение после инкремента = " + charValue);
+        System.out.printf("%n значение после инкремента = " + (int) charValue);
         charValue--;
-        System.out.printf("%n значение после декремента = " + charValue + "%n");
+        System.out.printf("%n значение после декремента = " + (int) charValue + "%n");
 
         System.out.printf("%n5. Перестановка значений переменных.%n%n");
 
@@ -124,17 +123,17 @@ public class VariablesTheme {
         System.out.printf("%n Код символа - " + (int) ch5 + "\t" + " ; Символ -" + ch5 + "%n");
 
         System.out.printf("%n7. Вывод в консоль ASCII-арт Дюка.%n%n");
-
-        char duk1 = 47;
-        char duk2 = 92;
-        char duk3 = 95;
-        char duk4 = 40;
-        char duk5 = 41;
-        System.out.println("    " + duk1 + duk2);
-        System.out.println("   " + duk1 + "  " + duk2);
-        System.out.println("  " + duk1 + duk3 + duk4 + " " + duk5 + duk2);
-        System.out.println(" " + duk1 + "      " + duk2);
-        System.out.println(duk1 + "" + duk3 + duk3 + duk3 + duk3 + duk1 + duk2 + duk3 + duk3 + duk2);
+        char slash = 47;
+        char backSlash = 92;
+        char underScore = 95;
+        char leftParenthesis = 40;
+        char rightParenthesis = 41;
+        System.out.println("    " + slash + backSlash);
+        System.out.println("   " + slash + "  " + backSlash);
+        System.out.println("  " + slash + underScore + leftParenthesis + " " + rightParenthesis + backSlash);
+        System.out.println(" " + slash + "      " + backSlash);
+        System.out.println(slash + "" + underScore + underScore + underScore + underScore + slash +
+                backSlash + underScore + underScore + backSlash);
         System.out.printf("%n8. Манипуляции с сотнями, десятками и единицами числа.%n%n");
 
         int number = 123;
