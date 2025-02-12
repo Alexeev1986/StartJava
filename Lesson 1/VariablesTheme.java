@@ -3,7 +3,6 @@ import java.math.RoundingMode;
 
 public class VariablesTheme {
     public static void main(String[] args) {
-
         System.out.printf("%n1. Вывод характеристик компьютера.%n%n");
 
         // имеется в наличии
@@ -38,7 +37,6 @@ public class VariablesTheme {
         System.out.println("количество операций в секунду = " + operationsInSec);
         System.out.println("цена изделия = " + productPrice);
 
-
         System.out.printf("%n2. Расчет стоимости товара со скидкой.%n%n");
 
         double penPrice = 105.5;
@@ -51,53 +49,48 @@ public class VariablesTheme {
         System.out.println("Сумма скидки = " + String.format("%.2f", discountAmount));
         System.out.println("Стоимость товара со скидкой = " + String.format("%.2f", discountPrice));
 
-
         System.out.printf("%n3. Вывод слова JAVA.%n%n");
         System.out.println("   J    a  v     v  a   ");
         System.out.println("   J   a a  v   v  a a  ");
         System.out.println("J  J  aaaaa  v v  aaaaa ");
         System.out.println(" JJ  a     a  v  a     a");
 
-
         System.out.printf("%n4. Вывод min и max значений целых числовых типов.%n%n");
 
         byte byteValue = 127;
-        short shortValue = 32767;
-        int intValue = 2147483647;
-        Long longValue= 9223372036854775807L;
-        char charValue = 65535;
-
-
         System.out.printf("%n Переменная типа byte: первоначальное значение = " + byteValue);
         byteValue++;
         System.out.printf("%n значение после инкремента = " + byteValue);
         byteValue--;
         System.out.printf("%n значение после декремента = " + byteValue + "%n");
 
+        short shortValue = 32767;
         System.out.printf("%n Переменная типа short: первоначальное значение = " + shortValue);
         shortValue++;
         System.out.printf("%n значение после инкремента = " + shortValue);
         shortValue--;
         System.out.printf("%n значение после декремента = " + shortValue + "%n");
 
+        int intValue = 2147483647;
         System.out.printf("%n Переменная типа int: первоначальное значение = " + intValue);
         intValue++;
         System.out.printf("%n значение после инкремента = " + intValue);
         intValue--;
         System.out.printf("%n значение после декремента = " + intValue + "%n");
 
+        Long longValue = 9223372036854775807L;
         System.out.printf("%n Переменная типа Long: первоначальное значение = " + longValue);
         longValue++;
         System.out.printf("%n значение после инкремента = " + longValue);
         longValue--;
         System.out.printf("%n значение после декремента = " + longValue + "%n");
 
+        char charValue = 65535;
         System.out.printf("%n Переменная типа Char: первоначальное значение = " + charValue);
         charValue++;
         System.out.printf("%n значение после инкремента = " + charValue);
         charValue--;
         System.out.printf("%n значение после декремента = " + charValue + "%n");
-
 
         System.out.printf("%n5. Перестановка значений переменных.%n%n");
 
@@ -117,7 +110,6 @@ public class VariablesTheme {
         num1 ^= num2;
         System.out.println("Обмен значений с помощью побитовой операции:X = " + num1 + " ; Y = " + num2);
 
-
         System.out.printf("%n6. Вывод символов и их кодов.%n%n");
 
         char ch1 = 36;
@@ -125,12 +117,11 @@ public class VariablesTheme {
         char ch3 = 64;
         char ch4 = 94;
         char ch5 = 126;
-        System.out.printf("%n Код символа - " + (int)ch1 + "\t" + " ; Символ -" + ch1);
-        System.out.printf("%n Код символа - " + (int)ch2 + "\t" + " ; Символ -" + ch2);
-        System.out.printf("%n Код символа - " + (int)ch3 + "\t" + " ; Символ -" + ch3);
-        System.out.printf("%n Код символа - " + (int)ch4 + "\t" + " ; Символ -" + ch4);
-        System.out.printf("%n Код символа - " + (int)ch5 + "\t" + " ; Символ -" + ch5 + "%n");
-
+        System.out.printf("%n Код символа - " + (int) ch1 + "\t" + " ; Символ -" + ch1);
+        System.out.printf("%n Код символа - " + (int) ch2 + "\t" + " ; Символ -" + ch2);
+        System.out.printf("%n Код символа - " + (int) ch3 + "\t" + " ; Символ -" + ch3);
+        System.out.printf("%n Код символа - " + (int) ch4 + "\t" + " ; Символ -" + ch4);
+        System.out.printf("%n Код символа - " + (int) ch5 + "\t" + " ; Символ -" + ch5 + "%n");
 
         System.out.printf("%n7. Вывод в консоль ASCII-арт Дюка.%n%n");
 
@@ -144,8 +135,6 @@ public class VariablesTheme {
         System.out.println("  " + duk1 + duk3 + duk4 + " " + duk5 + duk2);
         System.out.println(" " + duk1 + "      " + duk2);
         System.out.println(duk1 + "" + duk3 + duk3 + duk3 + duk3 + duk1 + duk2 + duk3 + duk3 + duk2);
-
-
         System.out.printf("%n8. Манипуляции с сотнями, десятками и единицами числа.%n%n");
 
         int number = 123;
@@ -153,14 +142,13 @@ public class VariablesTheme {
         int tenNumber = (number % 100) / 10;
         int onesNumber = number % 10;
         int digitSum = tenNumber + hundredNumber + onesNumber;
-        int digitProduсt = tenNumber * hundredNumber * onesNumber;
+        int numberOp = tenNumber * hundredNumber * onesNumber;
         System.out.println("Число " + number + " содержит:");
         System.out.println("сотен - " + hundredNumber);
         System.out.println("десятков - " + tenNumber);
         System.out.println("единиц - " + onesNumber);
         System.out.println("сумма разрядов = " + digitSum);
-        System.out.println("произведение разрядов = " + digitProduсt);
-
+        System.out.println("произведение разрядов = " + numberOp);
 
         System.out.printf("%n9. Перевод секунд в часы, минуты и секунды.%n%n");
 
@@ -171,7 +159,6 @@ public class VariablesTheme {
         
         System.out.println("Количество секунд = " + allSec);
         System.out.println(hh + ":" + mm + ":" + ss);
-        
 
         System.out.printf("%n10. Расчет стоимости товара со скидкой.%n%n");
 
