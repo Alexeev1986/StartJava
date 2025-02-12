@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 public class IfElseStatementTheme {
     public static void main(String[] args) {
         // Задание 1
-        System.out.println("\nЗадание №1");
+        System.out.printf("\nЗадание №1. Перевод псевдокода на язык Java.%n%n");
 
         boolean gender = true;
         if (!gender) { 
@@ -37,7 +37,7 @@ public class IfElseStatementTheme {
         }
 
         // Задание 2
-        System.out.println("\nЗадание №2");
+        System.out.printf("\nЗадание №2. Поиск большего числа.%n%n");
 
         int numberOne = 43;
         int numberTwo = 83;
@@ -50,7 +50,7 @@ public class IfElseStatementTheme {
         }
 
         // Задание 3
-        System.out.println("\nЗадание №3");
+        System.out.printf("\nЗадание №3 Проверка числа.%n%n");
 
         int number = 0;
         if (number == 0) { 
@@ -72,7 +72,7 @@ public class IfElseStatementTheme {
         }
 
         // Задание 4
-        System.out.println("\nЗадание №4");
+        System.out.printf("\nЗадание №4 Поиск одинаковых цифр в числах.%n%n");
 
         int number1 = 523;
         int number2 = 223;
@@ -102,9 +102,9 @@ public class IfElseStatementTheme {
         }
 
         // Задание 5
-        System.out.println("\nЗадание №5");
+        System.out.printf("\nЗадание №5 Определение символа по его коду.%n%n");
 
-        char symbol = '$';
+        char symbol = '\u0057';
         boolean isLetter = Character.isLetter(symbol);
         boolean isLetterUp = Character.isUpperCase(symbol);
         boolean isNumber = Character.isDigit(symbol);
@@ -122,7 +122,7 @@ public class IfElseStatementTheme {
         }
 
         // Задание 6
-        System.out.println("\nЗадание №6");
+        System.out.printf("\nЗадание №6 Подсчет начисленных банком процентов %n%n");
 
         double deposit = 321123.59;
         double depositInterestRate = 0;
@@ -143,7 +143,7 @@ public class IfElseStatementTheme {
         System.out.println("Итоговая сумма =" + String.format("%.2f", depositInterestRate + deposit));
 
         // Задание 7
-        System.out.println("\nЗадание №7");
+        System.out.printf("\nЗадание №7 Определение оценки по предметам.%n%n");
 
         float percentHistoryEvaluation = 59F;
         float percentProgrammingEvaluation = 92F;
@@ -180,7 +180,7 @@ public class IfElseStatementTheme {
         System.out.println("Средний процент по предметам = " + avaregItem + "%");
 
         // Задание 8
-        System.out.println("\nЗадание №8");
+        System.out.printf("\nЗадание №8 Расчет годовой прибыли.%n%n");
 
         double soldMonthly = 13025.233;
         double rentMonthly = 5123.018;
@@ -197,7 +197,7 @@ public class IfElseStatementTheme {
 
         // Задание 9
         
-        System.out.println("\nЗадание №9");
+        System.out.printf("\nЗадание №9 Подсчет начисленных банком процентов с помощью BigDecimal. %n%n");
 
         BigDecimal depositBd = new BigDecimal("321123.59");
         BigDecimal depositLimit1 = new BigDecimal("100000");
@@ -227,8 +227,8 @@ public class IfElseStatementTheme {
         }
 
         // Задание 10
-        
-        System.out.println("\nЗадание №10");
+
+        System.out.printf("\nЗадание №10 Расчет годовой прибыли с помощью BigDecimal.%n%n");
 
         BigDecimal soldMonthlyBd = new BigDecimal("12025.233");
         BigDecimal rentMonthlyBd = new BigDecimal("5123.018");
