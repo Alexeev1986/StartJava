@@ -111,29 +111,30 @@ public class VariablesTheme {
 
         System.out.printf("%n6. Вывод символов и их кодов.%n%n");
 
-        char ch1 = 36;
-        char ch2 = 42;
-        char ch3 = 64;
-        char ch4 = 94;
-        char ch5 = 126;
-        System.out.printf("%n Код символа - " + (int) ch1 + "\t" + " ; Символ -" + ch1);
-        System.out.printf("%n Код символа - " + (int) ch2 + "\t" + " ; Символ -" + ch2);
-        System.out.printf("%n Код символа - " + (int) ch3 + "\t" + " ; Символ -" + ch3);
-        System.out.printf("%n Код символа - " + (int) ch4 + "\t" + " ; Символ -" + ch4);
-        System.out.printf("%n Код символа - " + (int) ch5 + "\t" + " ; Символ -" + ch5 + "%n");
+        char dollar = 36;
+        char asterisk = 42;
+        char atsign = 64;
+        char circumflex = 94;
+        char tilde = 126;
+        System.out.printf("%n Код символа - " + (int) dollar + "\t" + " ; Символ -" + dollar);
+        System.out.printf("%n Код символа - " + (int) asterisk + "\t" + " ; Символ -" + asterisk);
+        System.out.printf("%n Код символа - " + (int) atsign + "\t" + " ; Символ -" + atsign);
+        System.out.printf("%n Код символа - " + (int) circumflex + "\t" + " ; Символ -" + circumflex);
+        System.out.printf("%n Код символа - " + (int) tilde + "\t" + " ; Символ -" + tilde + "%n");
 
         System.out.printf("%n7. Вывод в консоль ASCII-арт Дюка.%n%n");
-        char slash = 47;
-        char backSlash = 92;
-        char underScore = 95;
-        char leftParenthesis = 40;
-        char rightParenthesis = 41;
-        System.out.println("    " + slash + backSlash);
-        System.out.println("   " + slash + "  " + backSlash);
-        System.out.println("  " + slash + underScore + leftParenthesis + " " + rightParenthesis + backSlash);
-        System.out.println(" " + slash + "      " + backSlash);
-        System.out.println(slash + "" + underScore + underScore + underScore + underScore + slash +
-                backSlash + underScore + underScore + backSlash);
+        char slash = '/';
+        char backslash = '\\';
+        char underscore = '_';
+        char leftparenthesis = '(';
+        char rightparenthesis = ')';
+        System.out.println("    " + slash + backslash);
+        System.out.println("   " + slash + "  " + backslash);
+        System.out.println("  " + slash + underscore + leftparenthesis + " " + rightparenthesis + backslash);
+        System.out.println(" " + slash + "      " + backslash);
+        System.out.println(slash + "" + underscore + underscore + underscore + underscore + slash +
+                backslash + underscore + underscore + backslash);
+
         System.out.printf("%n8. Манипуляции с сотнями, десятками и единицами числа.%n%n");
 
         int number = 123;
@@ -141,13 +142,13 @@ public class VariablesTheme {
         int tenNumber = (number % 100) / 10;
         int onesNumber = number % 10;
         int digitSum = tenNumber + hundredNumber + onesNumber;
-        int numberOp = tenNumber * hundredNumber * onesNumber;
+        int digitProduct = tenNumber * hundredNumber * onesNumber;
         System.out.println("Число " + number + " содержит:");
         System.out.println("сотен - " + hundredNumber);
         System.out.println("десятков - " + tenNumber);
         System.out.println("единиц - " + onesNumber);
         System.out.println("сумма разрядов = " + digitSum);
-        System.out.println("произведение разрядов = " + numberOp);
+        System.out.println("произведение разрядов = " + digitProduct);
 
         System.out.printf("%n9. Перевод секунд в часы, минуты и секунды.%n%n");
 
