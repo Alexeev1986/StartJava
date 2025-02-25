@@ -6,26 +6,28 @@ public class Calculator {
         System.out.println("Введите 1 число ");
         int number1 = console.nextInt();
         System.out.println("Введите мат действие (+, -, *, /, %, ^) ");
-        char matAction = console.next().charAt(0);
+        char operation = console.next().charAt(0);
         System.out.println("Введите 2 число ");
         int number2 = console.nextInt();
         
         int result = 0;
 
-        if (matAction == '+') {
+        if (operation == '+') {
             result = number1 + number2;
-        } else if (matAction == '-') {
+        } else if (operation == '-') {
             result = number1 - number2;
-        } else if (matAction == '/') {
+        } else if (operation == '/') {
             result = number1 / number2;
-        } else if (matAction == '%') {
+        } else if (operation == '%') {
             result = number1 % number2;
-        } else if (matAction == '*') {
+        } else if (operation == '*') {
             result = number1 * number2;
-        } else if (matAction == '^') {
+        } else if (operation == '^') {
             result = number1;
-            for(int i = 1; i < number2; i++) result *= number1;
+            for (int i = 1; i < number2; i++) {
+                result *= number1;
+            }
         }
-        System.out.println(number1 + " " + matAction + " " + number2 + " = " + result);
+        System.out.println(number1 + " " + operation + " " + number2 + " = " + result);
     }
 }
