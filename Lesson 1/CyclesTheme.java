@@ -33,7 +33,7 @@ public class CyclesTheme {
         for (int i = maxNumber - 1; i > minNumber; i--) {
             System.out.print(i + " ");
         }
-        System.out.printf("%nМаксимальное число в данном интервале = " + maxNumber + "%n");
+        System.out.println("\nМаксимальное число в данном интервале = " + maxNumber);
         System.out.println("Минимальное число в данном интервале = " + minNumber);
 
         // Задание №3
@@ -72,7 +72,7 @@ public class CyclesTheme {
         }
 
         // Задание №5
-        System.out.printf("%nЗадание №5. Проверка количества двоек числа на четность/нечетность.%n");
+        System.out.println("\nЗадание №5. Проверка количества двоек числа на четность/нечетность.");
 
         initialNumber = 32425922;
         int initialNumberCopy = initialNumber;
@@ -134,7 +134,7 @@ public class CyclesTheme {
         } while (rowCount < 5);
 
         // Задание №7
-        System.out.printf("%nЗадание №7.Вывод ASCII-символов.%n");
+        System.out.println("Задание №7.Вывод ASCII-символов.");
 
         System.out.printf("%10s%20s%20s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         System.out.println("----------------------------------------------------------");
