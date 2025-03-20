@@ -17,7 +17,8 @@ public class CyclesTheme {
             counter++;
         } while (counter <= endInterval);
         System.out.println("В отрезке [" + startInterval + ", " + endInterval + 
-                "] сумма четных чисел = " + evenNumbersSum + ", а нечетных = " + oddNumbersSum);
+                "] сумма четных чисел = " + evenNumbersSum + ", а нечетных = " + 
+                oddNumbersSum + "\n");
 
         // Задание №2
         System.out.println("Задание №2. Вывод чисел между min и max в порядке убывания.");
@@ -34,7 +35,7 @@ public class CyclesTheme {
             System.out.print(i + " ");
         }
         System.out.println("\nМаксимальное число в данном интервале = " + maxNumber);
-        System.out.println("Минимальное число в данном интервале = " + minNumber);
+        System.out.println("Минимальное число в данном интервале = " + minNumber + "\n");
 
         // Задание №3
         int initialNumber = 1234;
@@ -46,7 +47,7 @@ public class CyclesTheme {
             System.out.print(remainder);
             initialNumber /= 10;
         }
-        System.out.println(" Сумма чисел = " + remainderSum);
+        System.out.println(" Сумма чисел = " + remainderSum + "\n");
 
         // Задание №4
         System.out.println("Задание №4. Вывод чисел в несколько строк.");
@@ -59,7 +60,7 @@ public class CyclesTheme {
                 rowCount++;
                 System.out.printf("%4d", i);
                 if (rowCount > 4) {
-                    System.out.printf("%n");
+                    System.out.println();
                     rowCount = 0;
                 }
             }
@@ -72,7 +73,7 @@ public class CyclesTheme {
         }
 
         // Задание №5
-        System.out.println("\nЗадание №5. Проверка количества двоек числа на четность/нечетность.");
+        System.out.println("\n\nЗадание №5. Проверка количества двоек числа на четность/нечетность.");
 
         initialNumber = 32425922;
         int initialNumberCopy = initialNumber;
@@ -88,30 +89,30 @@ public class CyclesTheme {
         }
 
         // Задание №6
-        System.out.println("Задание №6. Вывод геометрических фигур.");
+        System.out.println("\nЗадание №6. Вывод геометрических фигур.");
 
         // 1-я фигура
         for (int i = 1; i <= 5; i++) {
-            System.out.printf("%n");
+            System.out.println();
             for (int j = 1; j <= 10; j++) {
-                System.out.printf("*");
+                System.out.print("*");
             }
         }
-        System.out.printf("%n%n");
+        System.out.print("\n\n");
 
         // 2-я фигура
         rowCount = 0;
         int charCount = 0;
         while (rowCount <= 5) {
             while (charCount < (5 - rowCount)) {
-                System.out.printf("#");
+                System.out.print("#");
                 charCount++;
             }
             charCount = 0;
-            System.out.printf("#%n");
+            System.out.print("#\n");
             rowCount++;
         }
-        System.out.printf("%n");
+        System.out.println();
 
         // 3-я фигура
         rowCount = 0;
@@ -120,7 +121,7 @@ public class CyclesTheme {
         
         do {
             do {
-                System.out.printf("$");
+                System.out.print("$");
                 charCount++;
             } while ((charCount - 1) < increasingCount);
             if (rowCount < 2) {
@@ -128,13 +129,13 @@ public class CyclesTheme {
             } else if (rowCount >= 2) {
                 increasingCount--;
             }
-            System.out.printf("%n");
+            System.out.println();
             rowCount++;
             charCount = 0;
         } while (rowCount < 5);
 
         // Задание №7
-        System.out.println("Задание №7.Вывод ASCII-символов.");
+        System.out.println("\nЗадание №7.Вывод ASCII-символов.");
 
         System.out.printf("%10s%20s%20s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
         System.out.println("----------------------------------------------------------");
@@ -152,7 +153,7 @@ public class CyclesTheme {
         }
 
         // Задание №8
-        System.out.println("Задание №8.Проверка, является ли число палиндромом.");
+        System.out.println("\nЗадание №8.Проверка, является ли число палиндромом.");
 
         initialNumber = 1234321;
         initialNumberCopy = initialNumber;
@@ -169,7 +170,7 @@ public class CyclesTheme {
         }
 
         // Задание №9
-        System.out.println("Задание №9.Проверка, является ли число счастливым.");
+        System.out.println("\nЗадание №9.Проверка, является ли число счастливым.");
         initialNumber = 123321;
         int firstThreeDigits = initialNumber / 1000;
         int lastThreeDigits = initialNumber % 1000;
@@ -188,7 +189,7 @@ public class CyclesTheme {
         }
 
         // Задание №10
-        System.out.println("Задание №10.Вывод таблицы умножения Пифагора.");
+        System.out.println("\nЗадание №10.Вывод таблицы умножения Пифагора.");
 
         System.out.println("\t    ТАБЛИЦА     ПИФАГОРА   ");
         
@@ -196,18 +197,18 @@ public class CyclesTheme {
             for (int j = 1; j < 10; j++) {
                 if (j == 1 && i != 1) {
                     System.out.printf("%4d", i * j);
-                    System.out.printf("|");
+                    System.out.print("|");
                 } else if (i == 1 && j == 1) {
                     System.out.printf("%4s", " ");
-                    System.out.printf("|");
+                    System.out.print("|");
                 } else {
                     System.out.printf("%4d", i * j);
                 }
                 if (i == 1 && j == 9) {
-                    System.out.printf("%n  --+---------------------------------");
+                    System.out.print("\n  --+---------------------------------");
                 }
             }
-            System.out.printf("%n");
+            System.out.println();
         }
     }
 }
