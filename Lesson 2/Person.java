@@ -1,11 +1,11 @@
 public class Person {
-    String gender;
     String name;
-    int height;
-    int weight;
+    String gender;
+    double height;
+    double weight;
     int age;
 
-    public Person() {
+    {
         gender = "Мужской";
         name = "Антон";
         height = 183;
@@ -13,19 +13,23 @@ public class Person {
         age = 38;
     }
 
-    public void walk() {
-        System.out.println("Идет");
+    void walk() {
+        System.out.println(name + " идёт.");
     }
 
-    public void sit() {
-        System.out.println("Сидит");
+    void sit() {
+        System.out.println(name + " сидит.");
     }
 
-    public void run() {
-        System.out.println("Бежит");
+    void run() {
+        System.out.println(name + " бежит.");
     }
 
-    public void teach() {
-        System.out.println("Учит");
+    void speak() {
+        System.out.println(name + " говорит.");
+    }
+
+    void learnJava() {
+        System.out.println(name + " учит Java!");
     }
 }
