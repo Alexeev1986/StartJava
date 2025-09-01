@@ -3,7 +3,7 @@ public class WolfTest {
         Wolf wolf = new Wolf();
         wolf.gender = "кабель";
         wolf.nickname = "Акелла";
-        wolf.weight = 85.5;
+        wolf.weight = 85.5f;
         wolf.age = 3;
         wolf.color = "Серый";
         String wolfReport = """
@@ -12,12 +12,7 @@ public class WolfTest {
                     Вес: %.2f
                     Возраст: %d
                     Окрас: %s
-                    """.formatted(
-                    wolf.gender,
-                    wolf.nickname,
-                    wolf.weight,
-                    wolf.age,
-                    wolf.color);
+                    """.formatted(wolf.gender, wolf.nickname, wolf.weight, wolf.age, wolf.color);
         System.out.println(wolfReport);
         wolf.walk();
         wolf.sit();

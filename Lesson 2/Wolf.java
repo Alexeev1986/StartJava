@@ -1,9 +1,9 @@
 public class Wolf {
     String gender;
     String nickname;
-    Double weight;
-    int age;
     String color;
+    float weight;
+    int age;
 
     void walk() {
         System.out.println("идет");
