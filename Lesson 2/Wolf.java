@@ -1,35 +1,27 @@
 public class Wolf {
     String gender;
-    String name;
-    int weight;
+    String nickname;
+    Double weight;
     int age;
     String color;
 
-    public Wolf(String gender, String name, int weight, int age, String color) {
-        this.gender = gender;
-        this.name = name;
-        this.weight = weight;
-        this.age = age;
-        this.color = color;
+    void walk() {
+        System.out.println("идет");
     }
 
-    public void walk() {
-        System.out.println("Идет");
+    void sit() {
+        System.out.println("сидит");
     }
 
-    public void sit() {
-        System.out.println("Сидит");
+    void run() {
+        System.out.println("бежит");
     }
 
-    public void run() {
-        System.out.println("Бежит");
+    void howl() {
+        System.out.println("воет");
     }
 
-    public void howl() {
-        System.out.println("Ауууу!");
-    }
-
-    public void hunt() {
-        System.out.println("Охотится");
+    void hunt() {
+        System.out.println("охотится");
     }
 }
