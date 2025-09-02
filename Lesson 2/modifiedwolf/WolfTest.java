@@ -8,14 +8,14 @@ public class WolfTest {
         wolf.setWeight(85.5f);
         wolf.setAge(3);
         wolf.setColor("Серый");
-        String wolfReport = """
-                    Пол: %s
-                    Кличка: %s
-                    Вес: %.2f
-                    Возраст: %d
-                    Окрас: %s
-                    """.formatted(wolf.getGender(), wolf.getNickname(), wolf.getWeight(), wolf.getAge(), wolf.getColor());
-        System.out.println(wolfReport);
+        System.out.printf(
+                """
+                Пол: %s
+                Кличка: %s
+                Вес: %.2f
+                Возраст: %d
+                Окрас: %s
+                """.formatted(wolf.getGender(), wolf.getNickname(), wolf.getWeight(), wolf.getAge(), wolf.getColor()));
         wolf.walk();
         wolf.sit();
         wolf.run();
