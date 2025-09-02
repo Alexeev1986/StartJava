@@ -6,14 +6,14 @@ public class WolfTest {
         wolf.weight = 85.5f;
         wolf.age = 3;
         wolf.color = "Серый";
-        String wolfReport = """
-                    Пол: %s
-                    Кличка: %s
-                    Вес: %.2f
-                    Возраст: %d
-                    Окрас: %s
-                    """.formatted(wolf.gender, wolf.nickname, wolf.weight, wolf.age, wolf.color);
-        System.out.println(wolfReport);
+        System.out.println(
+                """
+                Пол: %s
+                Кличка: %s
+                Вес: %.2f
+                Возраст: %d
+                Окрас: %s
+                """.formatted(wolf.gender, wolf.nickname, wolf.weight, wolf.age, wolf.color));
         wolf.walk();
         wolf.sit();
         wolf.run();
