@@ -10,15 +10,20 @@ public class JaegerTest {
         jaeger1.setWeight(2.214f);
         jaeger1.setStrength(10);
         jaeger1.setArmor(10);
-        Jaeger jaeger2 = new Jaeger("Crimson Typhoon", "Mark-4", "China", 76.2f, 1.722f, 8, 6);
+
+        Jaeger jaeger2 = new Jaeger(
+                "Crimson Typhoon", "Mark-4", "China",
+                76.2f, 1.722f, 8, 6);
         jaeger1.printAllParameters();
         jaeger2.printAllParameters();
-        jaeger1.compareRobotsByStrength(jaeger1,jaeger2);
-        jaeger1.compareRobotsByArmor(jaeger1,jaeger2);
+        jaeger1.compareRobotsByStrength(jaeger1, jaeger2);
+        jaeger1.compareRobotsByArmor(jaeger1, jaeger2);
         jaeger1.move();
         jaeger2.useVortexCannon();
         System.out.println(jaeger2.getModelName() + " " + jaeger2.scanKaiju());
-        if (jaeger1.drift()) System.out.println(jaeger1.getModelName() + " дрейфует");
+        if (jaeger1.drift()) {
+            System.out.println(jaeger1.getModelName() + " дрейфует");
+        }
     }
 }
 
