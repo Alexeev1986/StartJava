@@ -1,4 +1,7 @@
 .idea/
-git-StartJava2.iml
+.idea/
+*.iml
+*.iws
+*.ipr
 out/
 *.class
