@@ -1,7 +1,4 @@
-package startjava.lesson2;
-
-import lesson2.Calculator;
-
+package lesson2;
 import java.util.Scanner;
 
 public class CalculatorTest {
