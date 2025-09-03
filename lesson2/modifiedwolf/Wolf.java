@@ -1,4 +1,4 @@
-package modifiedwolf;
+package lesson2.modifiedwolf;
 
 public class Wolf {
     private String gender;

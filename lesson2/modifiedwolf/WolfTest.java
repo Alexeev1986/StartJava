@@ -1,4 +1,5 @@
-package modifiedwolf;
+package lesson2.modifiedwolf;
+
 
 public class WolfTest {
     public static void main(String[] args) {
