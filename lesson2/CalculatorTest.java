@@ -1,33 +1,32 @@
 package lesson2;
+
 import java.util.Scanner;
 
 public class CalculatorTest {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         Calculator calc = new Calculator();
-        boolean yesNo = true;
-        while (yesNo) {
+        char answer;
+        do {
             System.out.print("\nВведите первое число: ");
             calc.setNumber1(console.nextInt());
             System.out.print("\nВведите знак операции (+, -, *, /, ^, %): ");
             char operation = console.next().charAt(0);
-            if (operation == '+' ||
-                    operation == '-' ||
-                    operation == '*' ||
-                    operation == '/' ||
-                    operation == '^' ||
-                    operation == '%') {
-                calc.setOperator(operation);
-            } else {
+            if (!calc.setOperator(operation)){
                 System.out.println("Ошибка: операция " + operation + " не поддерживается");
+                answer = 'n';
                 continue;
             }
             System.out.print("\nВведите второе число: ");
             calc.setNumber2(console.nextInt());
-            calc.startCalculation();
-            System.out.println("Закончить работу с программой? (y/n)");
-            char answer = console.next().charAt(0);
-            if (answer == 'y') yesNo = false;
-        }
+            if ((calc.getNumber2() == 0 && operation == '/') || (calc.getNumber2() == 0 && operation == '%')) {
+                System.out.println("Ошибка делить на 0 нельзя");
+                answer = 'n';
+                continue;
+            }
+            calc.calc();
+            System.out.println("Хотите продолжить вычисления? [yes/no]:");
+            answer = console.next().charAt(0);
+        } while (answer == 'y');
     }
 }

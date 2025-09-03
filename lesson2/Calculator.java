@@ -3,7 +3,6 @@ package lesson2;
 public class Calculator {
     private int number1;
     private int number2;
-    private float result;
     private char operator;
 
     public void setNumber1(int number1) {
@@ -14,11 +13,28 @@ public class Calculator {
         this.number2 = number2;
     }
 
-    public void setOperator(char operator) {
-        this.operator = operator;
+    public int getNumber2() {
+        return number2;
     }
 
-    public void startCalculation() {
+    public boolean setOperator(char operator) {
+        if (operator == '+' ||
+                operator == '-' ||
+                operator == '*' ||
+                operator == '/' ||
+                operator == '^' ||
+                operator == '%') {
+            this.operator = operator;
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    public void calc() {
+        float result = 0;
         if (operator == '+') {
             result = number1 + number2;
         } else if (operator == '-') {
@@ -26,23 +42,13 @@ public class Calculator {
         } else if (operator == '*') {
             result = number1 * number2;
         } else if (operator == '/') {
-            if (number2 == 0) {
-                System.out.println("Ошибка! деление на ноль!");
-            } else {
-                result = (float) number1 / number2;
-            }
+            result = (float) number1 / number2;
         } else if (operator == '%') {
-            if (number2 == 0) {
-                System.out.println("Ошибка! деление на ноль!");
-            } else {
-                result = number1 % number2;
-            }
+            result = number1 % number2;
         } else if (operator == '^') {
             result = 1;
-            int base = number1;
-            int exponent = number2;
-            for (int i = 0; i < exponent; i++) {
-                result *= base;
+            for (int i = 0; i < number2; i++) {
+                result *= number1;
             }
         }
         System.out.println(number1 + " " + operator + " " + number2 + " = " + result);
