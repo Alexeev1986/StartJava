@@ -1,7 +1,7 @@
 package lesson2;
 
 public class Player {
-    private final String  playerName;
+    private final String playerName;
     private int playerGuess;
 
     public Player(String playerName) {
