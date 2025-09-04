@@ -10,9 +10,9 @@ public class Jaeger {
     private int armor;
 
     public Jaeger() {
-        this.modelName = " ";
-        this.mark = " ";
-        this.origin = " ";
+        this.modelName = null;
+        this.mark = null;
+        this.origin = null;
         this.height = 0;
         this.weight = 0;
         this.strength = 0;
@@ -95,12 +95,12 @@ public class Jaeger {
     }
 
     void printAllParameters() {
-        System.out.println("modelName " + this.modelName);
-        System.out.println("mark " + this.mark);
-        System.out.println("origin " + this.origin);
-        System.out.println("height " + this.height);
-        System.out.println("weight " + this.weight);
-        System.out.println("strenght " + this.strength);
-        System.out.println("armor " + this.armor);
+        System.out.println("modelName " + modelName);
+        System.out.println("mark " + mark);
+        System.out.println("origin " + origin);
+        System.out.println("height " + height);
+        System.out.println("weight " + weight);
+        System.out.println("strenght " + strength);
+        System.out.println("armor " + armor);
     }
 }

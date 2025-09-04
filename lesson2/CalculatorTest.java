@@ -6,7 +6,7 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         Calculator calc = new Calculator();
-        String answer;
+        String answer = "yes";
         do {
             System.out.print("\nВведите первое число: ");
             calc.setNumber1(console.nextInt());
@@ -14,17 +14,15 @@ public class CalculatorTest {
             char operation = console.next().charAt(0);
             if (!calc.setOperator(operation)){
                 System.out.println("Ошибка: операция " + operation + " не поддерживается");
-                answer = "yes";
                 continue;
             }
             System.out.print("\nВведите второе число: ");
             calc.setNumber2(console.nextInt());
-            if ((calc.getNumber2() == 0 && operation == '/') || (calc.getNumber2() == 0 && operation == '%')) {
+            if ((calc.getNumber2() == 0 && operation == '/')) {
                 System.out.println("Ошибка делить на 0 нельзя");
-                answer = "yes";
                 continue;
             }
-            calc.calc();
+            calc.calculate();
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
                 answer = console.next().trim();

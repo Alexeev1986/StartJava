@@ -33,7 +33,7 @@ public class Calculator {
 
     }
 
-    public void calc() {
+    public void calculate() {
         float result = 0;
         if (operator == '+') {
             result = number1 + number2;
