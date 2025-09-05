@@ -12,7 +12,7 @@ public class CalculatorTest {
             calc.setNumber1(console.nextInt());
             System.out.print("\nВведите знак операции (+, -, *, /, ^, %): ");
             char operation = console.next().charAt(0);
-            if (!calc.setOperator(operation)){
+            if (!calc.setOperator(operation)) {
                 System.out.println("Ошибка: операция " + operation + " не поддерживается");
                 continue;
             }
@@ -26,7 +26,7 @@ public class CalculatorTest {
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
                 answer = console.next().trim();
-            } while(!answer.equals("yes") && !answer.equals("no"));
+            } while (!answer.equals("yes") && !answer.equals("no"));
         } while (answer.equals("yes"));
     }
 }

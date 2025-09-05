@@ -26,11 +26,9 @@ public class Calculator {
                 operator == '%') {
             this.operator = operator;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-
     }
 
     public void calculate() {

@@ -1,4 +1,4 @@
-package lesson2.modifiedwolf;
+package lesson02.modifiedwolf;
 
 
 public class WolfTest {

@@ -1,22 +1,22 @@
 package lesson2;
 
 public class Player {
-    private final String playerName;
-    private int playerGuess;
+    private String name;
+    private int guess;
 
-    public Player(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public void setPlayerGuess(int playerGuess) {
-        this.playerGuess = playerGuess;
-    }
-
-    public int getPlayerGuess() {
-        return playerGuess;
+    public void setPlayerName(String name) {
+        this.name = name;
     }
 
     public String getPlayerName() {
-        return playerName;
+        return name;
+    }
+
+    public void setPlayerGuess(int guess) {
+        this.guess = guess;
+    }
+
+    public int getPlayerGuess() {
+        return guess;
     }
 }

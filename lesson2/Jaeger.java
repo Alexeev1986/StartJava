@@ -80,7 +80,7 @@ public class Jaeger {
 
     void compareRobotsByStrength(Jaeger jaeger1, Jaeger jaeger2) {
         if (jaeger1.strength > jaeger2.strength) {
-            System.out.println("Сила " + jaeger1.modelName + " больше чем у " + jaeger2.modelName );
+            System.out.println("Сила " + jaeger1.modelName + " больше чем у " + jaeger2.modelName);
         } else {
             System.out.println("Сила " + jaeger2.modelName + " больше чем у " + jaeger1.modelName);
         }
@@ -88,7 +88,7 @@ public class Jaeger {
 
     void compareRobotsByArmor(Jaeger jaeger1, Jaeger jaeger2) {
         if (jaeger1.armor > jaeger2.armor) {
-            System.out.println("Броня " + jaeger1.modelName + " мощнее чем у " + jaeger2.modelName );
+            System.out.println("Броня " + jaeger1.modelName + " мощнее чем у " + jaeger2.modelName);
         } else {
             System.out.println("Броня " + jaeger2.modelName + " мощнее чем у " + jaeger1.modelName);
         }
