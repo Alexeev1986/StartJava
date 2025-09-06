@@ -27,7 +27,7 @@ public class Calculator {
             this.operator = operator;
             return true;
         }
-            return false;
+        return false;
     }
 
     public void calculate() {
