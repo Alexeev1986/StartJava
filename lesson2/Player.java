@@ -4,19 +4,19 @@ public class Player {
     private String name;
     private int guess;
 
-    public void setPlayerName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getPlayerName() {
+    public String getName() {
         return name;
     }
 
-    public void setPlayerGuess(int guess) {
+    public void setGuess(int guess) {
         this.guess = guess;
     }
 
-    public int getPlayerGuess() {
+    public int getGuess() {
         return guess;
     }
 }

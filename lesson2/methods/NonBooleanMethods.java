@@ -61,7 +61,7 @@ public class NonBooleanMethods {
                 "() -> ввести математическое выражение с тремя аргументами");
     }
 
-    public void getWinner() {
+    public void determineWinner() {
         System.out.println(Methods.getCurrName() +
                 "() -> выявить победителя среди гонщиков игры \"Need For Speed\"");
     }

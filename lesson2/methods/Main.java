@@ -3,12 +3,12 @@ package lesson2.methods;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Не BOOLEAN - методы");
-        printNonBm();
+        doNonBm();
         System.out.println("BOOLEAN - методы");
-        printBm();
+        doBm();
     }
 
-    static void printNonBm() {
+    static void doNonBm() {
         NonBooleanMethods nonBm = new NonBooleanMethods();
         nonBm.findLongestWord();
         nonBm.selectMenuItem();
@@ -22,11 +22,11 @@ public class Main {
         nonBm.writeToFile();
         nonBm.convertCelsiusToFahrenheit();
         nonBm.inputMathExpr();
-        nonBm.getWinner();
+        nonBm.determineWinner();
         nonBm.findBookByAuthor();
     }
 
-    static void printBm() {
+    static void doBm() {
         BooleanMethods bm = new BooleanMethods();
         System.out.println(bm.isContinue());
         System.out.println(bm.isUniqueNumber());
