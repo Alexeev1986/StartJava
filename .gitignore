@@ -1,7 +1,7 @@
 .idea/
-myexps/
 *.iml
 *.iws
 *.ipr
 out/
 *.class
+!*.*
