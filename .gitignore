@@ -6,3 +6,8 @@ out/
 *.class
 !*.*
 StartJava.iml
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/StartJava2.iml
+/.idea/vcs.xml
