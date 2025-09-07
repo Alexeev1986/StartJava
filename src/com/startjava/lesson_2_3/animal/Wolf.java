@@ -1,30 +1,73 @@
 package com.startjava.lesson_2_3.animal;
 
-
 public class Wolf {
-    String gender;
-    String nickname;
-    String color;
-    float weight;
-    int age;
+    private String gender;
+    private String nickname;
+    private String color;
+    private float weight;
+    private int age;
 
-    void walk() {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 8) {
+            System.out.println("Некорректный возраст");
+        } else {
+            this.age = age;
+        }
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void walk() {
         System.out.println("идет");
     }
 
-    void sit() {
+    public void sit() {
         System.out.println("сидит");
     }
 
-    void run() {
+    public void run() {
         System.out.println("бежит");
     }
 
-    void howl() {
+    public void howl() {
         System.out.println("воет");
     }
 
-    void hunt() {
+    public void hunt() {
         System.out.println("охотится");
     }
 }

@@ -1,21 +1,22 @@
 package com.startjava.lesson_2_3.animal;
 
+
 public class WolfTest {
     public static void main(String[] args) {
         Wolf wolf = new Wolf();
-        wolf.gender = "кабель";
-        wolf.nickname = "Акелла";
-        wolf.weight = 85.5f;
-        wolf.age = 3;
-        wolf.color = "Серый";
-        System.out.println(
+        wolf.setGender("кабель");
+        wolf.setNickname("Акелла");
+        wolf.setWeight(85.5f);
+        wolf.setAge(3);
+        wolf.setColor("Серый");
+        System.out.printf(
                 """
                 Пол: %s
                 Кличка: %s
                 Вес: %.2f
                 Возраст: %d
                 Окрас: %s
-                """.formatted(wolf.gender, wolf.nickname, wolf.weight, wolf.age, wolf.color));
+                """.formatted(wolf.getGender(), wolf.getNickname(), wolf.getWeight(), wolf.getAge(), wolf.getColor()));
         wolf.walk();
         wolf.sit();
         wolf.run();
