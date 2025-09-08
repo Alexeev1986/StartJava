@@ -2,52 +2,45 @@ package com.startjava.lesson_2_3_4.array;
 
 public class ReverseBankTransactions {
     public static void main(String[] args) {
-        reverseTransactions("");
-        reverseTransactions("null");
-        reverseTransactions("5");
-        reverseTransactions("6, 8, 9, 1");
-        reverseTransactions("13, 8, 5, 3, 2, 1, 1");
+        reverseBank(new int[0]);
+        reverseBank(null);
+        reverseBank(new int[]{5});
+        reverseBank(new int[]{6, 8, 9, 1});
+        reverseBank(new int[]{13, 8, 5, 3, 2, 1, 1});
     }
 
-    private static void reverseTransactions(String transactions) {
-        if (transactions == null || transactions.isEmpty()) {
-            System.out.println("Массив нулевой длины");
+    private static void reverseBank(int[] transactions) {
+        if(transactions == null) {
+            System.out.println("Исходные транзакции: null");
+            System.out.println(" В обратном порядке: ошибка в данных");
             return;
-        } else {
-            for (int i = 0; i < transactions.length(); i++) {
-                char symbol = transactions.charAt(i);
-                if (!Character.isDigit(symbol) && symbol != ',' && symbol != ' ') {
-                    System.out.println("Null");
-                    return;
-                }
-            }
         }
-        String[] parts = transactions.split(",\\s*");
-        int[] numbers = new int[parts.length];
-        for (int i = 0; i < parts.length; i++) {
-            numbers[i] = Integer.parseInt(parts[i].trim());
+        if (transactions.length == 0) {
+            System.out.println("Исходные транзакции: []");
+            System.out.println(" В обратном порядке: []");
+            return;
         }
         System.out.print("Исходные транзакции: [");
-        int len = numbers.length - 1;
+        int len = transactions.length - 1;
         int count = 0;
-        for (int temp : numbers) {
+        for (int temp : transactions) {
             System.out.print(temp + (count != len ? "," : ""));
             count++;
         }
         System.out.print("]\n");
         int left = 0;
-        int right = numbers.length - 1;
+        int right =  transactions.length - 1;
 
         while (left < right) {
-            int temp = numbers[left];
-            numbers[left] = numbers[right];
-            numbers[right] = temp;
+            int temp = transactions[left];
+            transactions[left] = transactions[right];
+            transactions[right] = temp;
             left++;
             right--;
         }
         System.out.print("В обратном порядке: [");
         count = 0;
-        for (int temp : numbers) {
+        for (int temp : transactions) {
             System.out.print(temp + (count != len ? "," : ""));
             count++;
         }
