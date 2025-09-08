@@ -10,7 +10,7 @@ public class ReverseBankTransactions {
     }
 
     private static void reverseBank(int[] transactions) {
-        if(transactions == null) {
+        if (transactions == null) {
             System.out.println("Исходные транзакции: null");
             System.out.println(" В обратном порядке: ошибка в данных");
             return;
@@ -29,7 +29,7 @@ public class ReverseBankTransactions {
         }
         System.out.print("]\n");
         int left = 0;
-        int right =  transactions.length - 1;
+        int right = transactions.length - 1;
 
         while (left < right) {
             int temp = transactions[left];
