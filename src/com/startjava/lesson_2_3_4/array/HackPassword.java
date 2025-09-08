@@ -21,7 +21,7 @@ public class HackPassword {
                 Thread.sleep(300);
             }
         }
-        if(hackResult > 70) {
+        if (hackResult > 70) {
             System.out.println(ANSI_GREEN + "Access Granted!" + ANSI_RESET);
         } else {
             System.out.println(ANSI_RED + "Access Denied!" + ANSI_RESET);
