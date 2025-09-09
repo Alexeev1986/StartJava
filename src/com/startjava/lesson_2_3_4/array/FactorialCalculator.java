@@ -1,6 +1,6 @@
 package com.startjava.lesson_2_3_4.array;
 
-public class CalculateFactorials {
+public class FactorialCalculator {
     public static String[] calculateFactorials(int... numbers) {
         if (numbers == null) {
             System.out.println("Ошибка: данные Null\n");

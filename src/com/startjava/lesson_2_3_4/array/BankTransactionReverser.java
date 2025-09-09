@@ -1,6 +1,6 @@
 package com.startjava.lesson_2_3_4.array;
 
-public class ReverseBankTransactions {
+public class BankTransactionReverser {
     public static void main(String[] args) {
         printResults(new int[0], reverseTransactions(new int[0]));
         printResults(null, reverseTransactions(null));

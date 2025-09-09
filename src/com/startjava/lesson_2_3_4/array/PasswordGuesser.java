@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.array;
 
 import java.util.Random;
 
-public class HackPassword {
+public class PasswordGuesser {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RESET = "\u001B[0m";
