@@ -7,11 +7,7 @@ public class HackPassword {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    public static void main(String[] args) throws InterruptedException {
-        startHack();
-    }
-
-    private static void startHack() throws InterruptedException {
+    private static int hackPassword() throws InterruptedException {
         Random random = new Random();
         int hackResult = random.nextInt(100);
         char[] hackSymbols = new char[] {'-', '\\', '|', '/'};
@@ -21,10 +17,18 @@ public class HackPassword {
                 Thread.sleep(300);
             }
         }
-        if (hackResult > 70) {
+        return hackResult;
+    }
+
+    private static void printResult(int result) {
+        if (result > 70) {
             System.out.println(ANSI_GREEN + "Access Granted!" + ANSI_RESET);
         } else {
             System.out.println(ANSI_RED + "Access Denied!" + ANSI_RESET);
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        printResult(hackPassword());
     }
 }
