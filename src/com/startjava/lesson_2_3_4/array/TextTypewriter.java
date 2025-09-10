@@ -30,7 +30,7 @@ public class TextTypewriter {
         int counter = 0;
         for (int i = 0; i < text.length(); i++) {
             simbols[i] = text.charAt(i);
-            if (Character.isLetter(simbols[i])){
+            if (Character.isLetter(simbols[i]) && i != text.length() - 1){
                 counter++;
             } else {
                 if (maxWord < counter) {
