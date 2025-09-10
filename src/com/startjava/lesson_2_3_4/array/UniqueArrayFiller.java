@@ -11,13 +11,13 @@ public class UniqueArrayFiller {
         System.out.println(arrayFilter(5, -8, 2));
     }
 
-    public static String arrayFilter(int left, int right, int countPerLine) {
+    private static String arrayFilter(int left, int right, int countPerLine) {
         if (left > right) {
-            return ("\nОшибка: левая (" + left +
+            return ("Ошибка: левая (" + left +
                     ") граница не может быть больше правой(" + right + ")");
         }
         if (countPerLine < 0) {
-            return ("\nОшибка: количество отображаемых" +
+            return ("Ошибка: количество отображаемых" +
                     " элементов в строке не может быть отрицательным(" + countPerLine + ")");
         }
         int arraySize = (int) Math.round((right - left + 1) * 0.75);
@@ -40,7 +40,7 @@ public class UniqueArrayFiller {
         }
         int[] arrResult = bubbleSort(arrUniqueNumbers);
         StringBuilder sb = new StringBuilder();
-        sb.append("\nИнтервал (" + left + ", " + right +
+        sb.append("Интервал (" + left + ", " + right +
                 ") символов в строке " + countPerLine + "\n");
         int counter = 0;
         for (int i = 0; i < arrResult.length; i++) {
@@ -51,11 +51,10 @@ public class UniqueArrayFiller {
                 counter = 0;
             }
         }
-        sb.append("\n");
         return sb.toString();
     }
 
-    public static int[] bubbleSort(int[] arr) {
+    private static int[] bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length - 1; j++) {
                 if (arr[j] > arr[j + 1]) {

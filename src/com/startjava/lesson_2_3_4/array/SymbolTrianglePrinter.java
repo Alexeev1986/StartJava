@@ -7,7 +7,7 @@ public class SymbolTrianglePrinter {
         System.out.println(printTriangle('A', 'J', false));
     }
 
-    public static String printTriangle(char left, char right, boolean isUpDirection) {
+    private static String printTriangle(char left, char right, boolean isUpDirection) {
         if (left > right) {
             return "Ошибка: левая граница больше правой.";
         }

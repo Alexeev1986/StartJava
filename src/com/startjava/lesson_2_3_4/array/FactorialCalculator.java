@@ -1,7 +1,14 @@
 package com.startjava.lesson_2_3_4.array;
 
 public class FactorialCalculator {
-    public static String[] calculateFactorials(int... numbers) {
+    public static void main(String[] args) {
+        printResults(calculateFactorials());
+        printResults(calculateFactorials((int[]) null));
+        printResults(calculateFactorials(8, 0, 9));
+        printResults(calculateFactorials(-3, 1, 7, 13));
+    }
+
+    private static String[] calculateFactorials(int... numbers) {
         if (numbers == null) {
             System.out.println("Ошибка: данные Null\n");
             return null;
@@ -28,7 +35,7 @@ public class FactorialCalculator {
         return factorialStr;
     }
 
-    public static void printResults(String[] results) {
+    private static void printResults(String[] results) {
         if (results == null || results.length == 0) {
             return;
         }
@@ -36,12 +43,5 @@ public class FactorialCalculator {
             System.out.println(result);
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        printResults(calculateFactorials());
-        printResults(calculateFactorials((int[]) null));
-        printResults(calculateFactorials(8, 0, 9));
-        printResults(calculateFactorials(-3, 1, 7, 13));
     }
 }

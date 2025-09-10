@@ -11,13 +11,13 @@ public class ArrayFilterExceeding {
         testFilter(original, 14);
     }
 
-    public static void testFilter(float[] original, int index) {
+    private static void testFilter(float[] original, int index) {
         float[] copy = original.clone();
         filterByIndex(index, copy);
         printIndexAndArrays(original, copy, index);
     }
 
-    public static float[] genArray() {
+    private static float[] genArray() {
         Random random = new Random();
         float[] numbers = new float[15];
         for (int i = 0; i < numbers.length; i++) {
@@ -26,7 +26,7 @@ public class ArrayFilterExceeding {
         return numbers;
     }
 
-    public static void filterByIndex(int index, float[] arr) {
+    private static void filterByIndex(int index, float[] arr) {
         if (index < 0 || index >= arr.length) {
             System.out.println("Ошибка индекс " + index +
                     " не попадает в допустимые границы [0, " + (arr.length - 1) + "]");
@@ -39,7 +39,7 @@ public class ArrayFilterExceeding {
         }
     }
 
-    public static void printIndexAndArrays(float[] origin, float[] filtered, int index) {
+    private static void printIndexAndArrays(float[] origin, float[] filtered, int index) {
         if (index < 0 || index >= origin.length) {
             return;
         }
@@ -50,7 +50,7 @@ public class ArrayFilterExceeding {
         printArray(filtered);
     }
 
-    public static void printArray(float[] arr) {
+    private static void printArray(float[] arr) {
         for (int i = 0; i < arr.length; i++) {
             if (i == 7) {
                 System.out.printf(" %.3f \n", arr[i]);
