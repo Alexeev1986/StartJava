@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.array;
 
 import java.util.Random;
-import java.lang.Thread;
 
 public class TextTypewriter {
     public static void main(String[] args) throws InterruptedException {
@@ -13,13 +12,13 @@ public class TextTypewriter {
                 "- Robert Martin"));
         displayTypewriter(findShortestLongestWord(null));
         displayTypewriter(findShortestLongestWord(""));
-
     }
+
     private static String findShortestLongestWord(String text) {
         if (text == null) {
             return null;
         }
-        if (text.length() ==0) {
+        if (text.length() == 0) {
             return "";
         }
         char[] simbols = new char[text.length()];
@@ -30,7 +29,7 @@ public class TextTypewriter {
         int counter = 0;
         for (int i = 0; i < text.length(); i++) {
             simbols[i] = text.charAt(i);
-            if (Character.isLetter(simbols[i]) && i != text.length() - 1){
+            if (Character.isLetter(simbols[i]) && i != text.length() - 1) {
                 counter++;
             } else {
                 if (maxWord < counter) {
@@ -60,7 +59,7 @@ public class TextTypewriter {
             System.out.println("\nОшибка: данные Null");
             return;
         }
-        if (text.length() ==0) {
+        if (text.length() == 0) {
             System.out.println("\nОшибка: пустая строка");
             return;
         }

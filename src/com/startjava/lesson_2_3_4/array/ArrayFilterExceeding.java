@@ -7,16 +7,16 @@ public class ArrayFilterExceeding {
         float[] original = genArray();
         int index1 = -1;
         float[] filteredArr1 = filterByIndex(index1, original);
-        displayIndexAndArrays(original,filteredArr1, index1);
+        displayIndexAndArrays(original, filteredArr1, index1);
         int index2 = 15;
         float[] filteredArr2 = filterByIndex(index2, original);
-        displayIndexAndArrays(original,filteredArr2, index2);
+        displayIndexAndArrays(original, filteredArr2, index2);
         int index3 = 0;
         float[] filteredArr3 = filterByIndex(index3, original);
-        displayIndexAndArrays(original,filteredArr3, index3);
+        displayIndexAndArrays(original, filteredArr3, index3);
         int index4 = 14;
         float[] filteredArr4 = filterByIndex(index4, original);
-        displayIndexAndArrays(original,filteredArr4, index4);
+        displayIndexAndArrays(original, filteredArr4, index4);
     }
 
     private static float[] genArray() {
@@ -65,7 +65,5 @@ public class ArrayFilterExceeding {
             }
         }
     }
-
-
 }
 

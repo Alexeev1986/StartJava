@@ -2,30 +2,28 @@ package com.startjava.lesson_2_3_4.array;
 
 import java.util.Random;
 
-public class PasswordGuesser {
+public class PasswordCracker {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) throws InterruptedException {
-        displayPasswordGuesser(hackPassword());
+        displayPasswordCracker(hackPassword());
     }
 
     private static int hackPassword() throws InterruptedException {
         Random random = new Random();
-        char[] spinner = new char[] {'-', '\\', '|', '/','-', '\\', '|', '/','-', '\\', '|', '/'};
+        char[] spins = new char[] {'-', '\\', '|', '/'};
         for (int i = 0; i < 12; i++) {
-            System.out.print(spinner[i] + "\r");
+            System.out.print("Hacking: " + spins[i % 4] + "\r");
             Thread.sleep(300);
         }
         return random.nextInt(100);
     }
 
-    private static void displayPasswordGuesser(int result) {
-        if (result > 70) {
-            System.out.println(ANSI_GREEN + "Access Granted!" + ANSI_RESET);
-        } else {
-            System.out.println(ANSI_RED + "Access Denied!" + ANSI_RESET);
-        }
+    private static void displayPasswordCracker(int result) {
+        System.out.println(result > 70
+                ? ANSI_GREEN + "Access Granted!" + ANSI_RESET
+                : ANSI_RED + "Access Denied!" + ANSI_RESET);
     }
 }
