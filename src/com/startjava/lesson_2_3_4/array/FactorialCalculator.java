@@ -2,10 +2,10 @@ package com.startjava.lesson_2_3_4.array;
 
 public class FactorialCalculator {
     public static void main(String[] args) {
-        printResults(calculateFactorials());
-        printResults(calculateFactorials((int[]) null));
-        printResults(calculateFactorials(8, 0, 9));
-        printResults(calculateFactorials(-3, 1, 7, 13));
+        displayCalculateFactorials(calculateFactorials());
+        displayCalculateFactorials(calculateFactorials((int[]) null));
+        displayCalculateFactorials(calculateFactorials(8, 0, 9));
+        displayCalculateFactorials(calculateFactorials(-3, 1, 7, 13));
     }
 
     private static String[] calculateFactorials(int... numbers) {
@@ -35,7 +35,7 @@ public class FactorialCalculator {
         return factorialStr;
     }
 
-    private static void printResults(String[] results) {
+    private static void displayCalculateFactorials(String[] results) {
         if (results == null || results.length == 0) {
             return;
         }

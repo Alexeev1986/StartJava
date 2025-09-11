@@ -2,12 +2,12 @@ package com.startjava.lesson_2_3_4.array;
 
 public class SymbolTrianglePrinter {
     public static void main(String[] args) {
-        System.out.println(printTriangle('0', '9', true));
-        System.out.println(printTriangle('/', '!', false));
-        System.out.println(printTriangle('A', 'J', false));
+        displayTriangle(createTriangle('0', '9', true));
+        displayTriangle(createTriangle('/', '!', false));
+        displayTriangle(createTriangle('A', 'J', false));
     }
 
-    private static String printTriangle(char left, char right, boolean isUpDirection) {
+    private static String createTriangle(char left, char right, boolean isUpDirection) {
         if (left > right) {
             return "Ошибка: левая граница больше правой.";
         }
@@ -36,5 +36,9 @@ public class SymbolTrianglePrinter {
             }
             return sb.toString();
         }
+    }
+
+    public static void displayTriangle(String triangleStr) {
+        System.out.println(triangleStr);
     }
 }

@@ -8,7 +8,7 @@ public class PasswordGuesser {
     private static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) throws InterruptedException {
-        displayHackResult(hackPassword());
+        displayPasswordGuesser(hackPassword());
     }
 
     private static int hackPassword() throws InterruptedException {
@@ -21,7 +21,7 @@ public class PasswordGuesser {
         return random.nextInt(100);
     }
 
-    private static void displayHackResult(int result) {
+    private static void displayPasswordGuesser(int result) {
         if (result > 70) {
             System.out.println(ANSI_GREEN + "Access Granted!" + ANSI_RESET);
         } else {

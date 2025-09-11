@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class UniqueArrayFiller {
     public static void main(String[] args) {
-        System.out.println(arrayFilter(-30, -10, 23));
-        System.out.println(arrayFilter(10, 50, 10));
-        System.out.println(arrayFilter(-34, -34, 1));
-        System.out.println(arrayFilter(-1, 2, -3));
-        System.out.println(arrayFilter(5, -8, 2));
+        displayUniqueArrayFiller(arrayFilter(-30, -10, 23));
+        displayUniqueArrayFiller(arrayFilter(10, 50, 10));
+        displayUniqueArrayFiller(arrayFilter(-34, -34, 1));
+        displayUniqueArrayFiller(arrayFilter(-1, 2, -3));
+        displayUniqueArrayFiller(arrayFilter(5, -8, 2));
     }
 
     private static String arrayFilter(int left, int right, int countPerLine) {
@@ -65,5 +65,9 @@ public class UniqueArrayFiller {
             }
         }
         return arr;
+    }
+
+    public static void displayUniqueArrayFiller(String uniqueArrayStr) {
+        System.out.println(uniqueArrayStr);
     }
 }
