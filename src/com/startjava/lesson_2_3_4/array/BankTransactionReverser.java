@@ -4,16 +4,16 @@ import java.util.Arrays;
 
 public class BankTransactionReverser {
     public static void main(String[] args) {
-        int[] transactions1 = new int[0];
-        displayTransactions(transactions1, reverseTransactions(transactions1));
-        int[] transactions2 = null;
-        displayTransactions(transactions2, reverseTransactions(transactions2));
-        int[] transactions3 = {5};
-        displayTransactions(transactions3, reverseTransactions(transactions3));
-        int[] transactions4 = {6, 8, 9, 1};
-        displayTransactions(transactions4, reverseTransactions(transactions4));
-        int[] transactions5 = {13, 8, 5, 3, 2, 1, 1};
-        displayTransactions(transactions5, reverseTransactions(transactions5));
+        int[] transactions = new int[0];
+        displayTransactions(transactions, reverseTransactions(transactions));
+        transactions = null;
+        displayTransactions(transactions, reverseTransactions(transactions));
+        transactions = new int[] {5};
+        displayTransactions(transactions, reverseTransactions(transactions));
+        transactions = new int[] {6, 8, 9, 1};
+        displayTransactions(transactions, reverseTransactions(transactions));
+        transactions = new int[] {13, 8, 5, 3, 2, 1, 1};
+        displayTransactions(transactions, reverseTransactions(transactions));
     }
 
     private static int[] reverseTransactions(int[] transactions) {

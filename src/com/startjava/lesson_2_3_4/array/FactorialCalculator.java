@@ -2,18 +2,18 @@ package com.startjava.lesson_2_3_4.array;
 
 public class FactorialCalculator {
     public static void main(String[] args) {
-        int[] numbers1 = new int[0];
-        long[] factorials1 = calculateFactorials(numbers1);
-        displayCalculateFactorials(numbers1, factorials1);
-        int[] numbers2 = null;
-        long[] factorials2 = calculateFactorials(numbers2);
-        displayCalculateFactorials(numbers2, factorials2);
-        int[] numbers3 = {8, 0, 9};
-        long[] factorials3 = calculateFactorials(numbers3);
-        displayCalculateFactorials(numbers3, factorials3);
-        int[] numbers4 = {-3, 1, 7, 13};
-        long[] factorials4 = calculateFactorials(numbers4);
-        displayCalculateFactorials(numbers4, factorials4);
+        int[] numbers = new int[0];
+        long[] factorials = calculateFactorials(numbers);
+        displayCalculateFactorials(numbers, factorials);
+        numbers = null;
+        factorials = calculateFactorials(numbers);
+        displayCalculateFactorials(numbers, factorials);
+        numbers = new int[] {8, 0, 9};
+        factorials = calculateFactorials(numbers);
+        displayCalculateFactorials(numbers, factorials);
+        numbers = new int []{-3, 1, 7, 13};
+        factorials = calculateFactorials(numbers);
+        displayCalculateFactorials(numbers, factorials);
     }
 
     private static long[] calculateFactorials(int... numbers) {
