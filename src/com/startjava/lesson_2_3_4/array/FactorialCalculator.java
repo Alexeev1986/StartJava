@@ -26,9 +26,7 @@ public class FactorialCalculator {
         long[] factorials = new long[numbers.length];
 
         for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] < 0) {
-                factorials[i] = 0;
-            } else {
+            if (numbers[i] > 0) {
                 long resultFactorial = 1;
                 for (int j = 1; j <= numbers[i]; j++) {
                     resultFactorial *= j;
@@ -53,7 +51,6 @@ public class FactorialCalculator {
             if (numbers[i] < 0) {
                 System.out.println("Ошибка: факториал " + numbers[i] + "! не определен");
             } else {
-                sb.setLength(0);
                 sb.append(numbers[i]).append("! = ");
                 for (int j = 1; j <= numbers[i]; j++) {
                     if (numbers[i] != 1) {
@@ -63,6 +60,7 @@ public class FactorialCalculator {
                 }
                 sb.append(factorials[i]);
                 System.out.println(sb);
+                sb.setLength(0);
             }
         }
     }

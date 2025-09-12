@@ -9,34 +9,29 @@ public class SymbolTrianglePrinter {
 
     private static String createTriangle(char left, char right, boolean ascending) {
         if (left > right) {
-            System.out.println("Ошибка: левая граница больше правой.");
+            System.out.printf("Ошибка: левая граница (%d) > правой (%d).\n", (int) left, (int) right);
             return null;
         }
         StringBuilder sb = new StringBuilder();
+        int count = 1;
+        int indent = right - left;
         if (ascending) {
-            int indent = right - left;
-            sb.setLength(0);
-            int count = 1;
             for (char i = right; i >= left; i--) {
                 sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
                 indent -= 1;
                 count += 2;
             }
-            return sb.toString();
         } else {
-            int indent = right - left;
-            sb.setLength(0);
-            int count = 1;
             for (char i = left; i <= right; i++) {
                 sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
                 indent -= 1;
                 count += 2;
             }
-            return sb.toString();
         }
+        return sb.toString();
     }
 
-    public static void displayTriangle(String triangle) {
+    private static void displayTriangle(String triangle) {
         System.out.println(triangle);
     }
 }
