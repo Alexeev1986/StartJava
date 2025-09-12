@@ -7,30 +7,28 @@ public class SymbolTrianglePrinter {
         displayTriangle(createTriangle('A', 'J', false));
     }
 
-    private static String createTriangle(char left, char right, boolean isUpDirection) {
+    private static String createTriangle(char left, char right, boolean ascending) {
         if (left > right) {
-            return "Ошибка: левая граница больше правой.";
+            System.out.println("Ошибка: левая граница больше правой.");
+            return null;
         }
-        if (isUpDirection) {
+        StringBuilder sb = new StringBuilder();
+        if (ascending) {
             int indent = right - left;
-            StringBuilder sb = new StringBuilder();
-            int numberOfChar = 1;
+            sb.setLength(0);
+            int count = 1;
             for (char i = right; i >= left; i--) {
-                sb.append(" ".repeat(indent));
-                sb.append(String.valueOf(i).repeat(numberOfChar));
-                sb.append("\n");
+                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
                 indent -= 1;
-                numberOfChar += 2;
+                count += 2;
             }
             return sb.toString();
         } else {
             int indent = right - left;
-            StringBuilder sb = new StringBuilder();
+            sb.setLength(0);
             int count = 1;
             for (char i = left; i <= right; i++) {
-                sb.append(" ".repeat(indent));
-                sb.append(String.valueOf(i).repeat(count));
-                sb.append("\n");
+                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
                 indent -= 1;
                 count += 2;
             }
@@ -38,7 +36,7 @@ public class SymbolTrianglePrinter {
         }
     }
 
-    public static void displayTriangle(String triangleStr) {
-        System.out.println(triangleStr);
+    public static void displayTriangle(String triangle) {
+        System.out.println(triangle);
     }
 }
