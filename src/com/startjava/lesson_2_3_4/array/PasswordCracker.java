@@ -24,6 +24,7 @@ public class PasswordCracker {
     private static void displayHackResult(int result) {
         System.out.println(result > 70
                 ? ANSI_GREEN + "Access Granted!"
-                : ANSI_RED + "Access Denied!" + ANSI_RESET);
+                : ANSI_RED + "Access Denied!");
+        System.out.println(ANSI_RESET);
     }
 }
