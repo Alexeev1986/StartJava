@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Arrays {
     private Arrays() {
-
     }
 
     public static String arrayFilter(int left, int right, int countPerLine) {
@@ -36,8 +35,8 @@ public class Arrays {
         }
         int[] arrResult = bubbleSort(arrUniqueNumbers);
         StringBuilder sb = new StringBuilder();
-        sb.append("Интервал (").append(left).append(", ").
-                append(right).append(") символов в строке ").append(countPerLine).append("\n");
+        sb.append("Интервал (").append(left).append(", ")
+                .append(right).append(") символов в строке ").append(countPerLine).append("\n");
         int counter = 0;
         for (int i = 0; i < arrResult.length; i++) {
             sb.append(arrResult[i]).append(" ");

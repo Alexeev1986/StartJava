@@ -1,7 +1,7 @@
 package com.startjava.lesson_2_3_4.array.util;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException {
         arrayFilterExceeding();
         bankTransactionReverser();
         factorialCalculator();
@@ -40,7 +40,7 @@ public class Main {
         Console.displayTransactions(Arrays.reverseTransactions(transactions));
     }
 
-    public  static void  factorialCalculator() {
+    public static void factorialCalculator() {
         int[] numbers = new int[0];
         long[] factorials = Arrays.calculateFactorials(numbers);
         Console.printCalculatedFactorials(numbers, factorials);
@@ -83,5 +83,4 @@ public class Main {
         Console.displayUniqueArrayFiller(Arrays.arrayFilter(-1, 2, -3));
         Console.displayUniqueArrayFiller(Arrays.arrayFilter(5, -8, 2));
     }
-
 }
