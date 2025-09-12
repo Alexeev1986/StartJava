@@ -24,10 +24,10 @@ public class BankTransactionReverser {
             return new int[0];
         }
         int[] reversed = new int[transactions.length];
-        int index = transactions.length - 1;
+        int index = transactions.length;
 
         for (int value : transactions) {
-            reversed[index--] = value;
+            reversed[--index] = value;
         }
         return reversed;
     }
