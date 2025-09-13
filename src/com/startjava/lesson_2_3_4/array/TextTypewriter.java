@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class TextTypewriter {
     public static void main(String[] args) throws InterruptedException {
-        displayTypewriter(findShortestLongestWord("Java - это C++, из которого убрали" +
+        displayTypewriter(findMinMaxWord("Java - это C++, из которого убрали" +
                 " все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling"));
-        displayTypewriter(findShortestLongestWord("Чтобы написать чистый код, мы" +
+        displayTypewriter(findMinMaxWord("Чтобы написать чистый код, мы" +
                 " сначала пишем грязный код, затем рефакторим его.\n" +
                 "- Robert Martin"));
-        displayTypewriter(findShortestLongestWord(null));
-        displayTypewriter(findShortestLongestWord(""));
+        displayTypewriter(findMinMaxWord(null));
+        displayTypewriter(findMinMaxWord(""));
     }
 
-    private static String findShortestLongestWord(String text) {
+    private static String findMinMaxWord(String text) {
         if (text == null) {
             return null;
         }
@@ -43,12 +43,16 @@ public class TextTypewriter {
                 counter = 0;
             }
         }
+        return (swapCaseInRange(simbols, minPos, maxPos));
+    }
+
+    private static String swapCaseInRange(char[] offer, int minPos, int maxPos) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < offer.length; i++) {
             if (i > minPos && i < maxPos) {
-                sb.append(Character.toUpperCase(simbols[i]));
+                sb.append(Character.toUpperCase(offer[i]));
             } else {
-                sb.append(simbols[i]);
+                sb.append(offer[i]);
             }
         }
         return (sb.toString());

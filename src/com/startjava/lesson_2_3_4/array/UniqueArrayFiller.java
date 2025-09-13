@@ -1,20 +1,24 @@
 package com.startjava.lesson_2_3_4.array;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class UniqueArrayFiller {
     public static void main(String[] args) {
-        displayUniqueArrayFiller(arrayFilter(-30, -10, 23));
-        displayUniqueArrayFiller(arrayFilter(10, 50, 10));
-        displayUniqueArrayFiller(arrayFilter(-34, -34, 1));
-        displayUniqueArrayFiller(arrayFilter(-1, 2, -3));
-        displayUniqueArrayFiller(arrayFilter(5, -8, 2));
+        displayUniqueArrayFiller(generateUniqueNumbers(-30, -10, 23));
+        displayUniqueArrayFiller(generateUniqueNumbers(10, 50, 10));
+        displayUniqueArrayFiller(generateUniqueNumbers(-34, -34, 1));
+        displayUniqueArrayFiller(generateUniqueNumbers(-1, 2, -3));
+        displayUniqueArrayFiller(generateUniqueNumbers(5, -8, 2));
     }
 
-    private static String arrayFilter(int left, int right, int countPerLine) {
+    private static String generateUniqueNumbers(int left, int right, int countPerLine) {
         if (left > right) {
             return ("Ошибка: левая (" + left +
                     ") граница не может быть больше правой(" + right + ")");
+        }
+        if (left == right) {
+            return ("Ошибка: длина массива должна быть > 0");
         }
         if (countPerLine < 0) {
             return ("Ошибка: количество отображаемых" +
@@ -22,29 +26,29 @@ public class UniqueArrayFiller {
         }
         int arraySize = (int) Math.round((right - left + 1) * 0.75);
         Random random = new Random();
-        int[] arrUniqueNumbers = new int[arraySize];
+        int[] uniqueNumbers = new int[arraySize];
         for (int i = 0; i < arraySize; i++) {
-            int temp;
+            int candidate;
             boolean isUnique;
             do {
-                temp = random.nextInt(right - left + 1) + left;
+                candidate = random.nextInt(left, right + 1);
                 isUnique = true;
                 for (int j = 0; j < i; j++) {
-                    if (arrUniqueNumbers[j] == temp) {
+                    if (uniqueNumbers[j] == candidate) {
                         isUnique = false;
                         break;
                     }
                 }
             } while (!isUnique);
-            arrUniqueNumbers[i] = temp;
+            uniqueNumbers[i] = candidate;
         }
-        int[] arrResult = bubbleSort(arrUniqueNumbers);
+        Arrays.sort(uniqueNumbers);
         StringBuilder sb = new StringBuilder();
         sb.append("Интервал (" + left + ", " + right +
                 ") символов в строке " + countPerLine + "\n");
         int counter = 0;
-        for (int i = 0; i < arrResult.length; i++) {
-            sb.append(arrResult[i] + " ");
+        for (int i = 0; i < uniqueNumbers.length; i++) {
+            sb.append(uniqueNumbers[i] + " ");
             counter++;
             if (counter == countPerLine) {
                 sb.append("\n");
@@ -52,19 +56,6 @@ public class UniqueArrayFiller {
             }
         }
         return sb.toString();
-    }
-
-    private static int[] bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-        return arr;
     }
 
     public static void displayUniqueArrayFiller(String uniqueArrayStr) {

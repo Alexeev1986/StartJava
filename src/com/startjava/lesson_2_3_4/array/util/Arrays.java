@@ -6,62 +6,6 @@ public class Arrays {
     private Arrays() {
     }
 
-    public static String arrayFilter(int left, int right, int countPerLine) {
-        if (left > right) {
-            return ("Ошибка: левая (" + left +
-                    ") граница не может быть больше правой(" + right + ")");
-        }
-        if (countPerLine < 0) {
-            return ("Ошибка: количество отображаемых" +
-                    " элементов в строке не может быть отрицательным(" + countPerLine + ")");
-        }
-        int arraySize = (int) Math.round((right - left + 1) * 0.75);
-        Random random = new Random();
-        int[] arrUniqueNumbers = new int[arraySize];
-        for (int i = 0; i < arraySize; i++) {
-            int temp;
-            boolean isUnique;
-            do {
-                temp = random.nextInt(right - left + 1) + left;
-                isUnique = true;
-                for (int j = 0; j < i; j++) {
-                    if (arrUniqueNumbers[j] == temp) {
-                        isUnique = false;
-                        break;
-                    }
-                }
-            } while (!isUnique);
-            arrUniqueNumbers[i] = temp;
-        }
-        int[] arrResult = bubbleSort(arrUniqueNumbers);
-        StringBuilder sb = new StringBuilder();
-        sb.append("Интервал (").append(left).append(", ")
-                .append(right).append(") символов в строке ").append(countPerLine).append("\n");
-        int counter = 0;
-        for (int i = 0; i < arrResult.length; i++) {
-            sb.append(arrResult[i]).append(" ");
-            counter++;
-            if (counter == countPerLine) {
-                sb.append("\n");
-                counter = 0;
-            }
-        }
-        return sb.toString();
-    }
-
-    private static int[] bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-        return arr;
-    }
-
     public static long[] calculateFactorials(int... numbers) {
         if (numbers == null) {
             return null;
@@ -91,23 +35,95 @@ public class Arrays {
         StringBuilder sb = new StringBuilder();
         int count = 1;
         int indent = right - left;
-        if (ascending) {
-            for (char i = right; i >= left; i--) {
-                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
-                indent -= 1;
-                count += 2;
-            }
-        } else {
-            for (char i = left; i <= right; i++) {
-                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
-                indent -= 1;
-                count += 2;
+        char start = ascending ? right : left;
+        char end = ascending ? left : right;
+        int step = ascending ? -1 : 1;
+        for (char i = start; ascending ? i >= end : i <= end; i += step) {
+            sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
+            indent -= 1;
+            count += 2;
+        }
+        return sb.toString();
+    }
+
+    public static float[] genArray() {
+        Random random = new Random();
+        float[] numbers = new float[15];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = random.nextFloat(0, 1);
+        }
+        return numbers;
+    }
+
+    public static String generateUniqueNumbers(int left, int right, int countPerLine) {
+        if (left > right) {
+            return ("Ошибка: левая (" + left +
+                    ") граница не может быть больше правой(" + right + ")");
+        }
+        if (left == right) {
+            return ("Ошибка: длина массива должна быть > 0");
+        }
+        if (countPerLine < 0) {
+            return ("Ошибка: количество отображаемых" +
+                    " элементов в строке не может быть отрицательным(" + countPerLine + ")");
+        }
+        int arraySize = (int) Math.round((right - left) * 0.75);
+        Random random = new Random();
+        int[] uniqueNumbers = new int[arraySize];
+        for (int i = 0; i < arraySize; i++) {
+            int candidate;
+            boolean isUnique;
+            do {
+                candidate = random.nextInt(left, right + 1);
+                isUnique = true;
+                for (int j = 0; j < i; j++) {
+                    if (uniqueNumbers[j] == candidate) {
+                        isUnique = false;
+                        break;
+                    }
+                }
+            } while (!isUnique);
+            uniqueNumbers[i] = candidate;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Интервал (" + left + ", " + right +
+                ") символов в строке " + countPerLine + "\n");
+        int counter = 0;
+        for (int i = 0; i < uniqueNumbers.length; i++) {
+            sb.append(uniqueNumbers[i] + " ");
+            counter++;
+            if (counter == countPerLine) {
+                sb.append("\n");
+                counter = 0;
             }
         }
         return sb.toString();
     }
 
-    public static String findShortestLongestWord(String text) {
+    public static int hackPassword(int rotationsCount) throws InterruptedException {
+        Random random = new Random();
+        char[] spins = new char[] {'-', '\\', '|', '/'};
+        for (int i = 0; i < spins.length * rotationsCount; i++) {
+            System.out.print("Hacking: " + spins[i % 4] + "\r");
+            Thread.sleep(300);
+        }
+        return random.nextInt(100);
+    }
+
+    public static float[] filterAboveThreshold(int index, float[] original) {
+        float[] filteredArr = original.clone();
+        if (index < 0 || index >= filteredArr.length) {
+            return new float[0];
+        }
+        for (int i = 0; i < filteredArr.length; i++) {
+            if (filteredArr[i] > filteredArr[index]) {
+                filteredArr[i] = 0.0f;
+            }
+        }
+        return filteredArr;
+    }
+
+    public static String findMinMaxWord(String text) {
         if (text == null) {
             return null;
         }
@@ -136,47 +152,7 @@ public class Arrays {
                 counter = 0;
             }
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (i > minPos && i < maxPos) {
-                sb.append(Character.toUpperCase(simbols[i]));
-            } else {
-                sb.append(simbols[i]);
-            }
-        }
-        return (sb.toString());
-    }
-
-    public static float[] filterByIndex(int index, float[] original) {
-        float[] filteredArr = original.clone();
-        if (index < 0 || index >= filteredArr.length) {
-            return new float[0];
-        }
-        for (int i = 0; i < filteredArr.length; i++) {
-            if (filteredArr[i] > filteredArr[index]) {
-                filteredArr[i] = 0.0f;
-            }
-        }
-        return filteredArr;
-    }
-
-    public static float[] genArray() {
-        Random random = new Random();
-        float[] numbers = new float[15];
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = random.nextFloat(0, 1);
-        }
-        return numbers;
-    }
-
-    public static int hackPassword(int rotationsCount) throws InterruptedException {
-        Random random = new Random();
-        char[] spins = new char[] {'-', '\\', '|', '/'};
-        for (int i = 0; i < spins.length * rotationsCount; i++) {
-            System.out.print("Hacking: " + spins[i % 4] + "\r");
-            Thread.sleep(300);
-        }
-        return random.nextInt(100);
+        return (swapCaseInRange(simbols, minPos, maxPos));
     }
 
     public static int[] reverseTransactions(int[] transactions) {
@@ -193,5 +169,17 @@ public class Arrays {
             reversed[--index] = value;
         }
         return reversed;
+    }
+
+    private static String swapCaseInRange(char[] offer, int minPos, int maxPos) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < offer.length; i++) {
+            if (i > minPos && i < maxPos) {
+                sb.append(Character.toUpperCase(offer[i]));
+            } else {
+                sb.append(offer[i]);
+            }
+        }
+        return (sb.toString());
     }
 }

@@ -15,18 +15,13 @@ public class SymbolTrianglePrinter {
         StringBuilder sb = new StringBuilder();
         int count = 1;
         int indent = right - left;
-        if (ascending) {
-            for (char i = right; i >= left; i--) {
-                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
-                indent -= 1;
-                count += 2;
-            }
-        } else {
-            for (char i = left; i <= right; i++) {
-                sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
-                indent -= 1;
-                count += 2;
-            }
+        char start = ascending ? right : left;
+        char end = ascending ? left : right;
+        int step = ascending ? -1 : 1;
+        for (char i = start; ascending ? i >= end : i <= end; i += step) {
+            sb.append(" ".repeat(indent)).append(String.valueOf(i).repeat(count)).append("\n");
+            indent -= 1;
+            count += 2;
         }
         return sb.toString();
     }

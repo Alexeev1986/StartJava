@@ -14,17 +14,17 @@ public class Main {
     public static void arrayFilterExceeding() {
         float[] original = Arrays.genArray();
         int index = -1;
-        float[] filteredArr = Arrays.filterByIndex(index, original);
-        Console.displayIndexAndArrays(original, filteredArr, index);
+        float[] filteredArr = Arrays.filterAboveThreshold(index, original);
+        Console.printComparison(original, filteredArr, index);
         index = 15;
-        filteredArr = Arrays.filterByIndex(index, original);
-        Console.displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = Arrays.filterAboveThreshold(index, original);
+        Console.printComparison(original, filteredArr, index);
         index = 0;
-        filteredArr = Arrays.filterByIndex(index, original);
-        Console.displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = Arrays.filterAboveThreshold(index, original);
+        Console.printComparison(original, filteredArr, index);
         index = 14;
-        filteredArr = Arrays.filterByIndex(index, original);
-        Console.displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = Arrays.filterAboveThreshold(index, original);
+        Console.printComparison(original, filteredArr, index);
     }
 
     public static void bankTransactionReverser() {
@@ -53,6 +53,9 @@ public class Main {
         numbers = new int[]{-3, 1, 7, 13};
         factorials = Arrays.calculateFactorials(numbers);
         Console.printCalculatedFactorials(numbers, factorials);
+        numbers = new int[]{-22, -0};
+        factorials = Arrays.calculateFactorials(numbers);
+        Console.printCalculatedFactorials(numbers, factorials);
     }
 
     public static void passwordCracker() throws InterruptedException {
@@ -66,21 +69,21 @@ public class Main {
     }
 
     public static void textTypewriter() throws InterruptedException {
-        Console.displayTypewriter(Arrays.findShortestLongestWord("Java - это C++, из которого убрали" +
+        Console.displayTypewriter(Arrays.findMinMaxWord("Java - это C++, из которого убрали" +
                 " все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling"));
-        Console.displayTypewriter(Arrays.findShortestLongestWord("Чтобы написать чистый код, мы" +
+        Console.displayTypewriter(Arrays.findMinMaxWord("Чтобы написать чистый код, мы" +
                 " сначала пишем грязный код, затем рефакторим его.\n" +
                 "- Robert Martin"));
-        Console.displayTypewriter(Arrays.findShortestLongestWord(null));
-        Console.displayTypewriter(Arrays.findShortestLongestWord(""));
+        Console.displayTypewriter(Arrays.findMinMaxWord(null));
+        Console.displayTypewriter(Arrays.findMinMaxWord(""));
     }
 
     public static void uniqueArrayFiller() {
-        Console.displayUniqueArrayFiller(Arrays.arrayFilter(-30, -10, 23));
-        Console.displayUniqueArrayFiller(Arrays.arrayFilter(10, 50, 10));
-        Console.displayUniqueArrayFiller(Arrays.arrayFilter(-34, -34, 1));
-        Console.displayUniqueArrayFiller(Arrays.arrayFilter(-1, 2, -3));
-        Console.displayUniqueArrayFiller(Arrays.arrayFilter(5, -8, 2));
+        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-30, -10, 23));
+        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(10, 50, 10));
+        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-34, -34, 1));
+        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-1, 2, -3));
+        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(5, -8, 2));
     }
 }

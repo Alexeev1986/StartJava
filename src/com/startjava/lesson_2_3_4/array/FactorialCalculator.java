@@ -14,6 +14,9 @@ public class FactorialCalculator {
         numbers = new int[]{-3, 1, 7, 13};
         factorials = calculateFactorials(numbers);
         printCalculatedFactorials(numbers, factorials);
+        numbers = new int[]{-22, -0};
+        factorials = calculateFactorials(numbers);
+        printCalculatedFactorials(numbers, factorials);
     }
 
     private static long[] calculateFactorials(int... numbers) {

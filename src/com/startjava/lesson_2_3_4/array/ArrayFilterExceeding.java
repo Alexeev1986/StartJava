@@ -6,17 +6,17 @@ public class ArrayFilterExceeding {
     public static void main(String[] args) {
         float[] original = genArray();
         int index = -1;
-        float[] filteredArr = filterByIndex(index, original);
-        displayIndexAndArrays(original, filteredArr, index);
+        float[] filteredArr = filterAboveThreshold(index, original);
+        printComparison(original, filteredArr, index);
         index = 15;
-        filteredArr = filterByIndex(index, original);
-        displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = filterAboveThreshold(index, original);
+        printComparison(original, filteredArr, index);
         index = 0;
-        filteredArr = filterByIndex(index, original);
-        displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = filterAboveThreshold(index, original);
+        printComparison(original, filteredArr, index);
         index = 14;
-        filteredArr = filterByIndex(index, original);
-        displayIndexAndArrays(original, filteredArr, index);
+        filteredArr = filterAboveThreshold(index, original);
+        printComparison(original, filteredArr, index);
     }
 
     private static float[] genArray() {
@@ -28,7 +28,7 @@ public class ArrayFilterExceeding {
         return numbers;
     }
 
-    private static float[] filterByIndex(int index, float[] original) {
+    private static float[] filterAboveThreshold(int index, float[] original) {
         float[] filteredArr = original.clone();
         if (index < 0 || index >= filteredArr.length) {
             return new float[0];
@@ -41,7 +41,7 @@ public class ArrayFilterExceeding {
         return filteredArr;
     }
 
-    private static void displayIndexAndArrays(float[] origin, float[] filtered, int index) {
+    private static void printComparison(float[] origin, float[] filtered, int index) {
         if (index < 0 || index >= origin.length) {
             System.out.println("Ошибка индекс " + index +
                     " не попадает в допустимые границы [0, " + (origin.length - 1) + "]");
@@ -49,19 +49,17 @@ public class ArrayFilterExceeding {
         }
         System.out.printf("\nЗначение по индексу (%d) = %.3f", index, origin[index]);
         System.out.println("\nОригинал массива : ");
-        for (int i = 0; i < origin.length; i++) {
-            if (i == 7) {
-                System.out.printf(" %.3f \n", origin[i]);
-            } else {
-                System.out.printf(" %.3f ", origin[i]);
-            }
-        }
+        printFormattedFloats(origin);
         System.out.println("\nИзмененный массив : ");
-        for (int i = 0; i < filtered.length; i++) {
+        printFormattedFloats(filtered);
+    }
+
+    private static void printFormattedFloats(float[] arr) {
+        for (int i = 0; i < arr.length; i++) {
             if (i == 7) {
-                System.out.printf(" %.3f \n", filtered[i]);
+                System.out.printf(" %.3f \n", arr[i]);
             } else {
-                System.out.printf(" %.3f ", filtered[i]);
+                System.out.printf(" %.3f ", arr[i]);
             }
         }
     }

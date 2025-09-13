@@ -17,31 +17,6 @@ public class Console {
         System.out.println(ANSI_RESET);
     }
 
-    public static void displayIndexAndArrays(float[] origin, float[] filtered, int index) {
-        if (index < 0 || index >= origin.length) {
-            System.out.println("Ошибка индекс " + index +
-                    " не попадает в допустимые границы [0, " + (origin.length - 1) + "]");
-            return;
-        }
-        System.out.printf("\nЗначение по индексу (%d) = %.3f", index, origin[index]);
-        System.out.println("\nОригинал массива : ");
-        for (int i = 0; i < origin.length; i++) {
-            if (i == 7) {
-                System.out.printf(" %.3f \n", origin[i]);
-            } else {
-                System.out.printf(" %.3f ", origin[i]);
-            }
-        }
-        System.out.println("\nИзмененный массив : ");
-        for (int i = 0; i < filtered.length; i++) {
-            if (i == 7) {
-                System.out.printf(" %.3f \n", filtered[i]);
-            } else {
-                System.out.printf(" %.3f ", filtered[i]);
-            }
-        }
-    }
-
     public static void displayTransactions(int[] reversed) {
         if (reversed == null) {
             System.out.println("\nnull (ошибка в данных)\n");
@@ -87,6 +62,29 @@ public class Console {
         System.out.println(uniqueArrayStr);
     }
 
+    public static void printComparison(float[] origin, float[] filtered, int index) {
+        if (index < 0 || index >= origin.length) {
+            System.out.println("Ошибка индекс " + index +
+                    " не попадает в допустимые границы [0, " + (origin.length - 1) + "]");
+            return;
+        }
+        System.out.printf("\nЗначение по индексу (%d) = %.3f", index, origin[index]);
+        System.out.println("\nОригинал массива : ");
+        printFormattedFloats(origin);
+        System.out.println("\nИзмененный массив : ");
+        printFormattedFloats(filtered);
+    }
+
+    private static void printFormattedFloats(float[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 7) {
+                System.out.printf(" %.3f \n", arr[i]);
+            } else {
+                System.out.printf(" %.3f ", arr[i]);
+            }
+        }
+    }
+
     public static void printCalculatedFactorials(int[] numbers, long[] factorials) {
         if (numbers == null) {
             System.out.println("Ошибка: данные Null\n");
@@ -115,3 +113,4 @@ public class Console {
         }
     }
 }
+
