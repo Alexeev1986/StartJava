@@ -71,9 +71,9 @@ public class Main {
     public static void uniqueArrayFiller() {
         Console.printArrayBlock(Arrays.generateUniqueNumbers(-30, -10), -30, -10, 23);
         Console.printArrayBlock(Arrays.generateUniqueNumbers(10, 50), 10, 50, 10);
-        Console.printArrayBlock(Arrays.generateUniqueNumbers(-34, -34),-34, -34, 1);
+        Console.printArrayBlock(Arrays.generateUniqueNumbers(-34, -34), -34, -34, 1);
         Console.printArrayBlock(Arrays.generateUniqueNumbers(-1, 2), -1, 2, -3);
-        Console.printArrayBlock(Arrays.generateUniqueNumbers(5, -8),5,-8, 2);
+        Console.printArrayBlock(Arrays.generateUniqueNumbers(5, -8), 5, -8, 2);
     }
 
     public static void typewriterEffect() throws InterruptedException {

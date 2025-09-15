@@ -7,9 +7,9 @@ public class UniqueArrayFiller {
     public static void main(String[] args) {
         printSortedUniqueNumbers(generateUniqueNumbers(-30, -10), -30, -10, 23);
         printSortedUniqueNumbers(generateUniqueNumbers(10, 50), 10, 50, 10);
-        printSortedUniqueNumbers(generateUniqueNumbers(-34, -34),-34, -34, 1);
+        printSortedUniqueNumbers(generateUniqueNumbers(-34, -34), -34, -34, 1);
         printSortedUniqueNumbers(generateUniqueNumbers(-1, 2), -1, 2, -3);
-        printSortedUniqueNumbers(generateUniqueNumbers(5, -8),5,-8, 2);
+        printSortedUniqueNumbers(generateUniqueNumbers(5, -8), 5, -8, 2);
     }
 
     private static int[] generateUniqueNumbers(int left, int right) {
@@ -44,7 +44,8 @@ public class UniqueArrayFiller {
 
     private static void printSortedUniqueNumbers(int[] numbers, int left, int right, int countPerLine) {
         if (left > right) {
-            System.out.println("Ошибка: левая (" + left + ") граница не может быть больше правой(" + right + ")");
+            System.out.println("Ошибка: левая (" + left +
+                    ") граница не может быть больше правой(" + right + ")");
             System.out.println();
             return;
         }

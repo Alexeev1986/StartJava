@@ -76,7 +76,8 @@ public class Console {
 
     public static void printArrayBlock(int[] numbers, int left, int right, int countPerLine) {
         if (left > right) {
-            System.out.println("Ошибка: левая (" + left + ") граница не может быть больше правой(" + right + ")");
+            System.out.println("Ошибка: левая (" + left +
+                    ") граница не может быть больше правой(" + right + ")");
             System.out.println();
             return;
         }
