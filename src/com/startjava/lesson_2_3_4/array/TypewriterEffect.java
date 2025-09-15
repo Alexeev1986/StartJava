@@ -43,10 +43,10 @@ public class TypewriterEffect {
                 counter = 0;
             }
         }
-        return (tuUpperCaseInRange(simbols, minPos, maxPos));
+        return (toUpperCaseRange(simbols, minPos, maxPos));
     }
 
-    private static String tuUpperCaseInRange(char[] offer, int minPos, int maxPos) {
+    private static String toUpperCaseRange(char[] offer, int minPos, int maxPos) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < offer.length; i++) {
             if (i > minPos && i < maxPos) {

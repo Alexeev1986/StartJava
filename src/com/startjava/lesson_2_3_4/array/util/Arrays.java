@@ -55,18 +55,14 @@ public class Arrays {
         return numbers;
     }
 
-    public static String generateUniqueNumbers(int left, int right, int countPerLine) {
+    public static int[] generateUniqueNumbers(int left, int right) {
         if (left > right) {
-            return ("Ошибка: левая (" + left +
-                    ") граница не может быть больше правой(" + right + ")");
+            return null;
         }
         if (left == right) {
-            return ("Ошибка: длина массива должна быть > 0");
+            return new int[0];
         }
-        if (countPerLine < 0) {
-            return ("Ошибка: количество отображаемых" +
-                    " элементов в строке не может быть отрицательным(" + countPerLine + ")");
-        }
+
         int arraySize = (int) Math.round((right - left) * 0.75);
         Random random = new Random();
         int[] uniqueNumbers = new int[arraySize];
@@ -85,19 +81,8 @@ public class Arrays {
             } while (!isUnique);
             uniqueNumbers[i] = candidate;
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("Интервал (" + left + ", " + right +
-                ") символов в строке " + countPerLine + "\n");
-        int counter = 0;
-        for (int i = 0; i < uniqueNumbers.length; i++) {
-            sb.append(uniqueNumbers[i] + " ");
-            counter++;
-            if (counter == countPerLine) {
-                sb.append("\n");
-                counter = 0;
-            }
-        }
-        return sb.toString();
+        java.util.Arrays.sort(uniqueNumbers);
+        return uniqueNumbers;
     }
 
     public static int hackPassword(int rotationsCount) throws InterruptedException {
@@ -168,10 +153,10 @@ public class Arrays {
                 counter = 0;
             }
         }
-        return (tuUpperCase(simbols, minPos, maxPos));
+        return (toUpperCaseRange(simbols, minPos, maxPos));
     }
 
-    private static String tuUpperCase(char[] offer, int minPos, int maxPos) {
+    private static String toUpperCaseRange(char[] offer, int minPos, int maxPos) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < offer.length; i++) {
             if (i > minPos && i < maxPos) {

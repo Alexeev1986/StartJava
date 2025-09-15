@@ -33,7 +33,7 @@ public class Console {
         System.out.println(ANSI_RESET);
     }
 
-    public static void displayTransactions(int[] reversed) {
+    public static void printArrayAndReverse(int[] reversed) {
         if (reversed == null) {
             System.out.println("\nnull (ошибка в данных)\n");
             return;
@@ -53,11 +53,11 @@ public class Console {
         System.out.println();
     }
 
-    public static void displayTriangle(String triangle) {
+    public static void printStringBlock(String triangle) {
         System.out.println(triangle);
     }
 
-    public static void displayTypewriter(String text) throws InterruptedException {
+    public static void typewriterPrinter(String text) throws InterruptedException {
         if (text == null) {
             System.out.println("\nОшибка: данные Null");
             return;
@@ -74,8 +74,41 @@ public class Console {
         }
     }
 
-    public static void printSortedUniqueNumbers(String uniqueArrayStr) {
-        System.out.println(uniqueArrayStr);
+    public static void printArrayBlock(int[] numbers, int left, int right, int countPerLine) {
+        if (left > right) {
+            System.out.println("Ошибка: левая (" + left + ") граница не может быть больше правой(" + right + ")");
+            System.out.println();
+            return;
+        }
+        if (left == right) {
+            System.out.println("Ошибка: длина массива должна быть > 0");
+            System.out.println();
+            return;
+        }
+        if (countPerLine < 0) {
+            System.out.println("Ошибка: количество отображаемых" +
+                    " элементов в строке не может быть отрицательным(" + countPerLine + ")");
+            System.out.println();
+            return;
+        }
+        if (numbers == null || numbers.length == 0) {
+            System.out.println("Ошибка: пустой массив.");
+            System.out.println();
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Интервал (" + left + ", " + right +
+                ") символов в строке " + countPerLine + "\n");
+        int counter = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sb.append(numbers[i] + " ");
+            counter++;
+            if (counter == countPerLine) {
+                sb.append("\n");
+                counter = 0;
+            }
+        }
+        System.out.println(sb.toString());
     }
 
     public static void printArraysWithIndexValue(float[] origin, float[] filtered, int index) {
@@ -101,7 +134,7 @@ public class Console {
         }
     }
 
-    public static void printCalculatedFactorials(int[] numbers, long[] factorials) {
+    public static void printFactorials(int[] numbers, long[] factorials) {
         if (numbers == null) {
             System.out.println("Ошибка: данные Null\n");
             return;
@@ -115,7 +148,7 @@ public class Console {
             if (numbers[i] < 0) {
                 System.out.println("Ошибка: факториал " + numbers[i] + "! не определен");
             } else {
-                String expression = buildFactorialExpression(i, factorials[i]);
+                String expression = buildFactorialExpression(numbers[i], factorials[i]);
                 System.out.println(expression);
             }
         }

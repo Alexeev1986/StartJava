@@ -54,7 +54,7 @@ public class FactorialCalculator {
             if (numbers[i] < 0) {
                 System.out.println("Ошибка: факториал " + numbers[i] + "! не определен");
             } else {
-                String expression = buildFactorialExpression(i, factorials[i]);
+                String expression = buildFactorialExpression(numbers[i], factorials[i]);
                 System.out.println(expression);
             }
         }
