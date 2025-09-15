@@ -123,6 +123,22 @@ public class Arrays {
         return filteredArr;
     }
 
+    public static int[] reverseTransactions(int[] transactions) {
+        if (transactions == null) {
+            return null;
+        }
+        if (transactions.length == 0) {
+            return new int[0];
+        }
+        int[] reversed = new int[transactions.length];
+        int index = transactions.length;
+
+        for (int value : transactions) {
+            reversed[--index] = value;
+        }
+        return reversed;
+    }
+
     public static String toUpperCaseBetweenShortestAndLongestWord(String text) {
         if (text == null) {
             return null;
@@ -153,22 +169,6 @@ public class Arrays {
             }
         }
         return (tuUpperCase(simbols, minPos, maxPos));
-    }
-
-    public static int[] reverseTransactions(int[] transactions) {
-        if (transactions == null) {
-            return null;
-        }
-        if (transactions.length == 0) {
-            return new int[0];
-        }
-        int[] reversed = new int[transactions.length];
-        int index = transactions.length;
-
-        for (int value : transactions) {
-            reversed[--index] = value;
-        }
-        return reversed;
     }
 
     private static String tuUpperCase(char[] offer, int minPos, int maxPos) {

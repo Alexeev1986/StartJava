@@ -8,24 +8,14 @@ public class CalculatorTest {
         Calculator calc = new Calculator();
         String answer = "yes";
         do {
-            System.out.print("\nВведите первое число: ");
-            calc.setNumber1(console.nextInt());
-            System.out.print("\nВведите знак операции (+, -, *, /, ^, %): ");
-            char operation = console.next().charAt(0);
-            if (!calc.setOperator(operation)) {
-                System.out.println("Ошибка: операция " + operation + " не поддерживается");
+            System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
+            if (!calc.setExpression(console.nextLine())) {
                 continue;
             }
-            System.out.print("\nВведите второе число: ");
-            calc.setNumber2(console.nextInt());
-            if ((calc.getNumber2() == 0 && operation == '/')) {
-                System.out.println("Ошибка делить на 0 нельзя");
-                continue;
-            }
-            calc.calculate();
+            calc.printResult();
             do {
                 System.out.println("Хотите продолжить вычисления? [yes/no]:");
-                answer = console.next().trim();
+                answer = console.next().trim().toLowerCase();
             } while (!answer.equals("yes") && !answer.equals("no"));
         } while (answer.equals("yes"));
     }

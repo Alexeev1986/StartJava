@@ -17,6 +17,49 @@ public class Calculator {
         return number2;
     }
 
+    public char getOperator() {
+        return operator;
+    }
+
+    public boolean setExpression(String expression) {
+        if (expression == null || expression.trim().isEmpty()) {
+            System.out.println("Ошибка: пустое выражение");
+            return false;
+        }
+        String[] expStr = expression.trim().split("\\s");
+        if (expStr.length != 3) {
+            System.out.println("Ошибка: выражение должно быть в формате - число оператор число");
+            return false;
+        }
+        if(isIntager(expStr[0])) {
+            setNumber1(Integer.parseInt(expStr[0]));
+        } else {
+            System.out.println("Ошибка: первый аргумент не является целым числом");
+            return false;
+        }
+        if (!setOperator(expStr[1].charAt(0))) {
+            System.out.println("Ошибка: оператор " + expStr[1] + " не поддерживается.");
+            return false;
+        }
+        if(isIntager(expStr[2])) {
+            setNumber2(Integer.parseInt(expStr[2]));
+        } else {
+            System.out.println("Ошибка: второй аргумент не является целым числом");
+            return false;
+        }
+        return true;
+
+    }
+
+    public static boolean isIntager(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public boolean setOperator(char operator) {
         if (operator == '+' ||
                 operator == '-' ||
@@ -30,8 +73,8 @@ public class Calculator {
         return false;
     }
 
-    public void calculate() {
-        float result = 0;
+    public double calculate() {
+        double result = 0;
         if (operator == '+') {
             result = number1 + number2;
         } else if (operator == '-') {
@@ -39,15 +82,34 @@ public class Calculator {
         } else if (operator == '*') {
             result = number1 * number2;
         } else if (operator == '/') {
-            result = (float) number1 / number2;
-        } else if (operator == '%') {
-            result = number1 % number2;
-        } else if (operator == '^') {
-            result = 1;
-            for (int i = 0; i < number2; i++) {
-                result *= number1;
+            if (number2 == 0) {
+                return Double.NaN;
             }
+            result = (double) number1 / number2;
+        } else if (operator == '%') {
+            if (number2 == 0) {
+                return Double.NaN;
+            }
+            result = Math.IEEEremainder(number1, number2);
+        } else if (operator == '^') {
+            if (number2 < 0) {
+                return Double.NaN;
+            }
+            result = Math.pow(number1, number2);
         }
-        System.out.println(number1 + " " + operator + " " + number2 + " = " + result);
+        return result;
+    }
+
+    public void printResult() {
+        double result = calculate();
+        if (Double.isNaN(result)) {
+            System.out.printf("%d %s %d = NAN%n", number1, operator, number2);
+            return;
+        }
+        if (result == Math.floor(result)) {
+            System.out.printf("%d %s %d = %.0f%n",number1, operator, number2, result);
+        } else {
+            System.out.printf("%d %s %d = %.3f%n",number1, operator, number2, result);
+        }
     }
 }
