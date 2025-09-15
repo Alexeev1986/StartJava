@@ -7,7 +7,7 @@ public class Main {
         factorialCalculator();
         passwordCracker();
         symbolTrianglePrinter();
-        textTypewriter();
+        typewriterEffect();
         uniqueArrayFiller();
     }
 
@@ -15,16 +15,16 @@ public class Main {
         float[] original = Arrays.genArray();
         int index = -1;
         float[] filteredArr = Arrays.filterAboveThreshold(index, original);
-        Console.printComparison(original, filteredArr, index);
+        Console.printArraysWithIndexValue(original, filteredArr, index);
         index = 15;
         filteredArr = Arrays.filterAboveThreshold(index, original);
-        Console.printComparison(original, filteredArr, index);
+        Console.printArraysWithIndexValue(original, filteredArr, index);
         index = 0;
         filteredArr = Arrays.filterAboveThreshold(index, original);
-        Console.printComparison(original, filteredArr, index);
+        Console.printArraysWithIndexValue(original, filteredArr, index);
         index = 14;
         filteredArr = Arrays.filterAboveThreshold(index, original);
-        Console.printComparison(original, filteredArr, index);
+        Console.printArraysWithIndexValue(original, filteredArr, index);
     }
 
     public static void bankTransactionReverser() {
@@ -68,22 +68,22 @@ public class Main {
         Console.displayTriangle(Arrays.createTriangle('A', 'J', false));
     }
 
-    public static void textTypewriter() throws InterruptedException {
-        Console.displayTypewriter(Arrays.findMinMaxWord("Java - это C++, из которого убрали" +
-                " все пистолеты, ножи и дубинки.\n" +
+    public static void typewriterEffect() throws InterruptedException {
+        Console.displayTypewriter(Arrays.toUpperCaseBetweenShortestAndLongestWord("Java - это C++, из " +
+                "которого убрали все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling"));
-        Console.displayTypewriter(Arrays.findMinMaxWord("Чтобы написать чистый код, мы" +
-                " сначала пишем грязный код, затем рефакторим его.\n" +
+        Console.displayTypewriter(Arrays.toUpperCaseBetweenShortestAndLongestWord("Чтобы написать " +
+                "чистый код, мы сначала пишем грязный код, затем рефакторим его.\n" +
                 "- Robert Martin"));
-        Console.displayTypewriter(Arrays.findMinMaxWord(null));
-        Console.displayTypewriter(Arrays.findMinMaxWord(""));
+        Console.displayTypewriter(Arrays.toUpperCaseBetweenShortestAndLongestWord(null));
+        Console.displayTypewriter(Arrays.toUpperCaseBetweenShortestAndLongestWord(""));
     }
 
     public static void uniqueArrayFiller() {
-        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-30, -10, 23));
-        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(10, 50, 10));
-        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-34, -34, 1));
-        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(-1, 2, -3));
-        Console.displayUniqueArrayFiller(Arrays.generateUniqueNumbers(5, -8, 2));
+        Console.printSortedUniqueNumbers(Arrays.generateUniqueNumbers(-30, -10, 23));
+        Console.printSortedUniqueNumbers(Arrays.generateUniqueNumbers(10, 50, 10));
+        Console.printSortedUniqueNumbers(Arrays.generateUniqueNumbers(-34, -34, 1));
+        Console.printSortedUniqueNumbers(Arrays.generateUniqueNumbers(-1, 2, -3));
+        Console.printSortedUniqueNumbers(Arrays.generateUniqueNumbers(5, -8, 2));
     }
 }

@@ -7,16 +7,16 @@ public class ArrayFilterExceeding {
         float[] original = genArray();
         int index = -1;
         float[] filteredArr = filterAboveThreshold(index, original);
-        printComparison(original, filteredArr, index);
+        printArraysWithIndexValue(original, filteredArr, index);
         index = 15;
         filteredArr = filterAboveThreshold(index, original);
-        printComparison(original, filteredArr, index);
+        printArraysWithIndexValue(original, filteredArr, index);
         index = 0;
         filteredArr = filterAboveThreshold(index, original);
-        printComparison(original, filteredArr, index);
+        printArraysWithIndexValue(original, filteredArr, index);
         index = 14;
         filteredArr = filterAboveThreshold(index, original);
-        printComparison(original, filteredArr, index);
+        printArraysWithIndexValue(original, filteredArr, index);
     }
 
     private static float[] genArray() {
@@ -41,7 +41,7 @@ public class ArrayFilterExceeding {
         return filteredArr;
     }
 
-    private static void printComparison(float[] origin, float[] filtered, int index) {
+    private static void printArraysWithIndexValue(float[] origin, float[] filtered, int index) {
         if (index < 0 || index >= origin.length) {
             System.out.println("Ошибка индекс " + index +
                     " не попадает в допустимые границы [0, " + (origin.length - 1) + "]");

@@ -16,7 +16,7 @@ public class Arrays {
         long[] factorials = new long[numbers.length];
 
         for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] > 0) {
+            if (numbers[i] >= 0) {
                 long resultFactorial = 1;
                 for (int j = 1; j <= numbers[i]; j++) {
                     resultFactorial *= j;
@@ -123,7 +123,7 @@ public class Arrays {
         return filteredArr;
     }
 
-    public static String findMinMaxWord(String text) {
+    public static String toUpperCaseBetweenShortestAndLongestWord(String text) {
         if (text == null) {
             return null;
         }
@@ -152,7 +152,7 @@ public class Arrays {
                 counter = 0;
             }
         }
-        return (swapCaseInRange(simbols, minPos, maxPos));
+        return (tuUpperCase(simbols, minPos, maxPos));
     }
 
     public static int[] reverseTransactions(int[] transactions) {
@@ -171,7 +171,7 @@ public class Arrays {
         return reversed;
     }
 
-    private static String swapCaseInRange(char[] offer, int minPos, int maxPos) {
+    private static String tuUpperCase(char[] offer, int minPos, int maxPos) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < offer.length; i++) {
             if (i > minPos && i < maxPos) {

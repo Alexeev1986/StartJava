@@ -2,19 +2,19 @@ package com.startjava.lesson_2_3_4.array;
 
 import java.util.Random;
 
-public class TextTypewriter {
+public class TypewriterEffect {
     public static void main(String[] args) throws InterruptedException {
-        displayTypewriter(findMinMaxWord("Java - это C++, из которого убрали" +
+        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord("Java - это C++, из которого убрали" +
                 " все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling"));
-        displayTypewriter(findMinMaxWord("Чтобы написать чистый код, мы" +
+        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord("Чтобы написать чистый код, мы" +
                 " сначала пишем грязный код, затем рефакторим его.\n" +
                 "- Robert Martin"));
-        displayTypewriter(findMinMaxWord(null));
-        displayTypewriter(findMinMaxWord(""));
+        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord(null));
+        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord(""));
     }
 
-    private static String findMinMaxWord(String text) {
+    private static String toUpperCaseBetweenShortestAndLongestWord(String text) {
         if (text == null) {
             return null;
         }
@@ -43,10 +43,10 @@ public class TextTypewriter {
                 counter = 0;
             }
         }
-        return (swapCaseInRange(simbols, minPos, maxPos));
+        return (tuUpperCaseInRange(simbols, minPos, maxPos));
     }
 
-    private static String swapCaseInRange(char[] offer, int minPos, int maxPos) {
+    private static String tuUpperCaseInRange(char[] offer, int minPos, int maxPos) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < offer.length; i++) {
             if (i > minPos && i < maxPos) {

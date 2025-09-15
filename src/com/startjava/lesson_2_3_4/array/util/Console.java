@@ -7,6 +7,22 @@ public class Console {
     private Console() {
     }
 
+    private static String buildFactorialExpression(int number, long factorial) {
+        if (number == 0 || number == 1) {
+            return number + "! = " + factorial;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(number).append("! = ");
+        for (int i = 1; i <= number; i++) {
+            sb.append(i);
+            if (i < number) {
+                sb.append(" * ");
+            }
+        }
+        sb.append(" = ").append(factorial);
+        return sb.toString();
+    }
+
     public static void displayHackResult(int result) {
         String ANSI_RED = "\u001B[31m";
         String ANSI_GREEN = "\u001B[32m";
@@ -58,11 +74,11 @@ public class Console {
         }
     }
 
-    public static void displayUniqueArrayFiller(String uniqueArrayStr) {
+    public static void printSortedUniqueNumbers(String uniqueArrayStr) {
         System.out.println(uniqueArrayStr);
     }
 
-    public static void printComparison(float[] origin, float[] filtered, int index) {
+    public static void printArraysWithIndexValue(float[] origin, float[] filtered, int index) {
         if (index < 0 || index >= origin.length) {
             System.out.println("Ошибка индекс " + index +
                     " не попадает в допустимые границы [0, " + (origin.length - 1) + "]");
@@ -94,23 +110,16 @@ public class Console {
             System.out.println("Ошибка: пустой массив\n");
             return;
         }
-        StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] < 0) {
                 System.out.println("Ошибка: факториал " + numbers[i] + "! не определен");
             } else {
-                sb.append(numbers[i]).append("! = ");
-                for (int j = 1; j <= numbers[i]; j++) {
-                    if (numbers[i] != 1) {
-                        sb.append(j);
-                        sb.append((j < numbers[i]) ? " * " : " = ");
-                    }
-                }
-                sb.append(factorials[i]);
-                System.out.println(sb);
-                sb.setLength(0);
+                String expression = buildFactorialExpression(i, factorials[i]);
+                System.out.println(expression);
             }
         }
+        System.out.println();
     }
 }
 
