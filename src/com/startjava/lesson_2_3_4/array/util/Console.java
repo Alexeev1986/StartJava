@@ -7,53 +7,38 @@ public class Console {
     private Console() {
     }
 
-    private static String buildFactorialExpression(int number, long factorial) {
-        if (number == 0 || number == 1) {
-            return number + "! = " + factorial;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(number).append("! = ");
-        for (int i = 1; i <= number; i++) {
-            sb.append(i);
-            if (i < number) {
-                sb.append(" * ");
-            }
-        }
-        sb.append(" = ").append(factorial);
-        return sb.toString();
-    }
-
     public static void displayHackResult(int result) {
-        String ANSI_RED = "\u001B[31m";
-        String ANSI_GREEN = "\u001B[32m";
-        String ANSI_RESET = "\u001B[0m";
+        String ansiRed = "\u001B[31m";
+        String ansiGreen = "\u001B[32m";
+        String ansiReset = "\u001B[0m";
         System.out.println(result > 70
-                ? ANSI_GREEN + "Access Granted!"
-                : ANSI_RED + "Access Denied!");
-        System.out.println(ANSI_RESET);
+                ? ansiGreen + "Access Granted!"
+                : ansiRed + "Access Denied!");
+        System.out.println(ansiReset);
     }
 
-    public static void printArrayAndReverse(int[] reversed) {
-        if (reversed == null) {
+    public static void printMassageAndArray(int[] arr, String massage) {
+        if (arr == null) {
             System.out.println("\nnull (ошибка в данных)\n");
             return;
         }
-        if (reversed.length == 0) {
+        if (arr.length == 0) {
             System.out.println("\nпустой массив (нет данных)\n");
             return;
         }
-        int[] original = new int[reversed.length];
-        int index = reversed.length;
-
-        for (int value : reversed) {
-            original[--index] = value;
-        }
-        System.out.print("Исходные транзакции: " + Arrays.toString(original));
-        System.out.print("\nВ обратном  порядке: " + Arrays.toString(reversed));
+        System.out.print(massage + Arrays.toString(arr));
         System.out.println();
     }
 
-    public static void printStringBlock(String triangle) {
+    public static void printSpinn(int rotationsCount) throws InterruptedException {
+        char[] spins = new char[] {'-', '\\', '|', '/'};
+        for (int i = 0; i < spins.length * rotationsCount; i++) {
+            System.out.print("Hacking: " + spins[i % 4] + "\r");
+            Thread.sleep(300);
+        }
+    }
+
+    public static void println(String triangle) {
         System.out.println(triangle);
     }
 
@@ -135,7 +120,7 @@ public class Console {
         }
     }
 
-    public static void printFactorials(int[] numbers, long[] factorials) {
+    public static void printFactorialsExpressions(int[] numbers, long[] factorials) {
         if (numbers == null) {
             System.out.println("Ошибка: данные Null\n");
             return;
@@ -154,6 +139,22 @@ public class Console {
             }
         }
         System.out.println();
+    }
+
+    private static String buildFactorialExpression(int number, long factorial) {
+        if (number == 0 || number == 1) {
+            return number + "! = " + factorial;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(number).append("! = ");
+        for (int i = 1; i <= number; i++) {
+            sb.append(i);
+            if (i < number) {
+                sb.append(" * ");
+            }
+        }
+        sb.append(" = ").append(factorial);
+        return sb.toString();
     }
 }
 

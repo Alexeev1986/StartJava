@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.util.Scanner;
+
 public class Calculator {
     private int number1;
     private int number2;
@@ -17,10 +19,6 @@ public class Calculator {
         return number2;
     }
 
-    public char getOperator() {
-        return operator;
-    }
-
     public boolean setExpression(String expression) {
         if (expression == null || expression.trim().isEmpty()) {
             System.out.println("Ошибка: пустое выражение");
@@ -31,7 +29,7 @@ public class Calculator {
             System.out.println("Ошибка: выражение должно быть в формате - число оператор число");
             return false;
         }
-        if(isIntager(expStr[0])) {
+        if (isIntager(expStr[0])) {
             setNumber1(Integer.parseInt(expStr[0]));
         } else {
             System.out.println("Ошибка: первый аргумент не является целым числом");
@@ -41,14 +39,13 @@ public class Calculator {
             System.out.println("Ошибка: оператор " + expStr[1] + " не поддерживается.");
             return false;
         }
-        if(isIntager(expStr[2])) {
+        if (isIntager(expStr[2])) {
             setNumber2(Integer.parseInt(expStr[2]));
         } else {
             System.out.println("Ошибка: второй аргумент не является целым числом");
             return false;
         }
         return true;
-
     }
 
     public static boolean isIntager(String str) {
@@ -73,7 +70,12 @@ public class Calculator {
         return false;
     }
 
-    public double calculate() {
+    public double calculate(String expression) {
+        Scanner console = new Scanner(System.in);
+        while (!setExpression(expression)) {
+            System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
+            expression = console.nextLine();
+        }
         double result = 0;
         if (operator == '+') {
             result = number1 + number2;
@@ -100,16 +102,15 @@ public class Calculator {
         return result;
     }
 
-    public void printResult() {
-        double result = calculate();
+    public void printResult(Double result) {
         if (Double.isNaN(result)) {
             System.out.printf("%d %s %d = NAN%n", number1, operator, number2);
             return;
         }
         if (result == Math.floor(result)) {
-            System.out.printf("%d %s %d = %.0f%n",number1, operator, number2, result);
+            System.out.printf("%d %s %d = %.0f%n", number1, operator, number2, result);
         } else {
-            System.out.printf("%d %s %d = %.3f%n",number1, operator, number2, result);
+            System.out.printf("%d %s %d = %.3f%n", number1, operator, number2, result);
         }
     }
 }

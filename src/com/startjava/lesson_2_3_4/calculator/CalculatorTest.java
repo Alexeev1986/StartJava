@@ -6,17 +6,18 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         Calculator calc = new Calculator();
-        String answer = "yes";
+        String answer;
         do {
             System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
-            if (!calc.setExpression(console.nextLine())) {
-                continue;
+            calc.printResult(calc.calculate(console.nextLine()));
+
+            System.out.println("Хотите продолжить вычисления? [yes/no]:");
+            answer = console.nextLine().trim().toLowerCase();
+
+            if (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println("Введите корректный ответ [yes / no]:");
+                answer = console.nextLine().trim().toLowerCase();
             }
-            calc.printResult();
-            do {
-                System.out.println("Хотите продолжить вычисления? [yes/no]:");
-                answer = console.next().trim().toLowerCase();
-            } while (!answer.equals("yes") && !answer.equals("no"));
         } while (answer.equals("yes"));
     }
 }

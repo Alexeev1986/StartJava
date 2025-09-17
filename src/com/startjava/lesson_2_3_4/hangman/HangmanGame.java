@@ -4,9 +4,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HangmanGame {
-    private String[] hiddenWords = new String[] {"яблоко", "лисица", "мороз", "велосипед", "бабочка", "тетрадь", "океан"};
+    private String[] hiddenWords = new String[] {"яблоко", "лисица", "мороз",
+                                                 "велосипед", "бабочка", "тетрадь",
+                                                 "океан"};
     private String hiddenWord; // загаданное слово
-    private String alreadyIntroduced = "";
+    private String alreadyIntroduced;
     private String[] hangman = new String[] {
             "_______",
             "|     |",
@@ -19,10 +21,11 @@ public class HangmanGame {
     private String[] unsolvedSymbols; // массив отображаемых символов при загадывании
     private int attemptsCount; // количество попыток
 
-    public void startGame() {
+    public void start() {
         Random random = new Random();
-        hiddenWord = hiddenWords[random.nextInt(0,7)];
+        hiddenWord = hiddenWords[random.nextInt(0, 7)];
         attemptsCount = 5;
+        alreadyIntroduced = "";
         unsolvedSymbols = new String[hiddenWord.length()];
         hiddenLetters = new String[hiddenWord.length()];
         for (int i = 0; i < hiddenWord.length(); i++) {
@@ -32,13 +35,14 @@ public class HangmanGame {
         System.out.println("Вас приветствует игра виселица!");
         printUnsolvedSymbols();
         boolean isWin = false;
-        while (attemptsCount > 0 && !isWin){
+        while (attemptsCount > 0 && !isWin) {
             hasLetter(enterLetter());
             displayHangman(attemptsCount);
             printUnsolvedSymbols();
             isWin = isWinGame();
         }
-        System.out.println(isWin ? "Поздравляю вы выйграли!" : "Вы проиграли.");
+        System.out.println(isWin ? "Поздравляю вы выйграли!" : "Вы проиграли. Загаданное слово: " +
+                hiddenWord);
     }
 
     private void printUnsolvedSymbols() {
@@ -93,7 +97,8 @@ public class HangmanGame {
                     System.out.println("Отлично вы ввели букву " + str);
                     isletter = true;
                 } else {
-                    System.out.println("Вы уже вводил такую букву! Раннее введенные буквы (" + alreadyIntroduced + ")");
+                    System.out.println("Вы уже вводил такую букву! Раннее введенные буквы (" +
+                            alreadyIntroduced + ")");
                     isletter = false;
                 }
             } else {
@@ -103,7 +108,7 @@ public class HangmanGame {
         return str;
     }
 
-    private boolean isAlreadyIntroduced (String letter) {
+    private boolean isAlreadyIntroduced(String letter) {
         if (alreadyIntroduced.length() == 0) {
             alreadyIntroduced = letter;
             return true;

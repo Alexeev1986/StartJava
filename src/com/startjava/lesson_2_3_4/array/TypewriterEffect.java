@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class TypewriterEffect {
     public static void main(String[] args) throws InterruptedException {
-        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord("Java - это C++, из которого убрали" +
+        displayTypewriter(toUpperCaseRange("Java - это C++, из которого убрали" +
                 " все пистолеты, ножи и дубинки.\n" +
                 "- James Gosling"));
-        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord("Чтобы написать чистый код, мы" +
+        displayTypewriter(toUpperCaseRange("Чтобы написать чистый код, мы" +
                 " сначала пишем грязный код, затем рефакторим его.\n" +
                 "- Robert Martin"));
-        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord(null));
-        displayTypewriter(toUpperCaseBetweenShortestAndLongestWord(""));
+        displayTypewriter(toUpperCaseRange(null));
+        displayTypewriter(toUpperCaseRange(""));
     }
 
-    private static String toUpperCaseBetweenShortestAndLongestWord(String text) {
+    private static String toUpperCaseRange(String text) {
         if (text == null) {
             return null;
         }

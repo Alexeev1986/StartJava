@@ -46,7 +46,7 @@ public class Arrays {
         return sb.toString();
     }
 
-    public static float[] genArray() {
+    public static float[] generateArray() {
         Random random = new Random();
         float[] numbers = new float[15];
         for (int i = 0; i < numbers.length; i++) {
@@ -55,7 +55,7 @@ public class Arrays {
         return numbers;
     }
 
-    public static int[] generateUniqueNumbers(int left, int right) {
+    public static int[] generateAndSortUniqueNumbers(int left, int right) {
         if (left > right) {
             return null;
         }
@@ -85,13 +85,8 @@ public class Arrays {
         return uniqueNumbers;
     }
 
-    public static int hackPassword(int rotationsCount) throws InterruptedException {
+    public static int hackPassword() {
         Random random = new Random();
-        char[] spins = new char[] {'-', '\\', '|', '/'};
-        for (int i = 0; i < spins.length * rotationsCount; i++) {
-            System.out.print("Hacking: " + spins[i % 4] + "\r");
-            Thread.sleep(300);
-        }
         return random.nextInt(100);
     }
 
