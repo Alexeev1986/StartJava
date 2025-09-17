@@ -7,18 +7,20 @@ public class GuessNumberTest {
         Scanner console = new Scanner(System.in);
         System.out.print("Введите имя первого игрока: ");
         Player player1 = new Player();
-        player1.setName(console.next());
+        player1.setName(console.nextLine());
         System.out.print("\nВведите имя второго игрока: ");
         Player player2 = new Player();
-        player2.setName(console.next());
+        player2.setName(console.nextLine());
         GuessNumber game = new GuessNumber(player1, player2);
         String answer;
         do {
             game.start();
-            do {
-                System.out.println("Хотите продолжить игру? [yes/no]:");
-                answer = console.next().trim();
-            } while (!answer.equals("yes") && !answer.equals("no"));
+            System.out.println("Хотите продолжить играть? [yes/no]:");
+            answer = console.nextLine().trim().toLowerCase();
+            if (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println("Введите корректный ответ [yes / no]:");
+                answer = console.nextLine().trim().toLowerCase();
+            }
         } while (answer.equals("yes"));
     }
 }

@@ -10,10 +10,8 @@ public class CalculatorTest {
         do {
             System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
             calc.printResult(calc.calculate(console.nextLine()));
-
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
             answer = console.nextLine().trim().toLowerCase();
-
             if (!answer.equals("yes") && !answer.equals("no")) {
                 System.out.println("Введите корректный ответ [yes / no]:");
                 answer = console.nextLine().trim().toLowerCase();

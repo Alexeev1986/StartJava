@@ -20,7 +20,6 @@ public class GuessNumber {
         boolean gameOver = false;
         player1.setAttempts(0);
         player2.setAttempts(0);
-
         while (!gameOver) {
             if (palayerMadeAttept(player1, targetNumber)) {
                 break;
@@ -50,9 +49,9 @@ public class GuessNumber {
 
     public boolean isGuessed(Player player, int targetNumber) {
         if (player.getGuess() != targetNumber) {
-            System.out.print("\n" + player.getGuess() +
+            System.out.println("\n" + player.getGuess() +
                     (player.getGuess() > targetNumber ? " больше " : " меньше ") + "того, что загадал компьютер");
-            System.out.println("Количество попыток " + ( 3 - player.getAttemptsCount()));
+            System.out.println("оставшееся количество попыток = " + (3 - player.getAttemptsCount()));
             if (player.getAttemptsCount() == 3) {
                 System.out.println("У " + player.getName() + " закончились попытки!");
             }

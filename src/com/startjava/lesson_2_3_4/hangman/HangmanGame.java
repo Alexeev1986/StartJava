@@ -7,7 +7,7 @@ public class HangmanGame {
     private String[] hiddenWords = new String[] {"яблоко", "лисица", "мороз",
                                                  "велосипед", "бабочка", "тетрадь",
                                                  "океан"};
-    private String hiddenWord; // загаданное слово
+    private String hiddenWord;
     private String alreadyIntroduced;
     private String[] hangman = new String[] {
             "_______",
@@ -17,9 +17,9 @@ public class HangmanGame {
             "|    / \\",
             "| GAME OVER!"
     };
-    private String[] hiddenLetters; // массив с отгадываемыми буквами
-    private String[] unsolvedSymbols; // массив отображаемых символов при загадывании
-    private int attemptsCount; // количество попыток
+    private String[] hiddenLetters;
+    private String[] unsolvedSymbols;
+    private int attemptsCount;
 
     public void start() {
         Random random = new Random();
