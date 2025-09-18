@@ -17,7 +17,7 @@ public class Console {
         System.out.println(ansiReset);
     }
 
-    public static void printMassageAndArray(int[] arr, String massage) {
+    public static void printMessageArray(int[] arr, String massage) {
         if (arr == null) {
             System.out.println("\nnull (ошибка в данных)\n");
             return;
@@ -30,7 +30,7 @@ public class Console {
         System.out.println();
     }
 
-    public static void printSpinn(int rotationsCount) throws InterruptedException {
+    public static void printSpin(int rotationsCount) throws InterruptedException {
         char[] spins = new char[] {'-', '\\', '|', '/'};
         for (int i = 0; i < spins.length * rotationsCount; i++) {
             System.out.print("Hacking: " + spins[i % 4] + "\r");
@@ -134,7 +134,16 @@ public class Console {
             if (numbers[i] < 0) {
                 System.out.println("Ошибка: факториал " + numbers[i] + "! не определен");
             } else {
-                String expression = buildFactorialExpression(numbers[i], factorials[i]);
+                StringBuilder sb = new StringBuilder();
+                sb.append(numbers[i]).append("! = ");
+                for (int j = 1; j <= numbers[i]; j++) {
+                    sb.append(j);
+                    if (j < numbers[i]) {
+                        sb.append(" * ");
+                    }
+                }
+                sb.append(" = ").append(factorials[i]);
+                String expression = sb.toString();
                 System.out.println(expression);
             }
         }
