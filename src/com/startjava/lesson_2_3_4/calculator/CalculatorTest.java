@@ -39,7 +39,7 @@ public class CalculatorTest {
         } while (answer.equals("yes"));
     }
 
-    public static boolean isCorrectExpression(String expression, Calculator calc) {
+    private static boolean isCorrectExpression(String expression, Calculator calc) {
         if (expression == null || expression.trim().isEmpty()) {
             System.out.println("Ошибка: пустое выражение");
             return false;
@@ -70,7 +70,7 @@ public class CalculatorTest {
         return true;
     }
 
-    public static boolean isOperator(String operator) {
+    private static boolean isOperator(String operator) {
         if (operator.equals("+") ||
                 operator.equals("-") ||
                 operator.equals("*") ||
@@ -82,7 +82,7 @@ public class CalculatorTest {
         return false;
     }
 
-    public static boolean isInteger(String str) {
+    private static boolean isInteger(String str) {
         try {
             Integer.parseInt(str);
             return true;
@@ -91,7 +91,7 @@ public class CalculatorTest {
         }
     }
 
-    public static String formatResult(double value) {
+    private static String formatResult(double value) {
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(3);
         df.setMinimumFractionDigits(0);
