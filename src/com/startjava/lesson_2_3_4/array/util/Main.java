@@ -91,13 +91,13 @@ public class Main {
     }
 
     private static void typewriterEffect() throws InterruptedException {
-        Console.typewriterPrinter(Arrays.toUpperCaseBetweenShortestAndLongestWord("Java - это C++, из " +
-                "которого убрали все пистолеты, ножи и дубинки.\n" +
-                "- James Gosling"));
-        Console.typewriterPrinter(Arrays.toUpperCaseBetweenShortestAndLongestWord("Чтобы написать " +
-                "чистый код, мы сначала пишем грязный код, затем рефакторим его.\n" +
-                "- Robert Martin"));
-        Console.typewriterPrinter(Arrays.toUpperCaseBetweenShortestAndLongestWord(null));
-        Console.typewriterPrinter(Arrays.toUpperCaseBetweenShortestAndLongestWord(""));
+        String[] texts = {"Java - это C++, из которого убрали все пистолеты, ножи и дубинки.\n- James Gosling",
+                "Чтобы написать чистый код, мы сначала пишем грязный код, затем рефакторим его.\n- Robert Martin",
+                null,
+                ""
+        };
+        for (String text : texts) {
+            Console.typewriterPrinter(Arrays.toUpperCaseBetweenShortestAndLongestWord(text));
+        }
     }
 }

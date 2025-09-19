@@ -16,13 +16,14 @@ public class GuessNumber {
     public void start() {
         Random random = new Random();
         int targetNumber = random.nextInt(1, 100);
+        System.out.println(targetNumber);
         System.out.println("Игра началась! У каждого игрока по " + player1.MAX_ATTEMPTS + " попыток");
         boolean gameOver = false;
         while (!gameOver) {
-            if (palayerMadeAttept(player1, targetNumber)) {
+            if (madeAttempt(player1, targetNumber)) {
                 break;
             }
-            if (palayerMadeAttept(player2, targetNumber)) {
+            if (madeAttempt(player2, targetNumber)) {
                 break;
             }
             if (player1.getAttemptsCount() == player1.MAX_ATTEMPTS) {
@@ -31,39 +32,37 @@ public class GuessNumber {
         }
         if (gameOver == true) {
             System.out.println("Игра окончена победителей нет!");
-            System.out.println("Названные " + player1.getName() +
-                    " числа:" + Arrays.toString(player1.getNumbers()));
-            player1.clearNumbers();
-            System.out.println("Названные " + player2.getName() +
-                    " числа:" + Arrays.toString(player2.getNumbers()));
-            player2.clearNumbers();
+            printNumbers(player1);
+            printNumbers(player2);
         }
     }
 
-    public boolean palayerMadeAttept(Player player, int targetNumber) {
+    private boolean madeAttempt(Player player, int targetNumber) {
         Scanner console = new Scanner(System.in);
         System.out.println("Попытка № " + (player.getAttemptsCount() + 1));
         System.out.println("Число вводит " + player.getName() + ":");
-        while (!player.setGuess(console.nextInt())) {
+        while (!player.addNumber(console.nextInt())) {
             System.out.println("Число должно входить в отрезок [1, 100].\n" +
                     "Попробуйте еще раз:");
-            System.out.println("Попробуйте еще раз:");
         }
-        return isGuessed(player, targetNumber);
-    }
-
-    public boolean isGuessed(Player player, int targetNumber) {
-        if (player.getGuess() != targetNumber) {
-            System.out.println("\n" + player.getGuess() +
-                    (player.getGuess() > targetNumber ? " больше " : " меньше ") +
+        if (player.getNumber() == targetNumber) {
+            System.out.println("\n" + player.getName() + " угадал число " + targetNumber +
+                    " c " + player.getAttemptsCount() + "-й попытки.");
+            return true;
+        } else {
+            System.out.println("\n" + player.getNumber() +
+                    (player.getNumber() > targetNumber ? " больше " : " меньше ") +
                     "того, что загадал компьютер");
             if (player.getAttemptsCount() == player.MAX_ATTEMPTS) {
                 System.out.println("У " + player.getName() + " закончились попытки!");
             }
             return false;
         }
-        System.out.println("\n" + player.getName() + " угадал число " + targetNumber +
-                " c " + player.getAttemptsCount() + "-й попытки.");
-        return true;
+    }
+
+    private void printNumbers(Player player) {
+        System.out.println("Названные " + player.getName() +
+                " числа:" + Arrays.toString(player.getNumbers()));
+        player1.clear();
     }
 }
