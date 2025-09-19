@@ -1,8 +1,6 @@
 package com.startjava.lesson_2_3_4.graduationproject;
 
 public class Library {
-
-
     public static void main(String[] args) {
         Bookshelf bookshelf = new Bookshelf();
         Book book1 = new Book("Ирвинг Стоун", "Жажда жизни", 1973);

@@ -1,6 +1,7 @@
 package com.startjava.lesson_2_3_4.graduationproject;
 
 public class Book {
+
     private final String author;
     private final String title;
     private final int year;

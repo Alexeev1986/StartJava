@@ -3,6 +3,7 @@ package com.startjava.lesson_2_3_4.graduationproject;
 import java.util.Arrays;
 
 public class Bookshelf {
+
     private int capacity = 10;
     private int countBooks;
     private Book[] books;

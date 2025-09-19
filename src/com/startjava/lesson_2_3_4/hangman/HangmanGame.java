@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HangmanGame {
+
     private String[] hiddenWords = new String[] {"яблоко", "лисица", "мороз",
                                                  "велосипед", "бабочка", "тетрадь",
                                                  "океан"};
