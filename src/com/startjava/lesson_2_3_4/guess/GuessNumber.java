@@ -17,7 +17,6 @@ public class GuessNumber {
     public void start() {
         Random random = new Random();
         int targetNumber = random.nextInt(1, 100);
-        System.out.println(targetNumber);
         System.out.println("Игра началась! У каждого игрока по " + player1.MAX_ATTEMPTS + " попыток");
         boolean gameOver = false;
         player1.clear();
