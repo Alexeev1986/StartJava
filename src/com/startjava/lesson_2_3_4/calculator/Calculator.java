@@ -40,7 +40,7 @@ public class Calculator {
                         System.out.println("Ошибка: деление на ноль.");
                         return Double.NaN;
                     }
-                    return  (double) number1 / number2;
+                    return (double) number1 / number2;
                 }
                 case '%' -> {
                     if (number2 == 0) {

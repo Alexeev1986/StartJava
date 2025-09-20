@@ -7,7 +7,7 @@ public class HangmanGameMain {
         Scanner console = new Scanner(System.in);
         HangmanGame game = new HangmanGame();
         String answer = "yes";
-        do {
+        while (answer.equals("yes")) {
             game.start();
             do {
                 if (answer.equals("yes")) {
@@ -17,6 +17,6 @@ public class HangmanGameMain {
                 }
                 answer = console.nextLine().trim().toLowerCase();
             } while (!answer.equals("yes") && !answer.equals("no"));
-        } while (answer.equals("yes"));
+        }
     }
 }

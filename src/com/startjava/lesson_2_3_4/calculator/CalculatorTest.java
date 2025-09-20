@@ -25,7 +25,7 @@ public class CalculatorTest {
                 }
                 answer = console.nextLine().trim().toLowerCase();
             } while (!answer.equals("yes") && !answer.equals("no"));
-        };
+        }
     }
 
     private static String formatResult(double value) {

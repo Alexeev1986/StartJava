@@ -21,6 +21,6 @@ public class GuessNumberTest {
                 }
                 answer = console.nextLine().trim().toLowerCase();
             } while (!answer.equals("yes") && !answer.equals("no"));
-        };
+        }
     }
 }
