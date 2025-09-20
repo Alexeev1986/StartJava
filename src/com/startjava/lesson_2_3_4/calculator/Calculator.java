@@ -71,7 +71,6 @@ public class Calculator {
             System.out.println("Ошибка: выражение должно быть в формате - число оператор число");
             return false;
         }
-        setOperator(parts[1]);
         try {
             number1 = Integer.parseInt(parts[0]);
         } catch (NumberFormatException e) {
