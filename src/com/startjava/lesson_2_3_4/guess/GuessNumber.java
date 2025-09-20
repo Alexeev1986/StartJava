@@ -20,11 +20,13 @@ public class GuessNumber {
         System.out.println(targetNumber);
         System.out.println("Игра началась! У каждого игрока по " + player1.MAX_ATTEMPTS + " попыток");
         boolean gameOver = false;
+        player1.clear();
+        player2.clear();
         while (!gameOver) {
-            if (madeAttempt(player1, targetNumber)) {
+            if (makeAttempt(player1, targetNumber)) {
                 break;
             }
-            if (madeAttempt(player2, targetNumber)) {
+            if (makeAttempt(player2, targetNumber)) {
                 break;
             }
             if (player1.getAttemptsCount() == player1.MAX_ATTEMPTS) {
@@ -38,7 +40,7 @@ public class GuessNumber {
         }
     }
 
-    private boolean madeAttempt(Player player, int targetNumber) {
+    private boolean makeAttempt(Player player, int targetNumber) {
         Scanner console = new Scanner(System.in);
         System.out.println("Попытка № " + (player.getAttemptsCount() + 1));
         System.out.println("Число вводит " + player.getName() + ":");
@@ -64,6 +66,5 @@ public class GuessNumber {
     private void printNumbers(Player player) {
         System.out.println("Названные " + player.getName() +
                 " числа:" + Arrays.toString(player.getNumbers()));
-        player1.clear();
     }
 }

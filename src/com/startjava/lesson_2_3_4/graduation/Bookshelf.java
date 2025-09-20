@@ -1,11 +1,10 @@
-package com.startjava.lesson_2_3_4.graduationproject;
+package com.startjava.lesson_2_3_4.graduation;
 
 import java.util.Arrays;
 
 public class Bookshelf {
 
     private int capacity = 10;
-    private int countBooks;
     private Book[] books;
     private int size;
 
@@ -14,47 +13,41 @@ public class Bookshelf {
         this.size = 0;
     }
 
-    public void add(Book book) {
-        if (book == null) {
-            throw new IllegalArgumentException("Книга не может быть null");
-
-        }
+    public boolean add(Book book) {
         if (size >= books.length) {
-            throw new ArrayIndexOutOfBoundsException("Шкаф переполнен.");
-
+            return false;
         }
         books[size] = book;
         size++;
+        return true;
     }
 
-    public Book[] find(String title) {
+    public Book find(String title) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Название для поиска не может быть пустым");
+            return null;
         }
-        Book[] found = new Book[size];
-        int counter = 0;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title.trim())) {
-                found[counter++] = books[i];
+                return books[i];
             }
         }
-        return Arrays.copyOf(found, counter);
+        return null;
     }
 
     public boolean remove(String title) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Название для удаления не может быть пустым");
+            return false;
         }
-        boolean removed = false;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equals(title.trim())) {
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
-                removed = true;
+                i--;
+                return true;
             }
         }
-        return removed;
+        return false;
     }
 
     public Book[] getAllBook() {
@@ -76,5 +69,22 @@ public class Bookshelf {
         size = 0;
     }
 
+    public boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int calculateWidthShelf() {
+        int maxWidth = 0;
+        for (int i = 0; i < size;i++) {
+            if (maxWidth < books[i].getLength()) {
+                maxWidth = books[i].getLength();
+            }
+        }
+        return maxWidth;
+    }
 }
 

@@ -1,4 +1,6 @@
-package com.startjava.lesson_2_3_4.graduationproject;
+package com.startjava.lesson_2_3_4.graduation;
+
+import java.time.Year;
 
 public class Book {
 
@@ -13,8 +15,8 @@ public class Book {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Название книги не может быть пустым");
         }
-        if (year == 0) {
-            throw new IllegalArgumentException("Год издания не может быть пустым");
+        if (year < 1800 || year > java.time.Year.now().getValue()) {
+            throw new IllegalArgumentException("Год издания должен быть между 1800 г. и текущим годом");
         }
         this.author = author.trim();
         this.title = title.trim();
@@ -35,11 +37,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Книга{ "
-                + "Автор = " + author
-                + ", Название = " + title
-                + ", Год выпуска = " + year
-                + " }";
+        return author + ", " + title + ", " + year;
     }
 
+    public int getLength() {
+        return toString().length();
+    }
 }

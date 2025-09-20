@@ -1,4 +1,4 @@
-package com.startjava.lesson_2_3_4.graduationproject;
+package com.startjava.lesson_2_3_4.graduation;
 
 public class Library {
     public static void main(String[] args) {
@@ -25,9 +25,9 @@ public class Library {
             counter++;
         }
         System.out.println();
-        Book[] findBook = bookshelf.find("Изучаем JAVA");
-        System.out.println(findBook[0].toString());
-        System.out.println();
+
+
+
         bookshelf.remove("Изучаем JAVA");
 
         counter = 1;

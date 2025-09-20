@@ -27,15 +27,14 @@ public class Player {
     }
 
     public int getNumber() {
-        int[] numbers = getNumbers();
-        return numbers[numbers.length - 1];
+        return numbers[attempts - 1];
     }
 
-    public boolean addNumber(int guess) {
-        if (guess < 0 || guess > 100) {
+    public boolean addNumber(int number) {
+        if (number < 0 || number > 100) {
             return false;
         }
-        this.numbers[attempts] = guess;
+        this.numbers[attempts] = number;
         this.attempts++;
         return true;
     }

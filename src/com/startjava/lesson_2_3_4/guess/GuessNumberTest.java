@@ -11,7 +11,7 @@ public class GuessNumberTest {
         Player player2 = new Player(console.nextLine());
         GuessNumber game = new GuessNumber(player1, player2);
         String answer = "yes";
-        do {
+        while (answer.equals("yes")) {
             game.start();
             do {
                 if (answer.equals("yes")) {
@@ -21,6 +21,6 @@ public class GuessNumberTest {
                 }
                 answer = console.nextLine().trim().toLowerCase();
             } while (!answer.equals("yes") && !answer.equals("no"));
-        } while (answer.equals("yes"));
+        };
     }
 }
