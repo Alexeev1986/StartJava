@@ -21,16 +21,8 @@ public class CalculatorTest {
             } else {
                 System.out.println("Введите корректный ответ [yes / no]:");
             }
-                System.out.println("Хотите продолжить вычисления? [yes/no]:");
-                answer = console.nextLine().trim().toLowerCase();
+            System.out.println("Хотите продолжить вычисления? [yes/no]:");
+            answer = console.nextLine().trim().toLowerCase();
         } while (!"no".equals(answer));
-    }
-
-    private static String formatResult(double value) {
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(3);
-        df.setMinimumFractionDigits(0);
-        df.setGroupingUsed(false);
-        return df.format(value);
     }
 }

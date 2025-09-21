@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
+    private static final int LEFT = 1;
+    private static final int RIGTH = 100;
     private Player player1;
     private Player player2;
 
@@ -16,7 +18,8 @@ public class GuessNumber {
 
     public void start() {
         Random random = new Random();
-        int targetNumber = random.nextInt(1, 100);
+        int targetNumber = random.nextInt(LEFT, RIGTH);
+        System.out.println(targetNumber);
         System.out.println("Игра началась! У каждого игрока по " + player1.MAX_ATTEMPTS + " попыток");
         boolean gameOver = false;
         player1.clear();
@@ -32,7 +35,7 @@ public class GuessNumber {
                 gameOver = true;
             }
         }
-        if (gameOver == true) {
+        if (gameOver) {
             System.out.println("Игра окончена победителей нет!");
             printNumbers(player1);
             printNumbers(player2);
@@ -40,13 +43,18 @@ public class GuessNumber {
     }
 
     private boolean makeAttempt(Player player, int targetNumber) {
-        Scanner console = new Scanner(System.in);
         System.out.println("Попытка № " + (player.getAttemptsCount() + 1));
+        printNumbers(player);
         System.out.println("Число вводит " + player.getName() + ":");
+        Scanner console = new Scanner(System.in);
         while (!player.addNumber(console.nextInt())) {
             System.out.println("Число должно входить в отрезок [1, 100].\n" +
                     "Попробуйте еще раз:");
         }
+        return isGuessed(player, targetNumber);
+    }
+
+    private boolean isGuessed(Player player, int targetNumber) {
         if (player.getNumber() == targetNumber) {
             System.out.println("\n" + player.getName() + " угадал число " + targetNumber +
                     " c " + player.getAttemptsCount() + "-й попытки.");
@@ -63,7 +71,7 @@ public class GuessNumber {
     }
 
     private void printNumbers(Player player) {
-        System.out.println("Названные " + player.getName() +
+        System.out.println("Раннее вводимые числа " + player.getName() +
                 " числа:" + Arrays.toString(player.getNumbers()));
     }
 }

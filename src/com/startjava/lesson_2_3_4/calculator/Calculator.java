@@ -10,55 +10,31 @@ public class Calculator {
         return operator;
     }
 
-    public void setOperator(String operator) {
-        if (operator.equals("+") ||
-                operator.equals("-") ||
-                operator.equals("*") ||
-                operator.equals("/") ||
-                operator.equals("^") ||
-                operator.equals("%")) {
-            this.operator = operator.charAt(0);
-        } else {
-            System.out.println("Ошибка: оператор " + operator + " не поддерживается");
-        }
-    }
-
     public double calculate(String expression) {
-        if (isCorrectExpression(expression)) {
-            switch (getOperator()) {
-                case '+' -> {
-                    return number1 + number2;
-                }
-                case '-' -> {
-                    return number1 - number2;
-                }
-                case '*' -> {
-                    return number1 * number2;
-                }
-                case '/' -> {
-                    if (number2 == 0) {
-                        System.out.println("Ошибка: деление на ноль.");
-                        return Double.NaN;
-                    }
-                    return (double) number1 / number2;
-                }
-                case '%' -> {
-                    if (number2 == 0) {
-                        System.out.println("Ошибка: деление на ноль.");
-                        return Double.NaN;
-                    }
-                    return Math.IEEEremainder(number1, number2);
-                }
-                case '^' -> {
-                    return Math.pow(number1, number2);
-                }
-                default -> {
-                    return Double.NaN;
-                }
-            }
-        } else {
+        if (!isCorrectExpression(expression)) {
             return Double.NaN;
         }
+        return switch (getOperator()) {
+            case '+' -> number1 + number2;
+            case '-' -> number1 - number2;
+            case '*' -> number1 * number2;
+            case '/', '%' -> {
+                if (number2 == 0) {
+                    System.out.println("Ошибка: деление на ноль.");
+                    yield Double.NaN;
+                }
+                if (operator == '/') {
+                    yield (double) number1 / number2;
+                } else {
+                    yield Math.IEEEremainder(number1, number2);
+                }
+            }
+            case '^' -> Math.pow(number1, number2);
+            default -> {
+                System.out.println("Оператор " + operator + " не поддерживается");
+                yield Double.NaN;
+            }
+        };
     }
 
     public boolean isCorrectExpression(String expression) {
@@ -71,7 +47,7 @@ public class Calculator {
             System.out.println("Ошибка: выражение должно быть в формате - число оператор число");
             return false;
         }
-        setOperator(parts[1]);
+        operator = (parts[1].charAt(0));
         try {
             number1 = Integer.parseInt(parts[0]);
         } catch (NumberFormatException e) {
