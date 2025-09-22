@@ -6,15 +6,11 @@ public class Calculator {
     private int number2;
     private char operator;
 
-    public char getOperator() {
-        return operator;
-    }
-
     public double calculate(String expression) {
         if (!isCorrectExpression(expression)) {
             return Double.NaN;
         }
-        return switch (getOperator()) {
+        return switch (operator) {
             case '+' -> number1 + number2;
             case '-' -> number1 - number2;
             case '*' -> number1 * number2;
