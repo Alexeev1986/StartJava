@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Player {
 
     public static final int MAX_ATTEMPTS = 10;
-    public static final int LEFT = 0;
-    public static final int RIGHT = 100;
+    public static final int START_RANGE = 1;
+    public static final int END_RANGE = 100;
     private int attempts = 0;
     private int[] numbers;
     private String name;
@@ -33,7 +33,7 @@ public class Player {
     }
 
     public boolean addNumber(int number) {
-        if (number < LEFT || number > RIGHT) {
+        if (number < START_RANGE || number > END_RANGE) {
             return false;
         }
         this.numbers[attempts] = number;

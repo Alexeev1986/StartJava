@@ -23,7 +23,7 @@ public class Bookshelf {
     }
 
     public Book find(String title) {
-        if (title == null || title.trim().isEmpty()) {
+        if (title == null || title.isBlank()) {
             return null;
         }
         for (int i = 0; i < size; i++) {
@@ -35,7 +35,7 @@ public class Bookshelf {
     }
 
     public boolean remove(String title) {
-        if (title == null || title.trim().isEmpty()) {
+        if (title == null || title.isBlank()) {
             return false;
         }
         for (int i = 0; i < size; i++) {

@@ -10,16 +10,18 @@ public class CalculatorTest {
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        Calculator calc = new Calculator();
         System.out.println("Калькулятор запущен.");
         String answer = "yes";
         do {
             if (YES.equals(answer)) {
                 System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
                 String expression = console.nextLine();
-                double result = calc.calculate(expression);
-                if (!Double.isNaN(result)) {
+                try {
+                    double result = Calculator.calculate(expression);
                     printResult(expression, result);
+                } catch (InvalidExpressionException | InvalidNumberException |
+                         UnsupportedOperatorException | ArithmeticException e) {
+                    System.out.println(e.getMessage());
                 }
             } else {
                 System.out.println("Введите корректный ответ [yes / no]:");

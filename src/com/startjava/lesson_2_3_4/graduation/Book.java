@@ -9,10 +9,10 @@ public class Book {
     private final int year;
 
     public Book(String author, String title, int year) {
-        if (author == null || author.trim().isEmpty()) {
+        if (author == null || author.isBlank()) {
             throw new IllegalArgumentException("Автор не может быть пустым");
         }
-        if (title == null || title.trim().isEmpty()) {
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Название книги не может быть пустым");
         }
         if (year < 1800 || year > java.time.Year.now().getValue()) {
