@@ -10,7 +10,8 @@ public class Calculator {
         }
         String[] parts = expression.trim().split("\\s+");
         if (parts.length != PART_COUNT) {
-            throw new InvalidExpressionException("Ошибка: выражение должно быть в формате - число оператор число");
+            throw new InvalidExpressionException("Ошибка: выражение должно быть" +
+                " в формате - число оператор число");
         }
         if (parts[1].length() != 1) {
             throw new UnsupportedOperatorException("Оператор " + parts[1] + " не поддерживается");
@@ -26,7 +27,9 @@ public class Calculator {
                 if (number2 == 0) {
                     throw new ArithmeticException("Ошибка: деление на ноль.");
                 } else {
-                    yield operator == '/' ? ( double)number1 / number2 : Math.IEEEremainder(number1, number2);
+                    yield operator == '/' 
+                    ? ( double) number1 / number2 
+                    : Math.IEEEremainder(number1, number2);
                 }
             }
             case '^' -> Math.pow(number1, number2);
@@ -36,7 +39,7 @@ public class Calculator {
 
     private static int parseNumber(String str, String argName) {
         try {
-             return Integer.parseInt(str);
+            return Integer.parseInt(str);
         } catch (NumberFormatException e) {
             throw new InvalidNumberException("Ошибка: " + argName + " аргумент не является целым числом");
         }

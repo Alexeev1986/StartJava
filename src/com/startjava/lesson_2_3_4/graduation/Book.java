@@ -4,23 +4,25 @@ import java.time.Year;
 
 public class Book {
 
+    private static final Year INITIAL_PERIOD = Year.of(1800);
     private final String author;
-    private final String title;
-    private final int year;
+    private  final String title;
+    private final Year publicationYear;
 
-    public Book(String author, String title, int year) {
+    public Book(String author, String title, int publicationYear) {
         if (author == null || author.isBlank()) {
             throw new IllegalArgumentException("Автор не может быть пустым");
         }
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Название книги не может быть пустым");
         }
-        if (year < 1800 || year > java.time.Year.now().getValue()) {
-            throw new IllegalArgumentException("Год издания должен быть между 1800 г. и текущим годом");
+        if (Year.of(publicationYear).isBefore(INITIAL_PERIOD) || Year.of(publicationYear).isAfter(Year.now())) {
+            throw new IllegalArgumentException("Год издания должен быть между " + INITIAL_PERIOD +
+                    " г. и текущим годом");
         }
         this.author = author.trim();
         this.title = title.trim();
-        this.year = year;
+        this.publicationYear = Year.of(publicationYear);
     }
 
     public String getAuthor() {
@@ -31,16 +33,16 @@ public class Book {
         return title;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    @Override
-    public String toString() {
-        return author + ", " + title + ", " + year;
+    public int getPublicationYear() {
+        return publicationYear.getValue();
     }
 
     public int getLength() {
         return toString().length();
+    }
+
+    @Override
+    public String toString() {
+        return author + ", " + title + ", " + publicationYear;
     }
 }

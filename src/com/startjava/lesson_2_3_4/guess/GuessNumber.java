@@ -17,13 +17,12 @@ public class GuessNumber {
     }
 
     public void start() {
-        Random random = new Random();
-        int targetNumber = random.nextInt(START_RANGE, END_RANGE);
-        System.out.println(targetNumber);
         System.out.println("Игра началась! У каждого игрока по " + player1.MAX_ATTEMPTS + " попыток");
         boolean gameOver = false;
         player1.clear();
         player2.clear();
+        Random random = new Random();
+        int targetNumber = random.nextInt(START_RANGE, END_RANGE);
         while (!gameOver) {
             if (makeAttempt(player1, targetNumber)) {
                 break;
