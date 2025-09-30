@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    private static final int CAPACITY = 10;
+    public static final int CAPACITY = 10;
     private final Book[] books;
     private int size;
 
@@ -37,8 +37,8 @@ public class Bookshelf {
     public int calculateWidthShelf() {
         int maxWidth = 0;
         for (int i = 0; i < size; i++) {
-            if (maxWidth < books[i].getLength()) {
-                maxWidth = books[i].getLength();
+            if (maxWidth < books[i].getDisplayWidth()) {
+                maxWidth = books[i].getDisplayWidth();
             }
         }
         return maxWidth;

@@ -53,13 +53,13 @@ public class BookshelfTest {
 
     private static void addBook() {
         System.out.println("Введите автора:");
-        String autor = readString();
+        String author = readString();
         System.out.println("введите название книги:");
         String title = readString();
         System.out.println("Введите год издания:");
         int year = readYear();
         try {
-            Book book = new Book(autor, title, year);
+            Book book = new Book(author, title, year);
             if (BOOKSHELF.add(book)) {
                 System.out.println("Книга добавлена.");
             } else {
@@ -89,7 +89,7 @@ public class BookshelfTest {
             System.out.printf("|%s|%n", "-".repeat(width));
         }
 
-        for (int i = BOOKSHELF.getBookCount(); i < 10; i++) {
+        for (int i = BOOKSHELF.getBookCount(); i < BOOKSHELF.CAPACITY; i++) {
             System.out.println("|" + " ".repeat(width) + "|");
             if (i < 9) {
                 System.out.println("|" + "-".repeat(width) + "|");
@@ -119,15 +119,9 @@ public class BookshelfTest {
     }
 
     private static int readYear() {
-        int currentYear = java.time.Year.now().getValue();
         while (true) {
             try {
-                int year = Integer.parseInt(CONSOLE.nextLine().trim());
-                if (year >= 1800 && year <= currentYear) {
-                    return year;
-                } else {
-                    System.out.println("Ошибка: год издания должен быть между 1800 и " + currentYear);
-                }
+                return Integer.parseInt(CONSOLE.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка: год должен быть целым числом.");
             }

@@ -19,7 +19,7 @@ public class Book {
         if (Year.of(publicationYear).isBefore(INITIAL_PERIOD) ||
                 Year.of(publicationYear).isAfter(Year.now())) {
             throw new IllegalArgumentException("Год издания должен быть между " + INITIAL_PERIOD +
-                    " г. и текущим годом");
+                    " г. и " + Year.now() + " г.");
         }
         this.author = author.trim();
         this.title = title.trim();
@@ -30,7 +30,7 @@ public class Book {
         return title;
     }
 
-    public int getLength() {
+    public int getDisplayWidth() {
         return toString().length();
     }
 
