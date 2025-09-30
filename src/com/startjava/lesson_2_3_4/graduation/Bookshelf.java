@@ -4,22 +4,51 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    private int capacity = 10;
-    private Book[] books;
+    private static final int CAPACITY = 10;
+    private final Book[] books;
     private int size;
 
     public Bookshelf() {
-        this.books = new Book[capacity];
+        this.books = new Book[CAPACITY];
         this.size = 0;
     }
 
+    public Book[] getAllBook() {
+        return Arrays.copyOf(books, size);
+    }
+
+    public int getBookCount() {
+        return size;
+    }
+
+    public int getFreeShelves() {
+        return books.length - size;
+    }
+
     public boolean add(Book book) {
-        if (size >= books.length) {
+        if (book == null || size >= books.length) {
             return false;
         }
         books[size] = book;
         size++;
         return true;
+    }
+
+    public int calculateWidthShelf() {
+        int maxWidth = 0;
+        for (int i = 0; i < size; i++) {
+            if (maxWidth < books[i].getLength()) {
+                maxWidth = books[i].getLength();
+            }
+        }
+        return maxWidth;
+    }
+
+    public void clear() {
+        for (int i = 0; i < books.length; i++) {
+            books[i] = null;
+        }
+        size = 0;
     }
 
     public Book find(String title) {
@@ -43,48 +72,14 @@ public class Bookshelf {
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
-                i--;
                 return true;
             }
         }
         return false;
     }
 
-    public Book[] getAllBook() {
-        return Arrays.copyOf(books, size);
-    }
-
-    public int getBookCount() {
-        return size;
-    }
-
-    public int getFreeShelves() {
-        return books.length - size;
-    }
-
-    public void clear() {
-        for (int i = 0; i < books.length; i++) {
-            books[i] = null;
-        }
-        size = 0;
-    }
-
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public int calculateWidthShelf() {
-        int maxWidth = 0;
-        for (int i = 0; i < size;i++) {
-            if (maxWidth < books[i].getLength()) {
-                maxWidth = books[i].getLength();
-            }
-        }
-        return maxWidth;
+        return size == 0;
     }
 }
 

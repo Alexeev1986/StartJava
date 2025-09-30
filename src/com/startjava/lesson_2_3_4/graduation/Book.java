@@ -6,7 +6,7 @@ public class Book {
 
     private static final Year INITIAL_PERIOD = Year.of(1800);
     private final String author;
-    private  final String title;
+    private final String title;
     private final Year publicationYear;
 
     public Book(String author, String title, int publicationYear) {
@@ -16,7 +16,8 @@ public class Book {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Название книги не может быть пустым");
         }
-        if (Year.of(publicationYear).isBefore(INITIAL_PERIOD) || Year.of(publicationYear).isAfter(Year.now())) {
+        if (Year.of(publicationYear).isBefore(INITIAL_PERIOD) ||
+                Year.of(publicationYear).isAfter(Year.now())) {
             throw new IllegalArgumentException("Год издания должен быть между " + INITIAL_PERIOD +
                     " г. и текущим годом");
         }
@@ -25,16 +26,8 @@ public class Book {
         this.publicationYear = Year.of(publicationYear);
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public int getPublicationYear() {
-        return publicationYear.getValue();
     }
 
     public int getLength() {
