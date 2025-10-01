@@ -18,7 +18,7 @@ public class CalculatorTest {
                 String expression = console.nextLine();
                 try {
                     double result = Calculator.calculate(expression);
-                    printResult(expression, result);
+                    printResult(Calculator.trimExpression(), result);
                 } catch (InvalidExpressionException | InvalidNumberException |
                          UnsupportedOperatorException | ArithmeticException e) {
                     System.out.println(e.getMessage());
