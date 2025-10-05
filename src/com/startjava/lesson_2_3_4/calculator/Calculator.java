@@ -24,7 +24,8 @@ public class Calculator {
                 }
             }
             case '^' -> Math.pow(number1, number2);
-            default -> throw new UnsupportedOperatorException("Ошибка: оператор " + operator + " не поддерживается");
+            default -> throw new UnsupportedOperatorException("Ошибка: оператор " +
+                    operator + " не поддерживается");
         };
     }
 
