@@ -47,7 +47,7 @@ public class Console {
             System.out.println("\nОшибка: данные Null");
             return;
         }
-        if (text.length() == 0) {
+        if (text.isEmpty()) {
             System.out.println("\nОшибка: пустая строка");
             return;
         }

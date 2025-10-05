@@ -7,13 +7,14 @@ public class GuessNumberTest {
     public static final String YES = "yes";
     public static final String NO = "no";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner console = new Scanner(System.in);
-        System.out.print("Введите имя первого игрока: ");
-        Player player1 = new Player(console.nextLine());
-        System.out.print("\nВведите имя второго игрока: ");
-        Player player2 = new Player(console.nextLine());
-        GuessNumber game = new GuessNumber(player1, player2);
+        Player[] players = new Player[3];
+        for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
+            System.out.print("Введите имя " + (i + 1) + " игрока: ");
+            players[i] = new Player(console.nextLine());
+        }
+        GuessNumber game = new GuessNumber(players);
         String answer = YES;
         do {
             if (YES.equals(answer)) {

@@ -10,7 +10,6 @@ public class Bookshelf {
 
     public Bookshelf() {
         this.books = new Book[CAPACITY];
-        this.size = 0;
     }
 
     public Book[] getAllBook() {
@@ -21,7 +20,11 @@ public class Bookshelf {
         return size;
     }
 
-    public int getFreeShelves() {
+    public int getWidthShelf() {
+        return calculateWidthShelf();
+    }
+
+    public int countFreeShelves() {
         return books.length - size;
     }
 
@@ -34,20 +37,18 @@ public class Bookshelf {
         return true;
     }
 
-    public int calculateWidthShelf() {
+    private int calculateWidthShelf() {
         int maxWidth = 0;
         for (int i = 0; i < size; i++) {
-            if (maxWidth < books[i].getDisplayWidth()) {
-                maxWidth = books[i].getDisplayWidth();
+            if (maxWidth < books[i].getTextLength()) {
+                maxWidth = books[i].getTextLength();
             }
         }
         return maxWidth;
     }
 
     public void clear() {
-        for (int i = 0; i < books.length; i++) {
-            books[i] = null;
-        }
+        Arrays.fill(books, 0, size, null);
         size = 0;
     }
 

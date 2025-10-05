@@ -16,7 +16,6 @@ public class BookshelfTest {
         Book book4 = new Book("Ли Бардуго", "Продажное королевство", 2020);
         Book book5 = new Book("Лия Арден", "Невеста ноября", 2025);
         Book book6 = new Book("Мари Нихофф", "Когда Король Падет", 2024);
-
         BOOKSHELF.add(book1);
         BOOKSHELF.add(book2);
         BOOKSHELF.add(book3);
@@ -77,12 +76,12 @@ public class BookshelfTest {
 
     private static void displayShelf() {
         System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
-                BOOKSHELF.getBookCount(), BOOKSHELF.getFreeShelves());
+                BOOKSHELF.getBookCount(), BOOKSHELF.countFreeShelves());
         if (BOOKSHELF.isEmpty()) {
             System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
             return;
         }
-        int width = BOOKSHELF.calculateWidthShelf();
+        int width = BOOKSHELF.getWidthShelf();
         Book[] books = BOOKSHELF.getAllBook();
         for (Book book : books) {
             System.out.printf("|%-" + width + "s|%n", book);

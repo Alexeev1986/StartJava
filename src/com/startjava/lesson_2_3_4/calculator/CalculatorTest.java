@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class CalculatorTest {
 
-    public static final String YES = "yes";
-    public static final String NO = "no";
+    private static final String YES = "yes";
+    private static final String NO = "no";
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
