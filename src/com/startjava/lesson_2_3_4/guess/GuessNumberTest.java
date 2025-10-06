@@ -4,17 +4,12 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    public static final String YES = "yes";
-    public static final String NO = "no";
+    private static final String YES = "yes";
+    private static final String NO = "no";
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
-        Scanner console = new Scanner(System.in);
-        Player[] players = new Player[3];
-        for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
-            System.out.print("Введите имя " + (i + 1) + " игрока: ");
-            players[i] = new Player(console.nextLine());
-        }
-        GuessNumber game = new GuessNumber(players);
+        GuessNumber game = new GuessNumber(createPlayers());
         String answer = YES;
         do {
             if (YES.equals(answer)) {
@@ -23,7 +18,16 @@ public class GuessNumberTest {
                 System.out.println("Введите корректный ответ [yes / no]:");
             }
             System.out.println("Хотите продолжить играть? [yes/no]:");
-            answer = console.nextLine().trim().toLowerCase();
+            answer = CONSOLE.nextLine().trim().toLowerCase();
         } while (!NO.equals(answer));
+    }
+
+    private static Player[] createPlayers() {
+        Player[] players = new Player[GuessNumber.PLAYER_COUNT];
+        for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
+            System.out.print("Введите имя " + (i + 1) + " игрока: ");
+            players[i] = new Player(CONSOLE.nextLine());
+        }
+        return players;
     }
 }

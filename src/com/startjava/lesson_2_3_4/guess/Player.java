@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
 
-    public static final int MAX_ATTEMPTS = 3;
+    public static final int MAX_ATTEMPTS = 10;
     public static final int START_RANGE = 1;
     public static final int END_RANGE = 100;
     private final String name;
@@ -17,22 +17,6 @@ public class Player {
         this.numbers = new int[MAX_ATTEMPTS];
     }
 
-    public void addScore() {
-        winCount++;
-    }
-
-    public void setWinCount(int score) {
-        winCount = score;
-    }
-
-    public int getScore() {
-        return winCount;
-    }
-
-    public int getAttemptsCount() {
-        return attempts;
-    }
-
     public String getName() {
         return name;
     }
@@ -41,12 +25,18 @@ public class Player {
         return Arrays.copyOf(numbers, attempts);
     }
 
-    public int getLastNumber() {
-        return numbers[attempts - 1];
+    public void setWinCount(int score) {
+        winCount = score;
+    }
+
+    public void addScore() {
+        winCount++;
     }
 
     public boolean addNumber(int number) {
         if (number < START_RANGE || number > END_RANGE) {
+            System.out.println("Число должно входить в отрезок [" +
+                    Player.START_RANGE + "," + Player.END_RANGE + "].\n" + "Попробуйте еще раз:");
             return false;
         }
         numbers[attempts] = number;
@@ -57,5 +47,17 @@ public class Player {
     public void clear() {
         Arrays.fill(numbers, 0, attempts, 0);
         attempts = 0;
+    }
+
+    public int getScore() {
+        return winCount;
+    }
+
+    public int getAttemptsCount() {
+        return attempts;
+    }
+
+    public int getLastNumber() {
+        return numbers[attempts - 1];
     }
 }

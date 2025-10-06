@@ -4,7 +4,7 @@ import java.time.Year;
 
 public class Book {
 
-    private static final Year INITIAL_PERIOD = Year.of(1800);
+    private static final Year MIN_PUBLICATION_YEAR = Year.of(1800);
     private final String author;
     private final String title;
     private final Year publishedYear;
@@ -16,10 +16,10 @@ public class Book {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Название книги не может быть пустым");
         }
-        if (Year.of(publishedYear).isBefore(INITIAL_PERIOD) ||
+        if (Year.of(publishedYear).isBefore(MIN_PUBLICATION_YEAR) ||
                 Year.of(publishedYear).isAfter(Year.now())) {
             throw new IllegalArgumentException("Год издания должен быть между " +
-                    INITIAL_PERIOD + " г. и " + Year.now() + " г.");
+                    MIN_PUBLICATION_YEAR + " г. и " + Year.now() + " г.");
         }
         this.author = author.trim();
         this.title = title.trim();

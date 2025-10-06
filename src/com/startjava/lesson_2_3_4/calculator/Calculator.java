@@ -17,20 +17,15 @@ public class Calculator {
             case '/', '%' -> {
                 if (number2 == 0) {
                     throw new ArithmeticException("Ошибка: деление на ноль.");
-                } else {
-                    yield operator == '/' 
-                    ? ( double) number1 / number2 
-                    : Math.IEEEremainder(number1, number2);
                 }
+                yield operator == '/'
+                ? ( double) number1 / number2
+                : Math.IEEEremainder(number1, number2);
             }
             case '^' -> Math.pow(number1, number2);
             default -> throw new UnsupportedOperatorException("Ошибка: оператор " +
                     operator + " не поддерживается");
         };
-    }
-
-    public static String trimExpression() {
-        return parts[0] + " " + parts[1] + " " + parts[2];
     }
 
     private static void extractExpressionParts(String expression) {
