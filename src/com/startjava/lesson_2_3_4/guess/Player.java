@@ -25,6 +25,18 @@ public class Player {
         return Arrays.copyOf(numbers, attempts);
     }
 
+    public int getAttemptsCount() {
+        return attempts;
+    }
+
+    public int getLastNumber() {
+        return numbers[attempts - 1];
+    }
+
+    public int getScore() {
+        return winCount;
+    }
+
     public void setWinCount(int score) {
         winCount = score;
     }
@@ -47,17 +59,5 @@ public class Player {
     public void clear() {
         Arrays.fill(numbers, 0, attempts, 0);
         attempts = 0;
-    }
-
-    public int getScore() {
-        return winCount;
-    }
-
-    public int getAttemptsCount() {
-        return attempts;
-    }
-
-    public int getLastNumber() {
-        return numbers[attempts - 1];
     }
 }

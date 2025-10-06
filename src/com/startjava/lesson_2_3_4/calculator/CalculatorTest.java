@@ -15,10 +15,10 @@ public class CalculatorTest {
         do {
             if (YES.equals(answer)) {
                 System.out.println("Введите выражение из трех аргументов, например, 2 ^ 10:");
-                String expression = console.nextLine();
                 try {
+                    String[] expression = inputExpression(console.nextLine());
                     double result = Calculator.calculate(expression);
-                    printResult(trimExpression(expression), result);
+                    printResult(printExpression(expression), result);
                 } catch (InvalidExpressionException | InvalidNumberException |
                          UnsupportedOperatorException | ArithmeticException e) {
                     System.out.println(e.getMessage());
@@ -31,14 +31,28 @@ public class CalculatorTest {
         } while (!NO.equals(answer));
     }
 
+    private static String[] inputExpression(String expression) {
+        if (expression == null || expression.isBlank()) {
+            throw new InvalidExpressionException("Ошибка: пустое выражение");
+        }
+        String[] parts = expression.trim().split("\\s+");
+        if (parts.length != Calculator.PART_COUNT) {
+            throw new InvalidExpressionException("Ошибка: выражение должно быть" +
+                    " в формате - число оператор число");
+        }
+        return parts;
+    }
+
+    private static String printExpression(String[] parts) {
+        StringBuilder sb = new StringBuilder();
+        for (String part : parts) {
+            sb.append(part).append(" ");
+        }
+        return sb.toString();
+    }
+
     private static void printResult(String expression, double result) {
         DecimalFormat df = new DecimalFormat("#.###");
         System.out.println(expression + " = " + df.format(result));
-    }
-
-    private static String trimExpression(String expression) {
-        String[] parts;
-        parts = expression.trim().split("\\s+");
-        return parts[0] + " " + parts[1] + " " + parts[2];
     }
 }

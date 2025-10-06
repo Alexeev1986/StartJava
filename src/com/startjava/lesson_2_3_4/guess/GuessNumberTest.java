@@ -6,7 +6,7 @@ public class GuessNumberTest {
 
     private static final String YES = "yes";
     private static final String NO = "no";
-    private static final Scanner CONSOLE = new Scanner(System.in);
+    private static final Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
         GuessNumber game = new GuessNumber(createPlayers());
@@ -18,7 +18,7 @@ public class GuessNumberTest {
                 System.out.println("Введите корректный ответ [yes / no]:");
             }
             System.out.println("Хотите продолжить играть? [yes/no]:");
-            answer = CONSOLE.nextLine().trim().toLowerCase();
+            answer = console.nextLine().trim().toLowerCase();
         } while (!NO.equals(answer));
     }
 
@@ -26,7 +26,7 @@ public class GuessNumberTest {
         Player[] players = new Player[GuessNumber.PLAYER_COUNT];
         for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
             System.out.print("Введите имя " + (i + 1) + " игрока: ");
-            players[i] = new Player(CONSOLE.nextLine());
+            players[i] = new Player(console.nextLine());
         }
         return players;
     }

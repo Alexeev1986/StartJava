@@ -2,11 +2,9 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    private static final int PART_COUNT = 3;
-    private static String[] parts;
+    public static final int PART_COUNT = 3;
 
-    public static double calculate(String expression) {
-        extractExpressionParts(expression);
+    public static double calculate(String[] parts) {
         char operator = extractOperator(parts[1]);
         int number1 = parseNumber(parts[0], "первый");
         int number2 = parseNumber(parts[2], "второй");
@@ -26,17 +24,6 @@ public class Calculator {
             default -> throw new UnsupportedOperatorException("Ошибка: оператор " +
                     operator + " не поддерживается");
         };
-    }
-
-    private static void extractExpressionParts(String expression) {
-        if (expression == null || expression.isBlank()) {
-            throw new InvalidExpressionException("Ошибка: пустое выражение");
-        }
-        parts = expression.trim().split("\\s+");
-        if (parts.length != PART_COUNT) {
-            throw new InvalidExpressionException("Ошибка: выражение должно быть" +
-                    " в формате - число оператор число");
-        }
     }
 
     private static char extractOperator(String operator) {
