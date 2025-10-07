@@ -6,9 +6,9 @@ public class GuessNumberTest {
 
     private static final String YES = "yes";
     private static final String NO = "no";
-    private static final Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException {
+        Scanner console = new Scanner(System.in);
         GuessNumber game = new GuessNumber(createPlayers());
         String answer = YES;
         do {
@@ -24,6 +24,7 @@ public class GuessNumberTest {
 
     private static Player[] createPlayers() {
         Player[] players = new Player[GuessNumber.PLAYER_COUNT];
+        Scanner console = new Scanner(System.in);
         for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
             System.out.print("Введите имя " + (i + 1) + " игрока: ");
             players[i] = new Player(console.nextLine());

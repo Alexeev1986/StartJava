@@ -17,8 +17,8 @@ public class Calculator {
                     throw new ArithmeticException("Ошибка: деление на ноль.");
                 }
                 yield operator == '/'
-                ? ( double) number1 / number2
-                : Math.IEEEremainder(number1, number2);
+                        ? ( double) number1 / number2
+                        : Math.IEEEremainder(number1, number2);
             }
             case '^' -> Math.pow(number1, number2);
             default -> throw new UnsupportedOperatorException("Ошибка: оператор " +

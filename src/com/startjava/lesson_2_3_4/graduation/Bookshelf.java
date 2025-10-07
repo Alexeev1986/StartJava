@@ -4,24 +4,17 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    public static final int CAPACITY = 10;
+    public final int capacity = 10;
     private final Book[] books;
+    public int maxWidth;
     private int size;
 
     public Bookshelf() {
-        this.books = new Book[CAPACITY];
+        this.books = new Book[capacity];
     }
 
     public Book[] getAllBook() {
         return Arrays.copyOf(books, size);
-    }
-
-    public int getBookCount() {
-        return size;
-    }
-
-    public int getWidthShelf() {
-        return calculateWidthShelf();
     }
 
     public int countFreeShelves() {
@@ -29,27 +22,24 @@ public class Bookshelf {
     }
 
     public boolean add(Book book) {
-        if (book == null || size >= books.length) {
+        if (book == null) {
+            return false;
+        }
+        if (size >= books.length) {
+            System.out.println("Ошибка: шкаф заполнен.");
             return false;
         }
         books[size] = book;
         size++;
+        calculateWidthShelf();
         return true;
     }
 
-    private int calculateWidthShelf() {
-        int maxWidth = 0;
+    private void calculateWidthShelf() {
+        maxWidth = 0;
         for (int i = 0; i < size; i++) {
-            if (maxWidth < books[i].getTextLength()) {
-                maxWidth = books[i].getTextLength();
-            }
+            maxWidth = Math.max(maxWidth, books[i].getTextLength());
         }
-        return maxWidth;
-    }
-
-    public void clear() {
-        Arrays.fill(books, 0, size, null);
-        size = 0;
     }
 
     public Book find(String title) {
@@ -73,6 +63,7 @@ public class Bookshelf {
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
+                calculateWidthShelf();
                 return true;
             }
         }
@@ -81,6 +72,15 @@ public class Bookshelf {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public int getBookCount() {
+        return size;
+    }
+
+    public void clear() {
+        Arrays.fill(books, 0, size, null);
+        size = 0;
     }
 }
 

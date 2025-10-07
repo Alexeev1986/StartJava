@@ -18,7 +18,7 @@ public class CalculatorTest {
                 try {
                     String[] expression = inputExpression(console.nextLine());
                     double result = Calculator.calculate(expression);
-                    printResult(printExpression(expression), result);
+                    printExpression(expression, result);
                 } catch (InvalidExpressionException | InvalidNumberException |
                          UnsupportedOperatorException | ArithmeticException e) {
                     System.out.println(e.getMessage());
@@ -43,16 +43,13 @@ public class CalculatorTest {
         return parts;
     }
 
-    private static String printExpression(String[] parts) {
+    private static void printExpression(String[] parts, double result) {
         StringBuilder sb = new StringBuilder();
         for (String part : parts) {
             sb.append(part).append(" ");
         }
-        return sb.toString();
-    }
-
-    private static void printResult(String expression, double result) {
         DecimalFormat df = new DecimalFormat("#.###");
-        System.out.println(expression + " = " + df.format(result));
+        sb.append(" = ").append(df.format(result));
+        System.out.println(sb);
     }
 }

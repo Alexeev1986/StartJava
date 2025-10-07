@@ -10,59 +10,46 @@ public class BookshelfTest {
 
     public static void main(String[] args) throws InterruptedException {
         printTypewriterEffect("Вас приветствует программа книжный шкаф.");
+        addingTestBooks();
+        while (true) {
+            showMenu();
+            executionMenuItem(inputMenuItem());
+            waitEnter();
+        }
+    }
+
+    private static void addingTestBooks() {
         Book book1 = new Book("Ирвинг Стоун", "Жажда жизни", 1973);
         Book book2 = new Book("Рэй Брэдбери", "451 градус по Фаренгейту", 1980);
         Book book3 = new Book("Кэти Сьерра и Берт Бейтс", "Изучаем JAVA", 2022);
         Book book4 = new Book("Ли Бардуго", "Продажное королевство", 2020);
         Book book5 = new Book("Лия Арден", "Невеста ноября", 2025);
         Book book6 = new Book("Мари Нихофф", "Когда Король Падет", 2024);
+        Book book7 = new Book("Робин Хобб", "Ученик убийцы", 2019);
+        Book book8 = new Book("Пирс Браун", "Красное восстание", 2020);
+        Book book9 = new Book("Ханна Гриффин", "Последний закат Элиона", 2024);
         BOOKSHELF.add(book1);
         BOOKSHELF.add(book2);
         BOOKSHELF.add(book3);
         BOOKSHELF.add(book4);
         BOOKSHELF.add(book5);
         BOOKSHELF.add(book6);
-        int inputConsole;
-        while (true) {
-            showMenu();
-            try {
-                inputConsole = Integer.parseInt(CONSOLE.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: введенное значения не является числом.");
-                waitEnter();
-                continue;
-            }
-            switch (inputConsole) {
-                case 1 -> addBook();
-                case 2 -> findBook();
-                case 3 -> removeBook();
-                case 4 -> displayShelf();
-                case 5 -> clearShelf();
-                case 0 -> {
-                    System.out.println("Выход");
-                    waitEnter();
-                    return;
-                }
-                default -> System.out.println("Ошибка: не верное значение меню (" + inputConsole +
-                        "). Допустимые значения: 0 - 5");
-            }
-            waitEnter();
-        }
+        BOOKSHELF.add(book7);
+        BOOKSHELF.add(book8);
+        BOOKSHELF.add(book9);
     }
 
     private static void addBook() {
         System.out.println("Введите автора:");
-        String author = readString();
+        String author = inputString();
         System.out.println("введите название книги:");
-        String title = readString();
+        String title = inputString();
         System.out.println("Введите год издания:");
         int year = readYear();
         try {
             Book book = new Book(author, title, year);
             if (BOOKSHELF.add(book)) {
                 System.out.println("Книга добавлена.");
-            } else {
-                System.out.println("Ошибка: шкаф заполнен.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка:" + e.getMessage());
@@ -81,16 +68,16 @@ public class BookshelfTest {
             System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
             return;
         }
-        int width = BOOKSHELF.getWidthShelf();
+        int width = BOOKSHELF.maxWidth;
         Book[] books = BOOKSHELF.getAllBook();
         for (Book book : books) {
             System.out.printf("|%-" + width + "s|%n", book);
             System.out.printf("|%s|%n", "-".repeat(width));
         }
 
-        for (int i = BOOKSHELF.getBookCount(); i < BOOKSHELF.CAPACITY; i++) {
+        for (int i = BOOKSHELF.getBookCount(); i < BOOKSHELF.capacity; i++) {
             System.out.println("|" + " ".repeat(width) + "|");
-            if (i < 9) {
+            if (i < BOOKSHELF.capacity - 1) {
                 System.out.println("|" + "-".repeat(width) + "|");
             }
         }
@@ -98,7 +85,7 @@ public class BookshelfTest {
 
     private static void findBook() {
         System.out.println("Введите название книги для поиска:");
-        String title = readString();
+        String title = inputString();
         Book found = BOOKSHELF.find(title);
         if (found != null) {
             System.out.println("Найдена книга: " + found);
@@ -109,7 +96,7 @@ public class BookshelfTest {
 
     private static void removeBook() {
         System.out.println("Введите название книги для удаления:");
-        String title = readString();
+        String title = inputString();
         if (BOOKSHELF.remove(title)) {
             System.out.println("Книга успешно удалена");
         } else {
@@ -145,7 +132,33 @@ public class BookshelfTest {
         System.out.println(menu);
     }
 
-    private static String readString() {
+    private static int inputMenuItem() {
+        try {
+            return Integer.parseInt(CONSOLE.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Ошибка: введенное значения не является числом.");
+            waitEnter();
+        }
+        return 6;
+    }
+
+    private static void executionMenuItem(int inputConsole) {
+        switch (inputConsole) {
+            case 1 -> addBook();
+            case 2 -> findBook();
+            case 3 -> removeBook();
+            case 4 -> displayShelf();
+            case 5 -> clearShelf();
+            case 0 -> {
+                System.out.println("Выход");
+                System.exit(0);
+            }
+            default -> System.out.println("Ошибка: не верное значение меню (" + inputConsole +
+                    "). Допустимые значения: 0 - 5");
+        }
+    }
+
+    private static String inputString() {
         while (true) {
             String input = CONSOLE.nextLine().trim();
             if (!input.isEmpty()) {

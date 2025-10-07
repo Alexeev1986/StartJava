@@ -25,12 +25,23 @@ public class Player {
         return Arrays.copyOf(numbers, attempts);
     }
 
-    public int getAttemptsCount() {
-        return attempts;
+    public boolean addNumber(int number) {
+        if (number < START_RANGE || number > END_RANGE) {
+            System.out.println("Число должно входить в отрезок [" +
+                    Player.START_RANGE + "," + Player.END_RANGE + "].\n" + "Попробуйте еще раз:");
+            return false;
+        }
+        numbers[attempts] = number;
+        attempts++;
+        return true;
     }
 
     public int getLastNumber() {
         return numbers[attempts - 1];
+    }
+
+    public int getAttemptsCount() {
+        return attempts;
     }
 
     public int getScore() {
@@ -43,17 +54,6 @@ public class Player {
 
     public void addScore() {
         winCount++;
-    }
-
-    public boolean addNumber(int number) {
-        if (number < START_RANGE || number > END_RANGE) {
-            System.out.println("Число должно входить в отрезок [" +
-                    Player.START_RANGE + "," + Player.END_RANGE + "].\n" + "Попробуйте еще раз:");
-            return false;
-        }
-        numbers[attempts] = number;
-        attempts++;
-        return true;
     }
 
     public void clear() {

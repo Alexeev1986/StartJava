@@ -8,7 +8,7 @@ public class GuessNumber {
 
     public static final int PLAYER_COUNT = 3;
     private static final int ROUND_COUNT = 3;
-    private final char[] spins = new char[] {'-', '\\', '|', '/'};
+    private final char[] spins = {'-', '\\', '|', '/'};
     private final Scanner console = new Scanner(System.in);
     private final Player[] players;
     private int targetNumber;
@@ -19,13 +19,10 @@ public class GuessNumber {
     }
 
     public void start() throws InterruptedException {
-        clearWinsPlayers();
-        shufflePlayers();
+        initGame();
         System.out.println("Игра началась! У каждого игрока по " + Player.MAX_ATTEMPTS + " попыток");
-        Random random = new Random();
         for (int i = 1; i <= ROUND_COUNT; i++) {
-            clearAllPlayers();
-            targetNumber = random.nextInt(Player.START_RANGE, Player.END_RANGE + 1);
+            initRound();
             System.out.println(targetNumber);
             System.out.println("Раунд № " + i + " игроки начинают угадывать числа.");
             while (true) {
@@ -42,8 +39,9 @@ public class GuessNumber {
         determineWinner();
     }
 
-    private boolean isAttemptsOver() {
-        return players[0].getAttemptsCount() == Player.MAX_ATTEMPTS;
+    private void initGame() throws InterruptedException {
+        clearWinsPlayers();
+        shufflePlayers();
     }
 
     private void clearWinsPlayers() {
@@ -53,7 +51,7 @@ public class GuessNumber {
     }
 
     private void shufflePlayers() throws InterruptedException {
-        printSpin();
+        printSpins();
         Random random = new Random();
         for (int i = players.length - 1; i > 0; i--) {
             int j = random.nextInt(i + 1);
@@ -67,11 +65,17 @@ public class GuessNumber {
         }
     }
 
-    private void printSpin() throws InterruptedException {
+    private void printSpins() throws InterruptedException {
         for (int i = 0; i < spins.length * 3; i++) {
             System.out.print("Бросаем жребий: " + spins[i % 4] + "\r");
             Thread.sleep(300);
         }
+    }
+
+    private void initRound() {
+        Random random = new Random();
+        clearAllPlayers();
+        targetNumber = random.nextInt(Player.START_RANGE, Player.END_RANGE + 1);
     }
 
     private void clearAllPlayers() {
@@ -99,12 +103,6 @@ public class GuessNumber {
                     " c " + player.getAttemptsCount() + "-й попытки.");
             return true;
         }
-        System.out.println("\n" + player.getLastNumber() +
-                (player.getLastNumber() > targetNumber ? " больше " : " меньше ") +
-                "того, что загадал компьютер");
-        if (player.getAttemptsCount() == Player.MAX_ATTEMPTS) {
-            System.out.println("У " + player.getName() + " закончились попытки!");
-        }
         return false;
     }
 
@@ -122,8 +120,21 @@ public class GuessNumber {
         }
     }
 
+    private boolean isAttemptsOver() {
+        return players[0].getAttemptsCount() == Player.MAX_ATTEMPTS;
+    }
+
     private boolean checkGuess(Player player) {
-        return player.getLastNumber() == targetNumber;
+        if (player.getLastNumber() == targetNumber) {
+            return true;
+        }
+        System.out.println("\n" + player.getLastNumber() +
+                (player.getLastNumber() > targetNumber ? " больше " : " меньше ") +
+                "того, что загадал компьютер");
+        if (player.getAttemptsCount() == Player.MAX_ATTEMPTS) {
+            System.out.println("У " + player.getName() + " закончились попытки!");
+        }
+        return false;
     }
 
     private void printNumbers() {
@@ -138,7 +149,7 @@ public class GuessNumber {
         for (Player player : players) {
             System.out.println(player.getName() + " - " + player.getScore());
         }
-        if (isDraw()) {
+        if (isDrawInTheGame()) {
             if (players[0].getScore() == 0) {
                 System.out.println("Общий проигрыш.");
             } else {
@@ -149,7 +160,7 @@ public class GuessNumber {
         }
     }
 
-    private boolean isDraw() {
+    private boolean isDrawInTheGame() {
         for (int i = 1; i < players.length; i++) {
             if (players[0].getScore() != players[i].getScore()) {
                 return false;
