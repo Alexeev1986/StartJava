@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class BookshelfTest {
 
-    private static final Scanner CONSOLE = new Scanner(System.in);
-    private static final Bookshelf BOOKSHELF = new Bookshelf();
+    private static final Scanner console = new Scanner(System.in);
+    private static final Bookshelf bookshelf = new Bookshelf();
 
     public static void main(String[] args) throws InterruptedException {
         printTypewriterEffect("Вас приветствует программа книжный шкаф.");
@@ -16,6 +16,16 @@ public class BookshelfTest {
             executionMenuItem(inputMenuItem());
             waitEnter();
         }
+    }
+
+    private static void printTypewriterEffect(String text) throws InterruptedException {
+        System.out.println();
+        Random random = new Random();
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(text.charAt(i));
+            Thread.sleep(random.nextInt(50, 100));
+        }
+        System.out.println();
     }
 
     private static void addingTestBooks() {
@@ -28,95 +38,15 @@ public class BookshelfTest {
         Book book7 = new Book("Робин Хобб", "Ученик убийцы", 2019);
         Book book8 = new Book("Пирс Браун", "Красное восстание", 2020);
         Book book9 = new Book("Ханна Гриффин", "Последний закат Элиона", 2024);
-        BOOKSHELF.add(book1);
-        BOOKSHELF.add(book2);
-        BOOKSHELF.add(book3);
-        BOOKSHELF.add(book4);
-        BOOKSHELF.add(book5);
-        BOOKSHELF.add(book6);
-        BOOKSHELF.add(book7);
-        BOOKSHELF.add(book8);
-        BOOKSHELF.add(book9);
-    }
-
-    private static void addBook() {
-        System.out.println("Введите автора:");
-        String author = inputString();
-        System.out.println("введите название книги:");
-        String title = inputString();
-        System.out.println("Введите год издания:");
-        int year = readYear();
-        try {
-            Book book = new Book(author, title, year);
-            if (BOOKSHELF.add(book)) {
-                System.out.println("Книга добавлена.");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка:" + e.getMessage());
-        }
-    }
-
-    private static void clearShelf() {
-        BOOKSHELF.clear();
-        System.out.println("Шкаф очищен");
-    }
-
-    private static void displayShelf() {
-        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
-                BOOKSHELF.getBookCount(), BOOKSHELF.countFreeShelves());
-        if (BOOKSHELF.isEmpty()) {
-            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
-            return;
-        }
-        int width = BOOKSHELF.maxWidth;
-        Book[] books = BOOKSHELF.getAllBook();
-        for (Book book : books) {
-            System.out.printf("|%-" + width + "s|%n", book);
-            System.out.printf("|%s|%n", "-".repeat(width));
-        }
-
-        for (int i = BOOKSHELF.getBookCount(); i < BOOKSHELF.capacity; i++) {
-            System.out.println("|" + " ".repeat(width) + "|");
-            if (i < BOOKSHELF.capacity - 1) {
-                System.out.println("|" + "-".repeat(width) + "|");
-            }
-        }
-    }
-
-    private static void findBook() {
-        System.out.println("Введите название книги для поиска:");
-        String title = inputString();
-        Book found = BOOKSHELF.find(title);
-        if (found != null) {
-            System.out.println("Найдена книга: " + found);
-        } else {
-            System.out.println("книга с таким названием не найдена.");
-        }
-    }
-
-    private static void removeBook() {
-        System.out.println("Введите название книги для удаления:");
-        String title = inputString();
-        if (BOOKSHELF.remove(title)) {
-            System.out.println("Книга успешно удалена");
-        } else {
-            System.out.println("Ошибка: книга с таким названием не найдена");
-        }
-    }
-
-    private static int readYear() {
-        while (true) {
-            try {
-                return Integer.parseInt(CONSOLE.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка: год должен быть целым числом.");
-            }
-        }
-    }
-
-    private static void waitEnter() {
-        System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
-        CONSOLE.nextLine();
+        bookshelf.add(book1);
+        bookshelf.add(book2);
+        bookshelf.add(book3);
+        bookshelf.add(book4);
+        bookshelf.add(book5);
+        bookshelf.add(book6);
+        bookshelf.add(book7);
+        bookshelf.add(book8);
+        bookshelf.add(book9);
     }
 
     private static void showMenu() {
@@ -134,12 +64,17 @@ public class BookshelfTest {
 
     private static int inputMenuItem() {
         try {
-            return Integer.parseInt(CONSOLE.nextLine());
+            return Integer.parseInt(console.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("Ошибка: введенное значения не является числом.");
             waitEnter();
         }
         return 6;
+    }
+
+    private static void waitEnter() {
+        System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
+        console.nextLine();
     }
 
     private static void executionMenuItem(int inputConsole) {
@@ -158,9 +93,57 @@ public class BookshelfTest {
         }
     }
 
+    private static void addBook() {
+        System.out.println("Введите автора:");
+        String author = inputString();
+        System.out.println("введите название книги:");
+        String title = inputString();
+        System.out.println("Введите год издания:");
+        int year = readYear();
+        try {
+            Book book = new Book(author, title, year);
+            if (bookshelf.add(book)) {
+                System.out.println("Книга добавлена.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка:" + e.getMessage());
+        }
+    }
+
+    private static int readYear() {
+        while (true) {
+            try {
+                return Integer.parseInt(console.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Ошибка: год должен быть целым числом.");
+            }
+        }
+    }
+
+    private static void findBook() {
+        System.out.println("Введите название книги для поиска:");
+        String title = inputString();
+        Book found = bookshelf.find(title);
+        if (found != null) {
+            System.out.println("Найдена книга: " + found);
+        } else {
+            System.out.println("книга с таким названием не найдена.");
+        }
+    }
+
+    private static void removeBook() {
+        System.out.println("Введите название книги для удаления:");
+        String title = inputString();
+        if (bookshelf.remove(title)) {
+            System.out.println("Книга успешно удалена");
+        } else {
+            System.out.println("Ошибка: книга с таким названием не найдена");
+        }
+    }
+
     private static String inputString() {
         while (true) {
-            String input = CONSOLE.nextLine().trim();
+            String input = console.nextLine().trim();
             if (!input.isEmpty()) {
                 return input;
             }
@@ -168,13 +151,30 @@ public class BookshelfTest {
         }
     }
 
-    private static void printTypewriterEffect(String text) throws InterruptedException {
-        System.out.println();
-        Random random = new Random();
-        for (int i = 0; i < text.length(); i++) {
-            System.out.print(text.charAt(i));
-            Thread.sleep(random.nextInt(50, 100));
+    private static void displayShelf() {
+        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
+                bookshelf.getBookCount(), bookshelf.countFreeShelves());
+        if (bookshelf.isEmpty()) {
+            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
+            return;
         }
-        System.out.println();
+        int width = bookshelf.maxWidth;
+        Book[] books = bookshelf.getAllBook();
+        for (Book book : books) {
+            System.out.printf("|%-" + width + "s|%n", book);
+            System.out.printf("|%s|%n", "-".repeat(width));
+        }
+
+        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
+            System.out.println("|" + " ".repeat(width) + "|");
+            if (i < bookshelf.CAPACITY - 1) {
+                System.out.println("|" + "-".repeat(width) + "|");
+            }
+        }
+    }
+
+    private static void clearShelf() {
+        bookshelf.clear();
+        System.out.println("Шкаф очищен");
     }
 }

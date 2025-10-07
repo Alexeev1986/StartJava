@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    public final int capacity = 10;
+    public static final int CAPACITY = 10;
     private final Book[] books;
     public int maxWidth;
     private int size;
 
     public Bookshelf() {
-        this.books = new Book[capacity];
+        this.books = new Book[CAPACITY];
     }
 
     public Book[] getAllBook() {
@@ -18,28 +18,23 @@ public class Bookshelf {
     }
 
     public int countFreeShelves() {
-        return books.length - size;
+        return CAPACITY - size;
     }
 
     public boolean add(Book book) {
         if (book == null) {
             return false;
         }
-        if (size >= books.length) {
+        if (size >= CAPACITY) {
             System.out.println("Ошибка: шкаф заполнен.");
             return false;
         }
         books[size] = book;
-        size++;
-        calculateWidthShelf();
-        return true;
-    }
-
-    private void calculateWidthShelf() {
-        maxWidth = 0;
-        for (int i = 0; i < size; i++) {
-            maxWidth = Math.max(maxWidth, books[i].getTextLength());
+        if (books[size].getTextLength() > maxWidth) {
+            maxWidth = books[size].getTextLength();
         }
+        size++;
+        return true;
     }
 
     public Book find(String title) {
@@ -58,16 +53,27 @@ public class Bookshelf {
         if (title == null || title.isBlank()) {
             return false;
         }
+        boolean isLanger;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equals(title.trim())) {
+                isLanger = (books[i].getTextLength() == maxWidth);
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
-                calculateWidthShelf();
+                if (isLanger) {
+                    calculateWidthShelf();
+                }
                 return true;
             }
         }
         return false;
+    }
+
+    private void calculateWidthShelf() {
+        maxWidth = 0;
+        for (int i = 0; i < size; i++) {
+            maxWidth = Math.max(maxWidth, books[i].getTextLength());
+        }
     }
 
     public boolean isEmpty() {

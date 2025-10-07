@@ -103,6 +103,9 @@ public class GuessNumber {
                     " c " + player.getAttemptsCount() + "-й попытки.");
             return true;
         }
+        if (player.getAttemptsCount() == Player.MAX_ATTEMPTS) {
+            System.out.println("У " + player.getName() + " закончились попытки!");
+        }
         return false;
     }
 
@@ -131,9 +134,6 @@ public class GuessNumber {
         System.out.println("\n" + player.getLastNumber() +
                 (player.getLastNumber() > targetNumber ? " больше " : " меньше ") +
                 "того, что загадал компьютер");
-        if (player.getAttemptsCount() == Player.MAX_ATTEMPTS) {
-            System.out.println("У " + player.getName() + " закончились попытки!");
-        }
         return false;
     }
 
@@ -149,7 +149,7 @@ public class GuessNumber {
         for (Player player : players) {
             System.out.println(player.getName() + " - " + player.getScore());
         }
-        if (isDrawInTheGame()) {
+        if (isEqualScore()) {
             if (players[0].getScore() == 0) {
                 System.out.println("Общий проигрыш.");
             } else {
@@ -160,7 +160,7 @@ public class GuessNumber {
         }
     }
 
-    private boolean isDrawInTheGame() {
+    private boolean isEqualScore() {
         for (int i = 1; i < players.length; i++) {
             if (players[0].getScore() != players[i].getScore()) {
                 return false;
