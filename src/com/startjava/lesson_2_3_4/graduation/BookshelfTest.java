@@ -1,6 +1,5 @@
 package com.startjava.lesson_2_3_4.graduation;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class BookshelfTest {
@@ -10,25 +9,29 @@ public class BookshelfTest {
 
     public static void main(String[] args) throws InterruptedException {
         printTypewriterEffect("Вас приветствует программа книжный шкаф.");
-        addingTestBooks();
+        initTestBooks();
+        int selectedItem;
         while (true) {
             showMenu();
-            executionMenuItem(inputMenuItem());
+            selectedItem = inputMenuItem();
+            execMenuItem(selectedItem);
+            if (selectedItem == 6) {
+                break;
+            }
             waitEnter();
         }
     }
 
     private static void printTypewriterEffect(String text) throws InterruptedException {
         System.out.println();
-        Random random = new Random();
         for (int i = 0; i < text.length(); i++) {
             System.out.print(text.charAt(i));
-            Thread.sleep(random.nextInt(50, 100));
+            Thread.sleep(50);
         }
         System.out.println();
     }
 
-    private static void addingTestBooks() {
+    private static void initTestBooks() {
         Book book1 = new Book("Ирвинг Стоун", "Жажда жизни", 1973);
         Book book2 = new Book("Рэй Брэдбери", "451 градус по Фаренгейту", 1980);
         Book book3 = new Book("Кэти Сьерра и Берт Бейтс", "Изучаем JAVA", 2022);
@@ -51,15 +54,14 @@ public class BookshelfTest {
 
     private static void showMenu() {
         System.out.println();
-        String menu = """
+        System.out.println("""
                 Выберите желаемую операцию:
                 1. Добавить книгу
                 2. Найти книгу по названию
                 3. Удалить книгу по названию
                 4. Показать шкаф
                 5. Очистить шкаф
-                0. Завершить""";
-        System.out.println(menu);
+                6. Завершить""");
     }
 
     private static int inputMenuItem() {
@@ -69,27 +71,30 @@ public class BookshelfTest {
             System.out.println("Ошибка: введенное значения не является числом.");
             waitEnter();
         }
-        return 6;
+        return 7;
     }
 
     private static void waitEnter() {
-        System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
-        console.nextLine();
+        String input;
+        do {
+            System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
+            input = console.nextLine();
+        } while (!input.isBlank());
     }
 
-    private static void executionMenuItem(int inputConsole) {
-        switch (inputConsole) {
+    private static void execMenuItem(int menuItem) {
+        switch (menuItem) {
             case 1 -> addBook();
             case 2 -> findBook();
             case 3 -> removeBook();
             case 4 -> displayShelf();
             case 5 -> clearShelf();
-            case 0 -> {
+            case 6 -> {
                 System.out.println("Выход");
-                System.exit(0);
+                waitEnter();
             }
-            default -> System.out.println("Ошибка: не верное значение меню (" + inputConsole +
-                    "). Допустимые значения: 0 - 5");
+            default -> System.out.println("Ошибка: не верное значение меню (" + menuItem +
+                    "). Допустимые значения: 0 - 6");
         }
     }
 
@@ -99,7 +104,7 @@ public class BookshelfTest {
         System.out.println("введите название книги:");
         String title = inputString();
         System.out.println("Введите год издания:");
-        int year = readYear();
+        int year = inputYear();
         try {
             Book book = new Book(author, title, year);
             if (bookshelf.add(book)) {
@@ -110,7 +115,7 @@ public class BookshelfTest {
         }
     }
 
-    private static int readYear() {
+    private static int inputYear() {
         while (true) {
             try {
                 return Integer.parseInt(console.nextLine().trim());

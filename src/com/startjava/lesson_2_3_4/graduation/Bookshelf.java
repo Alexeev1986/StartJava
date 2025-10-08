@@ -30,9 +30,7 @@ public class Bookshelf {
             return false;
         }
         books[size] = book;
-        if (books[size].getTextLength() > maxWidth) {
-            maxWidth = books[size].getTextLength();
-        }
+        maxWidth = Math.max(maxWidth, books[size].getTextLength());
         size++;
         return true;
     }
@@ -53,14 +51,14 @@ public class Bookshelf {
         if (title == null || title.isBlank()) {
             return false;
         }
-        boolean isLanger;
+        boolean isMaxWidth;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equals(title.trim())) {
-                isLanger = (books[i].getTextLength() == maxWidth);
+                isMaxWidth = (books[i].getTextLength() == maxWidth);
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
-                if (isLanger) {
+                if (isMaxWidth) {
                     calculateWidthShelf();
                 }
                 return true;

@@ -9,12 +9,7 @@ public class GuessNumberTest {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner console = new Scanner(System.in);
-        Player[] players = new Player[GuessNumber.PLAYER_COUNT];
-        for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
-            System.out.print("Введите имя " + (i + 1) + " игрока: ");
-            players[i] = new Player(console.nextLine());
-        }
-        GuessNumber game = new GuessNumber(players);
+        GuessNumber game = new GuessNumber(createPlayers(console));
         String answer = YES;
         do {
             if (YES.equals(answer)) {
@@ -25,5 +20,14 @@ public class GuessNumberTest {
             System.out.println("Хотите продолжить играть? [yes/no]:");
             answer = console.nextLine().trim().toLowerCase();
         } while (!NO.equals(answer));
+    }
+
+    private static Player[] createPlayers(Scanner console) {
+        Player[] players = new Player[GuessNumber.PLAYER_COUNT];
+        for (int i = 0; i < GuessNumber.PLAYER_COUNT; i++) {
+            System.out.print("Введите имя " + (i + 1) + " игрока: ");
+            players[i] = new Player(console.nextLine());
+        }
+        return players;
     }
 }
