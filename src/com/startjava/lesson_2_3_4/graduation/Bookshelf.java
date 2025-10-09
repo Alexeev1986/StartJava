@@ -6,7 +6,7 @@ public class Bookshelf {
 
     public static final int CAPACITY = 10;
     private final Book[] books;
-    public int maxWidth;
+    private int maxLength;
     private int size;
 
     public Bookshelf() {
@@ -15,10 +15,6 @@ public class Bookshelf {
 
     public Book[] getAllBook() {
         return Arrays.copyOf(books, size);
-    }
-
-    public int countFreeShelves() {
-        return CAPACITY - size;
     }
 
     public boolean add(Book book) {
@@ -30,9 +26,13 @@ public class Bookshelf {
             return false;
         }
         books[size] = book;
-        maxWidth = Math.max(maxWidth, books[size].getTextLength());
+        maxLength = Math.max(maxLength, books[size].getTextLength());
         size++;
         return true;
+    }
+
+    public int getBookCount() {
+        return size;
     }
 
     public Book find(String title) {
@@ -51,15 +51,15 @@ public class Bookshelf {
         if (title == null || title.isBlank()) {
             return false;
         }
-        boolean isMaxWidth;
+        boolean isMaxLength;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equals(title.trim())) {
-                isMaxWidth = (books[i].getTextLength() == maxWidth);
+                isMaxLength = (books[i].getTextLength() == maxLength);
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
                 books[size] = null;
                 size--;
-                if (isMaxWidth) {
-                    calculateWidthShelf();
+                if (isMaxLength) {
+                    calculateLengthShelf();
                 }
                 return true;
             }
@@ -67,19 +67,19 @@ public class Bookshelf {
         return false;
     }
 
-    private void calculateWidthShelf() {
-        maxWidth = 0;
+    private void calculateLengthShelf() {
+        maxLength = 0;
         for (int i = 0; i < size; i++) {
-            maxWidth = Math.max(maxWidth, books[i].getTextLength());
+            maxLength = Math.max(maxLength, books[i].getTextLength());
         }
+    }
+
+    public int countFreeShelves() {
+        return CAPACITY - size;
     }
 
     public boolean isEmpty() {
         return size == 0;
-    }
-
-    public int getBookCount() {
-        return size;
     }
 
     public void clear() {
@@ -87,4 +87,3 @@ public class Bookshelf {
         size = 0;
     }
 }
-
