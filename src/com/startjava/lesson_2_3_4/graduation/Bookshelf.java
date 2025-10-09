@@ -74,6 +74,10 @@ public class Bookshelf {
         }
     }
 
+    public int getmaxLength() {
+        return maxLength;
+    }
+
     public int countFreeShelves() {
         return CAPACITY - size;
     }

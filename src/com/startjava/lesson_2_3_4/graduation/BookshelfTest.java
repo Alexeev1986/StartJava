@@ -163,17 +163,17 @@ public class BookshelfTest {
             System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
             return;
         }
-        int width = bookshelf.maxWidth;
+        int length = bookshelf.getmaxLength();
         Book[] books = bookshelf.getAllBook();
         for (Book book : books) {
-            System.out.printf("|%-" + width + "s|%n", book);
-            System.out.printf("|%s|%n", "-".repeat(width));
+            System.out.printf("|%-" + length + "s|%n", book);
+            System.out.printf("|%s|%n", "-".repeat(length));
         }
 
         for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
-            System.out.println("|" + " ".repeat(width) + "|");
+            System.out.println("|" + " ".repeat(length) + "|");
             if (i < bookshelf.CAPACITY - 1) {
-                System.out.println("|" + "-".repeat(width) + "|");
+                System.out.println("|" + "-".repeat(length) + "|");
             }
         }
     }
