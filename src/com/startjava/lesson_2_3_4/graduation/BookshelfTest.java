@@ -1,5 +1,8 @@
 package com.startjava.lesson_2_3_4.graduation;
 
+import com.startjava.lesson_2_3_4.graduation.exception.BookAddException;
+import com.startjava.lesson_2_3_4.graduation.exception.BookRemoveException;
+import com.startjava.lesson_2_3_4.graduation.exception.InvalidMenuChoiceException;
 import java.util.Scanner;
 
 public class BookshelfTest {
@@ -10,12 +13,13 @@ public class BookshelfTest {
     public static void main(String[] args) throws InterruptedException {
         printTypewriterEffect("Вас приветствует программа книжный шкаф.");
         initTestBooks();
-        int selectedItem;
+        displayShelf();
+        MenuChoice selectedItem;
         while (true) {
             showMenu();
             selectedItem = inputMenuItem();
             execMenuItem(selectedItem);
-            if (selectedItem == 6) {
+            if (selectedItem == MenuChoice.EXIT) {
                 break;
             }
             waitEnter();
@@ -40,38 +44,72 @@ public class BookshelfTest {
         Book book6 = new Book("Мари Нихофф", "Когда Король Падет", 2024);
         Book book7 = new Book("Робин Хобб", "Ученик убийцы", 2019);
         Book book8 = new Book("Пирс Браун", "Красное восстание", 2020);
-        Book book9 = new Book("Ханна Гриффин", "Последний закат Элиона", 2024);
-        bookshelf.add(book1);
-        bookshelf.add(book2);
-        bookshelf.add(book3);
-        bookshelf.add(book4);
-        bookshelf.add(book5);
-        bookshelf.add(book6);
-        bookshelf.add(book7);
-        bookshelf.add(book8);
-        bookshelf.add(book9);
+        Book book9 = new Book("Ли Бардуго", "Продажное королевство", 2020);
+        try {
+            bookshelf.add(book1);
+            bookshelf.add(book2);
+            bookshelf.add(book3);
+            bookshelf.add(book4);
+            bookshelf.add(book5);
+            bookshelf.add(book6);
+            bookshelf.add(book7);
+            bookshelf.add(book8);
+            bookshelf.add(book9);
+        } catch (BookAddException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void showMenu() {
         System.out.println();
-        System.out.println("""
-                Выберите желаемую операцию:
-                1. Добавить книгу
-                2. Найти книгу по названию
-                3. Удалить книгу по названию
-                4. Показать шкаф
-                5. Очистить шкаф
-                6. Завершить""");
+        if (bookshelf.getBookCount() == 0) {
+            System.out.println("""
+                    Выберите желаемую операцию:
+                    1. Добавить книгу
+                    2. Завершить""");
+        } else if (bookshelf.getFreeShelves() == 0) {
+            System.out.println("""
+                    Выберите желаемую операцию:
+                    1. Найти книгу по названию
+                    2. Удалить книгу по названию
+                    3. Очистить шкаф
+                    4. Завершить""");
+        } else {
+            System.out.println("Выберите желаемую операцию:");
+            for (MenuChoice menuChoice : MenuChoice.values()) {
+                System.out.println(menuChoice);
+            }
+        }
     }
 
-    private static int inputMenuItem() {
+    private static MenuChoice inputMenuItem() {
         try {
-            return Integer.parseInt(console.nextLine());
+            int inputNum = Integer.parseInt(console.nextLine());
+            if (bookshelf.getBookCount() == 0) {
+                return switch (inputNum) {
+                    case 1 -> MenuChoice.ADD;
+                    case 2 -> MenuChoice.EXIT;
+                    default -> throw new InvalidMenuChoiceException("Ошибке: " +
+                            "нет такого пункта меню " + inputNum);
+                };
+            } else if (bookshelf.getFreeShelves() == 0) {
+                return switch (inputNum) {
+                    case 1 -> MenuChoice.FIND;
+                    case 2 -> MenuChoice.REMOVE;
+                    case 3 -> MenuChoice.CLEAR;
+                    case 4 -> MenuChoice.EXIT;
+                    default -> throw new InvalidMenuChoiceException("Ошибке:" +
+                            " нет такого пункта меню " + inputNum);
+                };
+            } else {
+                return MenuChoice.inputNumberMenu(inputNum);
+            }
         } catch (NumberFormatException e) {
-            System.out.println("Ошибка: введенное значения не является числом.");
-            waitEnter();
+            System.out.println("Ошибка: введенное значения не является целым числом.");
+        } catch (InvalidMenuChoiceException e) {
+            System.out.println(e.getMessage());
         }
-        return 7;
+        return null;
     }
 
     private static void waitEnter() {
@@ -82,19 +120,21 @@ public class BookshelfTest {
         } while (!input.isBlank());
     }
 
-    private static void execMenuItem(int menuItem) {
-        switch (menuItem) {
-            case 1 -> addBook();
-            case 2 -> findBook();
-            case 3 -> removeBook();
-            case 4 -> displayShelf();
-            case 5 -> clearShelf();
-            case 6 -> {
+    private static void execMenuItem(MenuChoice option) {
+        if (option == null) {
+            return;
+        }
+        switch (option) {
+            case ADD -> addBook();
+            case FIND -> findBook();
+            case REMOVE -> removeBook();
+            case CLEAR -> clearShelf();
+            case EXIT -> {
                 System.out.println("Выход");
                 waitEnter();
             }
-            default -> System.out.println("Ошибка: не верное значение меню (" + menuItem +
-                    "). Допустимые значения: 0 - 6");
+            default -> System.out.println("Ошибка: команды " +
+                    option + "не существует.");
         }
     }
 
@@ -109,8 +149,9 @@ public class BookshelfTest {
             Book book = new Book(author, title, year);
             if (bookshelf.add(book)) {
                 System.out.println("Книга добавлена.");
+                displayShelf();
             }
-        } catch (IllegalArgumentException e) {
+        } catch (BookAddException e) {
             System.out.println("Ошибка:" + e.getMessage());
         }
     }
@@ -128,21 +169,27 @@ public class BookshelfTest {
     private static void findBook() {
         System.out.println("Введите название книги для поиска:");
         String title = inputString();
-        Book found = bookshelf.find(title);
-        if (found != null) {
-            System.out.println("Найдена книга: " + found);
+        Book[] found = bookshelf.find(title);
+        if (found.length > 0) {
+            for (Book foundBook : found) {
+                System.out.println("Найдена книга: " + foundBook);
+            }
         } else {
             System.out.println("книга с таким названием не найдена.");
         }
+        displayShelf();
     }
 
     private static void removeBook() {
         System.out.println("Введите название книги для удаления:");
         String title = inputString();
-        if (bookshelf.remove(title)) {
-            System.out.println("Книга успешно удалена");
-        } else {
-            System.out.println("Ошибка: книга с таким названием не найдена");
+        try {
+            if (bookshelf.remove(title)) {
+                System.out.println("Книга успешно удалена");
+                displayShelf();
+            }
+        } catch (BookRemoveException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -163,7 +210,7 @@ public class BookshelfTest {
             System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
             return;
         }
-        int length = bookshelf.getmaxLength();
+        int length = bookshelf.getMaxLength();
         Book[] books = bookshelf.getAllBook();
         for (Book book : books) {
             System.out.printf("|%-" + length + "s|%n", book);
@@ -181,5 +228,6 @@ public class BookshelfTest {
     private static void clearShelf() {
         bookshelf.clear();
         System.out.println("Шкаф очищен");
+        displayShelf();
     }
 }
