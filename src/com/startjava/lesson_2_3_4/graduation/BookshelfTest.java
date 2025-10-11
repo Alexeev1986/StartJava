@@ -60,6 +60,28 @@ public class BookshelfTest {
         }
     }
 
+    private static void displayShelf() {
+        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
+                bookshelf.getBookCount(), bookshelf.countFreeShelves());
+        if (bookshelf.isEmpty()) {
+            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
+            return;
+        }
+        int length = bookshelf.getMaxLength();
+        Book[] books = bookshelf.getAllBook();
+        for (Book book : books) {
+            System.out.printf("|%-" + length + "s|%n", book);
+            System.out.printf("|%s|%n", "-".repeat(length));
+        }
+
+        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
+            System.out.println("|" + " ".repeat(length) + "|");
+            if (i < bookshelf.CAPACITY - 1) {
+                System.out.println("|" + "-".repeat(length) + "|");
+            }
+        }
+    }
+
     private static void showMenu() {
         System.out.println();
         if (bookshelf.getBookCount() == 0) {
@@ -112,14 +134,6 @@ public class BookshelfTest {
         return null;
     }
 
-    private static void waitEnter() {
-        String input;
-        do {
-            System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
-            input = console.nextLine();
-        } while (!input.isBlank());
-    }
-
     private static void execMenuItem(MenuChoice option) {
         if (option == null) {
             return;
@@ -136,6 +150,14 @@ public class BookshelfTest {
             default -> System.out.println("Ошибка: команды " +
                     option + "не существует.");
         }
+    }
+
+    private static void waitEnter() {
+        String input;
+        do {
+            System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
+            input = console.nextLine();
+        } while (!input.isBlank());
     }
 
     private static void addBook() {
@@ -200,28 +222,6 @@ public class BookshelfTest {
                 return input;
             }
             System.out.println("Ошибка: значение не может быть пустым, повторите ввод:");
-        }
-    }
-
-    private static void displayShelf() {
-        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
-                bookshelf.getBookCount(), bookshelf.countFreeShelves());
-        if (bookshelf.isEmpty()) {
-            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
-            return;
-        }
-        int length = bookshelf.getMaxLength();
-        Book[] books = bookshelf.getAllBook();
-        for (Book book : books) {
-            System.out.printf("|%-" + length + "s|%n", book);
-            System.out.printf("|%s|%n", "-".repeat(length));
-        }
-
-        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
-            System.out.println("|" + " ".repeat(length) + "|");
-            if (i < bookshelf.CAPACITY - 1) {
-                System.out.println("|" + "-".repeat(length) + "|");
-            }
         }
     }
 
