@@ -18,10 +18,6 @@ public enum MenuChoice {
         this.numberMenu = numberMenu;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public int getNumber() {
         return numberMenu;
     }
