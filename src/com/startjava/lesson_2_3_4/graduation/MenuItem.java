@@ -1,6 +1,6 @@
 package com.startjava.lesson_2_3_4.graduation;
 
-import com.startjava.lesson_2_3_4.graduation.exception.InvalidMenuChoiceException;
+import com.startjava.lesson_2_3_4.graduation.exception.IllegalMenuNumberException;
 
 public enum MenuItem {
 
@@ -22,9 +22,13 @@ public enum MenuItem {
         return menuNumber;
     }
 
-    public static MenuItem inputNumberMenu(int number) {
+    public  String getDescription() {
+        return description;
+    }
+
+    public static MenuItem numberMenu(int number) {
         if (number < 1 || number > values().length) {
-            throw new InvalidMenuChoiceException("Ошибка: Неверное значение меню (" +
+            throw new IllegalMenuNumberException("Ошибка: Неверное значение меню (" +
                     number + "). Допустимые значения: 1 - " + values().length);
         }
         return values()[number - 1];

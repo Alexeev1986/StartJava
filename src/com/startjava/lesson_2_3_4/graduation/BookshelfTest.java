@@ -1,8 +1,8 @@
 package com.startjava.lesson_2_3_4.graduation;
 
 import com.startjava.lesson_2_3_4.graduation.exception.BookshelfFullException;
-import com.startjava.lesson_2_3_4.graduation.exception.EmptyNameDeletedBookException;
-import com.startjava.lesson_2_3_4.graduation.exception.InvalidMenuChoiceException;
+import com.startjava.lesson_2_3_4.graduation.exception.NotExistBookException;
+import com.startjava.lesson_2_3_4.graduation.exception.IllegalMenuNumberException;
 import java.util.Scanner;
 
 public class BookshelfTest {
@@ -60,42 +60,18 @@ public class BookshelfTest {
         }
     }
 
-    private static void displayShelf() {
-        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
-                bookshelf.getBookCount(), bookshelf.countFreeShelves());
-        if (bookshelf.isEmpty()) {
-            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
-            return;
-        }
-        int length = bookshelf.getMaxLength();
-        Book[] books = bookshelf.getAllBook();
-        for (Book book : books) {
-            System.out.printf("|%-" + length + "s|%n", book);
-            System.out.printf("|%s|%n", "-".repeat(length));
-        }
-
-        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
-            System.out.println("|" + " ".repeat(length) + "|");
-            if (i < bookshelf.CAPACITY - 1) {
-                System.out.println("|" + "-".repeat(length) + "|");
-            }
-        }
-    }
-
     private static void showMenu() {
         System.out.println();
         if (bookshelf.getBookCount() == 0) {
-            System.out.println("""
-                    Выберите желаемую операцию:
-                    1. Добавить книгу
-                    2. Завершить""");
-        } else if (bookshelf.getFreeShelves() == 0) {
-            System.out.println("""
-                    Выберите желаемую операцию:
-                    1. Найти книгу по названию
-                    2. Удалить книгу по названию
-                    3. Очистить шкаф
-                    4. Завершить""");
+            System.out.println("Выберите желаемую операцию:");
+            System.out.println(MenuItem.ADD.getNumber() + ". " + MenuItem.ADD.getDescription());
+            System.out.println("2. " + MenuItem.EXIT.getDescription());
+        } else if (bookshelf.countFreeShelves() == 0) {
+            System.out.println("Выберите желаемую операцию:");
+            System.out.println("1. " + MenuItem.FIND.getDescription());
+            System.out.println("2. " + MenuItem.REMOVE.getDescription());
+            System.out.println("3. " + MenuItem.CLEAR.getDescription());
+            System.out.println("4. " + MenuItem.EXIT.getDescription());
         } else {
             System.out.println("Выберите желаемую операцию:");
             for (MenuItem menuItem : MenuItem.values()) {
@@ -112,34 +88,27 @@ public class BookshelfTest {
                     return switch (inputNum) {
                         case 1 -> MenuItem.ADD;
                         case 2 -> MenuItem.EXIT;
-                        default -> throw new InvalidMenuChoiceException("Ошибка: Неверное значение меню (" +
+                        default -> throw new IllegalMenuNumberException("Ошибка: Неверное значение меню (" +
                                 inputNum + "). Допустимые значения: 1 - 2");
                     };
-                } else if (bookshelf.getFreeShelves() == 0) {
-                    return switch (inputNum) {
-                        case 1 -> MenuItem.FIND;
-                        case 2 -> MenuItem.REMOVE;
-                        case 3 -> MenuItem.CLEAR;
-                        case 4 -> MenuItem.EXIT;
-                        default -> throw new InvalidMenuChoiceException("Ошибка: Неверное значение меню (" +
-                                inputNum + "). Допустимые значения: 1 - 4");
-                    };
+                } else if (bookshelf.countFreeShelves() == 0) {
+                    return MenuItem.numberMenu(inputNum + 1);
                 } else {
-                    return MenuItem.inputNumberMenu(inputNum);
+                    return MenuItem.numberMenu(inputNum);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка: введенное значения не является целым числом.");
-            } catch (InvalidMenuChoiceException e) {
+            } catch (IllegalMenuNumberException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void execMenuItem(MenuItem option) {
-        if (option == null) {
+    private static void execMenuItem(MenuItem selectedItem) {
+        if (selectedItem == null) {
             return;
         }
-        switch (option) {
+        switch (selectedItem) {
             case ADD -> addBook();
             case FIND -> findBook();
             case REMOVE -> removeBook();
@@ -149,22 +118,14 @@ public class BookshelfTest {
                 waitEnter();
             }
             default -> System.out.println("Ошибка: команды " +
-                    option + "не существует.");
+                    selectedItem + "не существует.");
         }
-    }
-
-    private static void waitEnter() {
-        String input;
-        do {
-            System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
-            input = console.nextLine();
-        } while (!input.isBlank());
     }
 
     private static void addBook() {
         System.out.println("Введите автора:");
         String author = inputString();
-        System.out.println("введите название книги:");
+        System.out.println("Введите название книги:");
         String title = inputString();
         System.out.println("Введите год издания:");
         int year = inputYear();
@@ -173,7 +134,7 @@ public class BookshelfTest {
             if (bookshelf.add(book)) {
                 System.out.println("Книга добавлена.");
             }
-        } catch (BookshelfFullException e) {
+        } catch (BookshelfFullException | IllegalArgumentException e) {
             System.out.println("Ошибка:" + e.getMessage());
         }
     }
@@ -201,20 +162,6 @@ public class BookshelfTest {
         }
     }
 
-    private static void removeBook() {
-        System.out.println("Введите название книги для удаления:");
-        String title = console.nextLine();
-        try {
-            int result = bookshelf.remove(title);
-            if (result > 0) {
-                System.out.println("Удалено: " + result + " " +
-                        (result == 1 ? "книга" : "книги"));
-            }
-        } catch (EmptyNameDeletedBookException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     private static String inputString() {
         while (true) {
             String input = console.nextLine().trim();
@@ -225,8 +172,52 @@ public class BookshelfTest {
         }
     }
 
+    private static void removeBook() {
+        System.out.println("Введите название книги для удаления:");
+        String title = console.nextLine();
+        try {
+            int result = bookshelf.remove(title);
+            if (result > 0) {
+                System.out.println("Удалено: " + result + " " +
+                        (result == 1 ? "книга" : "книги"));
+            }
+        } catch (NotExistBookException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static void clearShelf() {
         bookshelf.clear();
         System.out.println("Шкаф очищен");
+    }
+
+    private static void waitEnter() {
+        String input;
+        do {
+            System.out.println("\nДля продолжения работы нажмите клавишу <Enter>");
+            input = console.nextLine();
+        } while (!input.isBlank());
+    }
+
+    private static void displayShelf() {
+        System.out.printf("В шкафу книг - %d, свободно полок - %d%n%n",
+                bookshelf.getBookCount(), bookshelf.countFreeShelves());
+        if (bookshelf.isEmpty()) {
+            System.out.println("Шкаф пуст вы можете добавить в него первую книгу.");
+            return;
+        }
+        int length = bookshelf.getMaxLength();
+        Book[] books = bookshelf.getAllBook();
+        for (Book book : books) {
+            System.out.printf("|%-" + length + "s|%n", book);
+            System.out.printf("|%s|%n", "-".repeat(length));
+        }
+
+        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
+            System.out.println("|" + " ".repeat(length) + "|");
+            if (i < bookshelf.CAPACITY - 1) {
+                System.out.println("|" + "-".repeat(length) + "|");
+            }
+        }
     }
 }

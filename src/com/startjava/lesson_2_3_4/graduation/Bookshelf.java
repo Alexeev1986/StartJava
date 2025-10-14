@@ -1,13 +1,13 @@
 package com.startjava.lesson_2_3_4.graduation;
 
 import com.startjava.lesson_2_3_4.graduation.exception.BookshelfFullException;
-import com.startjava.lesson_2_3_4.graduation.exception.EmptyNameDeletedBookException;
+import com.startjava.lesson_2_3_4.graduation.exception.NotExistBookException;
 import java.util.Arrays;
 
 public class Bookshelf {
 
     public static final int CAPACITY = 10;
-    public static final int FIND_CAPACITY = 2;
+    public static final int DEFAULT_CAPACITY_FOR_FIND = 2;
     private final Book[] books;
     private int maxLength;
     private int size;
@@ -33,19 +33,23 @@ public class Bookshelf {
         return true;
     }
 
+    public int getMaxLength() {
+        return maxLength;
+    }
+
     public int getBookCount() {
         return size;
     }
 
-    public int getFreeShelves() {
-        return books.length - size;
+    public int countFreeShelves() {
+        return CAPACITY - size;
     }
 
     public Book[] find(String title) {
         if (title == null || title.isBlank()) {
-            return null;
+            return new Book[0];
         }
-        Book[] found = new Book[FIND_CAPACITY];
+        Book[] found = new Book[DEFAULT_CAPACITY_FOR_FIND];
         int count = 0;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equalsIgnoreCase(title.trim())) {
@@ -60,31 +64,27 @@ public class Bookshelf {
 
     public int remove(String title) {
         if (title == null || title.isBlank()) {
-            throw new EmptyNameDeletedBookException("Ошибка: вы не указали" +
-                    " название удаляемой книги.");
+            throw new NotExistBookException("Ошибка: не указано название удаляемой книги.");
         }
         boolean isMaxLength;
-        int count = 0;
+        int removed = 0;
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().equals(title.trim())) {
                 isMaxLength = (books[i].getTextLength() == maxLength);
                 System.arraycopy(books, i + 1, books, i, size - i - 1);
-                if (size != CAPACITY) {
-                    books[size] = null;
-                }
-                count++;
-                size--;
+                books[--size] = null;
+                removed++;
                 i--;
                 if (isMaxLength) {
                     calculateLengthShelf();
                 }
             }
         }
-        if (count > 0) {
-            return count;
+        if (removed > 0) {
+            return removed;
         }
         System.out.println("Книга " + title + " не найдена");
-        return count;
+        return removed;
     }
 
     private void calculateLengthShelf() {
@@ -92,14 +92,6 @@ public class Bookshelf {
         for (int i = 0; i < size; i++) {
             maxLength = Math.max(maxLength, books[i].getTextLength());
         }
-    }
-
-    public int getMaxLength() {
-        return maxLength;
-    }
-
-    public int countFreeShelves() {
-        return CAPACITY - size;
     }
 
     public boolean isEmpty() {
