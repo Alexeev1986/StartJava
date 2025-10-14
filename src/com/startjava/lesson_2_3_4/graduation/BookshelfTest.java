@@ -92,6 +92,10 @@ public class BookshelfTest {
                                 inputNum + "). Допустимые значения: 1 - 2");
                     };
                 } else if (bookshelf.countFreeShelves() == 0) {
+                    if (inputNum < 1 || inputNum > 4) {
+                        throw new IllegalMenuNumberException("Ошибка: Неверное значение меню (" +
+                                inputNum + "). Допустимые значения: 1 - 4");
+                    }
                     return MenuItem.numberMenu(inputNum + 1);
                 } else {
                     return MenuItem.numberMenu(inputNum);
