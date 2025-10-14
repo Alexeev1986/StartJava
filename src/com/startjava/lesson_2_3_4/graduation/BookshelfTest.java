@@ -217,9 +217,9 @@ public class BookshelfTest {
             System.out.printf("|%s|%n", "-".repeat(length));
         }
 
-        for (int i = bookshelf.getBookCount(); i < bookshelf.CAPACITY; i++) {
+        for (int i = bookshelf.getBookCount(); i < Bookshelf.CAPACITY; i++) {
             System.out.println("|" + " ".repeat(length) + "|");
-            if (i < bookshelf.CAPACITY - 1) {
+            if (i < Bookshelf.CAPACITY - 1) {
                 System.out.println("|" + "-".repeat(length) + "|");
             }
         }
