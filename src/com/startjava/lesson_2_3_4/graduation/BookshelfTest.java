@@ -65,13 +65,13 @@ public class BookshelfTest {
         if (bookshelf.getBookCount() == 0) {
             System.out.println("Выберите желаемую операцию:");
             System.out.println(MenuItem.ADD.getNumber() + ". " + MenuItem.ADD.getDescription());
-            System.out.println("2. " + MenuItem.EXIT.getDescription());
+            System.out.println((MenuItem.EXIT.getNumber() - 3) + ". " + MenuItem.EXIT.getDescription());
         } else if (bookshelf.countFreeShelves() == 0) {
             System.out.println("Выберите желаемую операцию:");
-            System.out.println("1. " + MenuItem.FIND.getDescription());
-            System.out.println("2. " + MenuItem.REMOVE.getDescription());
-            System.out.println("3. " + MenuItem.CLEAR.getDescription());
-            System.out.println("4. " + MenuItem.EXIT.getDescription());
+            System.out.println((MenuItem.FIND.getNumber() - 1) + ". "  + MenuItem.FIND.getDescription());
+            System.out.println((MenuItem.REMOVE.getNumber() - 1) + ". " + MenuItem.REMOVE.getDescription());
+            System.out.println((MenuItem.CLEAR.getNumber() - 1) + ". " + MenuItem.CLEAR.getDescription());
+            System.out.println((MenuItem.EXIT.getNumber() - 1) + ". " + MenuItem.EXIT.getDescription());
         } else {
             System.out.println("Выберите желаемую операцию:");
             for (MenuItem menuItem : MenuItem.values()) {
