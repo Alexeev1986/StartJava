@@ -14,9 +14,8 @@ public class BookshelfTest {
         printTypewriterEffect("Вас приветствует программа книжный шкаф.");
         initTestBooks();
         while (true) {
-            MenuItem selectedItem;
-            showMenu();
-            selectedItem = inputMenuItem();
+            showMenu(formMenu());
+            MenuItem selectedItem = inputMenuItem();
             execMenuItem(selectedItem);
             if (selectedItem == MenuItem.EXIT) {
                 break;
@@ -60,23 +59,19 @@ public class BookshelfTest {
         }
     }
 
-    private static void showMenu() {
-        System.out.println();
+    private static MenuItem[] formMenu() {
         if (bookshelf.getBookCount() == 0) {
-            System.out.println("Выберите желаемую операцию:");
-            System.out.println(MenuItem.ADD.getNumber() + ". " + MenuItem.ADD.getDescription());
-            System.out.println((MenuItem.EXIT.getNumber() - 3) + ". " + MenuItem.EXIT.getDescription());
-        } else if (bookshelf.countFreeShelves() == 0) {
-            System.out.println("Выберите желаемую операцию:");
-            System.out.println((MenuItem.FIND.getNumber() - 1) + ". "  + MenuItem.FIND.getDescription());
-            System.out.println((MenuItem.REMOVE.getNumber() - 1) + ". " + MenuItem.REMOVE.getDescription());
-            System.out.println((MenuItem.CLEAR.getNumber() - 1) + ". " + MenuItem.CLEAR.getDescription());
-            System.out.println((MenuItem.EXIT.getNumber() - 1) + ". " + MenuItem.EXIT.getDescription());
-        } else {
-            System.out.println("Выберите желаемую операцию:");
-            for (MenuItem menuItem : MenuItem.values()) {
-                System.out.println(menuItem);
-            }
+            return new MenuItem[] {MenuItem.ADD, MenuItem.EXIT};
+        }
+        if (bookshelf.getBookCount() >= Bookshelf.CAPACITY) {
+            return new MenuItem[] {MenuItem.FIND, MenuItem.REMOVE, MenuItem.CLEAR, MenuItem.EXIT};
+        }
+        return MenuItem.values();
+    }
+
+    private static void showMenu(MenuItem[] items) {
+        for (int i = 1; i <= items.length; i++) {
+            System.out.println(i + ". " + items[i - 1].getDescription());
         }
     }
 
