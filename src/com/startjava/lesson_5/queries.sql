@@ -1,30 +1,49 @@
-\echo '1. Вся таблица '
-SELECT * FROM jaegers ORDER BY model_name;
-\echo '2. Только не уничтоженные роботы '
-SELECT * FROM jaegers WHERE status != 'Destroyed' ORDER BY model_name;
-\echo '3. Роботы серии Mark-1 и Mark-4 '
-SELECT * FROM jaegers WHERE mark IN ('Mark-1', 'Mark-4') ORDER BY model_name;
-\echo '4. Все роботы, кроме Mark-1 и Mark-4 (по mark DESC)'
-SELECT * FROM jaegers 
-WHERE mark NOT IN ('Mark-1', 'Mark-4') 
+\echo '1. Р’СЃСЏ С‚Р°Р±Р»РёС†Р° '
+  SELECT * 
+    FROM jaegers 
+ORDER BY model_name;
+
+\echo '2. РўРѕР»СЊРєРѕ РЅРµ СѓРЅРёС‡С‚РѕР¶РµРЅРЅС‹Рµ СЂРѕР±РѕС‚С‹ '
+   SELECT * 
+     FROM jaegers 
+    WHERE status != 'Destroyed' 
+ ORDER BY model_name;
+
+\echo '3. Р РѕР±РѕС‚С‹ СЃРµСЂРёРё Mark-1 Рё Mark-4 '
+  SELECT * 
+    FROM jaegers 
+   WHERE mark IN ('Mark-1', 'Mark-4') 
+ORDER BY model_name;
+
+\echo '4. Р’СЃРµ СЂРѕР±РѕС‚С‹, РєСЂРѕРјРµ Mark-1 Рё Mark-4 (РїРѕ mark DESC)'
+  SELECT * FROM jaegers 
+   WHERE mark NOT IN ('Mark-1', 'Mark-4') 
 ORDER BY mark DESC;
-\echo '5. Самые старые роботы (по дате запуска)'
-SELECT * FROM jaegers 
-WHERE launch = (SELECT MIN(launch) FROM jaegers)
+
+\echo '5. РЎР°РјС‹Рµ СЃС‚Р°СЂС‹Рµ СЂРѕР±РѕС‚С‹ (РїРѕ РґР°С‚Рµ Р·Р°РїСѓСЃРєР°)'
+  SELECT * 
+    FROM jaegers 
+   WHERE launch = (SELECT MIN(launch) FROM jaegers)
 ORDER BY model_name;
-\echo '6. Роботы с максимальным количеством убитых кайдзю '
-SELECT model_name, mark, launch, kaiju_kill 
-FROM jaegers 
-WHERE kaiju_kill = (SELECT MAX(kaiju_kill) FROM jaegers)
+
+\echo '6. Р РѕР±РѕС‚С‹ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј СѓР±РёС‚С‹С… РєР°Р№РґР·СЋ '
+  SELECT model_name, mark, launch, kaiju_kill 
+    FROM jaegers 
+   WHERE kaiju_kill = (SELECT MAX(kaiju_kill) FROM jaegers)
 ORDER BY model_name;
-\echo '7. Средний вес роботов (округлён до 3 знаков) '
-SELECT ROUND(AVG(weight), 3) AS avg_weight FROM jaegers;
-\echo '8. Увеличение kaiju_kill на 1 у неразрушенных роботов '
-UPDATE jaegers 
-SET kaiju_kill = kaiju_kill + 1 
-WHERE status != 'Destroyed';
-SELECT * FROM jaegers ORDER BY model_name;
-\echo ' 9. Удаление уничтоженных роботов и вывод оставшихся '
-DELETE FROM jaegers 
-WHERE status = 'Destroyed';
+
+\echo '7. РЎСЂРµРґРЅРёР№ РІРµСЃ СЂРѕР±РѕС‚РѕРІ (РѕРєСЂСѓРіР»С‘РЅ РґРѕ 3 Р·РЅР°РєРѕРІ) '
+  SELECT ROUND(AVG(weight), 3) AS avg_weight 
+    FROM jaegers;
+
+\echo '8. РЈРІРµР»РёС‡РµРЅРёРµ kaiju_kill РЅР° 1 Сѓ РЅРµСЂР°Р·СЂСѓС€РµРЅРЅС‹С… СЂРѕР±РѕС‚РѕРІ '
+  UPDATE jaegers 
+     SET kaiju_kill = kaiju_kill + 1 
+   WHERE status != 'Destroyed';
+  SELECT * FROM jaegers ORDER BY model_name;
+
+\echo ' 9. РЈРґР°Р»РµРЅРёРµ СѓРЅРёС‡С‚РѕР¶РµРЅРЅС‹С… СЂРѕР±РѕС‚РѕРІ Рё РІС‹РІРѕРґ РѕСЃС‚Р°РІС€РёС…СЃСЏ '
+DELETE 
+  FROM jaegers 
+ WHERE status = 'Destroyed';
 SELECT * FROM jaegers ORDER BY model_name;
