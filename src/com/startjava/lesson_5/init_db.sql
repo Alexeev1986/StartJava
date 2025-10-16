@@ -2,8 +2,8 @@
 
 DROP TABLE IF EXISTS jaegers;
 
-CREATE TABLE jaegers(
-    id  SERIAL PRIMARY KEY,
+CREATE TABLE jaegers (
+    id         SERIAL PRIMARY KEY,
     model_name VARCHAR(30) NOT NULL,
     mark       VARCHAR(15) NOT NULL,
     height     NUMERIC(4, 2) NOT NULL,
@@ -15,5 +15,4 @@ CREATE TABLE jaegers(
 );
 
 \ir populate.sql
-
 \ir queries.sql
