@@ -11,7 +11,8 @@ CREATE TABLE jaegers(
     status     VARCHAR(15) NOT NULL,
     origin     VARCHAR(15) NOT NULL,
     launch     DATE NOT NULL,
-    kaiju_kill INTEGER NOT NULL DEFAULT 0);
+    kaiju_kill INTEGER NOT NULL DEFAULT 0
+);
 
 \ir populate.sql
 
